@@ -48,7 +48,7 @@ const totalBabka = [];
 const totalKartaczeReturn = [];
 const totalBabkaReturn = [];
 let priceKartacze = 4;
-let priceBabka = 20;
+let priceBabka = 23;
 
 window.addEventListener("load", () => {
   //HTML of each section
@@ -264,31 +264,30 @@ window.addEventListener("load", () => {
       sumQuantKartacze.innerHTML = summaryQuantKartacze + " szt";
 
       const sumQuantBabka = document.querySelector(".sumQuantitySecond");
-      const summaryQuantBabka =
-        parseInt(sumBabka, 2) - parseInt(sumReturnsBabka, 2);
-      sumQuantBabka.innerHTML = summaryQuantBabka + " kg";
+      const summaryQuantBabka = Number(sumBabka) - Number(sumReturnsBabka);
+      sumQuantBabka.innerHTML = summaryQuantBabka.toFixed(2) + " kg";
 
       const priceFirstSold = document.getElementById("priceFirstSold");
-      priceFirstSold.innerHTML = sumKartacze * priceKartacze + " zł";
+      priceFirstSold.innerHTML = (sumKartacze * priceKartacze).toFixed(2) + " zł";
 
       const priceFirstReturned = document.getElementById("priceFirstReturned");
       priceFirstReturned.innerHTML = sumReturnsKartacze * priceKartacze + " zł";
 
       const priceSecondSold = document.getElementById("priceSecondSold");
-      priceSecondSold.innerHTML = sumBabka * priceBabka + " zł";
+      priceSecondSold.innerHTML = (sumBabka * priceBabka).toFixed(2) + " zł";
 
       const priceSecondReturned = document.getElementById(
         "priceSecondReturned"
       );
-      priceSecondReturned.innerHTML = sumReturnsBabka * priceBabka + " zł";
+      priceSecondReturned.innerHTML = (sumReturnsBabka * priceBabka).toFixed(2) + " zł";
 
       const sumPriceFirst = document.querySelector(".sumPriceFirst");
       sumPriceFirst.innerHTML = summaryQuantKartacze * priceKartacze + " zł";
 
       const sumPriceSecond = document.querySelector(".sumPriceSecond");
-      sumPriceSecond.innerHTML = summaryQuantBabka * priceBabka + " zł";
+      sumPriceSecond.innerHTML = (summaryQuantBabka * priceBabka).toFixed(2) + " zł";
 
-      console.log(sumBabka, summaryQuantBabka);
+
     });
   });
 
