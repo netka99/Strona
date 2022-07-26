@@ -50,6 +50,7 @@ const totalBabkaReturn = [];
 let priceKartacze = 4;
 let priceBabka = 23;
 
+
 window.addEventListener("load", () => {
   //HTML of each section
   data.forEach(function (item, index) {
@@ -206,6 +207,11 @@ window.addEventListener("load", () => {
     wrapper.append(containerSaving);
     containerSaving.className = "containerSaving";
     containerSaving.setAttribute("id", "containerSaving");
+
+    let correctButton = document.createElement("button");
+    containerSaving.append(correctButton);
+    correctButton.textContent = "Popraw";
+
     let submitButton = document.createElement("button");
     containerSaving.append(submitButton);
     submitButton.textContent = "Zapisz";
@@ -225,12 +231,16 @@ window.addEventListener("load", () => {
     });
 
     //Saving button - sending data to summary container, summary of sale and returns
-    submitButton.addEventListener("click", (e) => {
+    function SavingData(e) {
       buttonCheck.style.color = "white";
       totalKartacze.push(soldInput.value);
       totalBabka.push(soldInputSec.value);
       totalKartaczeReturn.push(returnInput.value);
       totalBabkaReturn.push(returnInputSec.value);
+      item.countKartacze += Number(soldInput.value);
+      item.countBabka += Number(soldInputSec.value).toFixed(2);
+      item.countKartacze -= Number(returnInput.value);
+      item.countBabka -= Number(returnInputSec.value).toFixed(2);
 
       let sumKartacze = Array.from(totalKartacze, Number).reduce(
         (v, i) => v + i
@@ -271,7 +281,7 @@ window.addEventListener("load", () => {
       priceFirstSold.innerHTML = (sumKartacze * priceKartacze).toFixed(2) + " zł";
 
       const priceFirstReturned = document.getElementById("priceFirstReturned");
-      priceFirstReturned.innerHTML = sumReturnsKartacze * priceKartacze + " zł";
+      priceFirstReturned.innerHTML = (sumReturnsKartacze * priceKartacze).toFixed(2) + " zł";
 
       const priceSecondSold = document.getElementById("priceSecondSold");
       priceSecondSold.innerHTML = (sumBabka * priceBabka).toFixed(2) + " zł";
@@ -282,13 +292,21 @@ window.addEventListener("load", () => {
       priceSecondReturned.innerHTML = (sumReturnsBabka * priceBabka).toFixed(2) + " zł";
 
       const sumPriceFirst = document.querySelector(".sumPriceFirst");
-      sumPriceFirst.innerHTML = summaryQuantKartacze * priceKartacze + " zł";
+      sumPriceFirst.innerHTML = (summaryQuantKartacze * priceKartacze).toFixed(2) + " zł";
 
       const sumPriceSecond = document.querySelector(".sumPriceSecond");
       sumPriceSecond.innerHTML = (summaryQuantBabka * priceBabka).toFixed(2) + " zł";
 
+      soldInput.disabled = true;
+      soldInputSec.disabled = true;
+      returnInput.disabled = true;
+      returnInputSec.disabled = true;
 
-    });
+      submitButton.removeEventListener("click", SavingData)
+    };
+    
+    
+    submitButton.addEventListener("click",SavingData);
   });
 
   //responsive nav menu
@@ -306,4 +324,6 @@ window.addEventListener("load", () => {
       siteNav.classList.remove("active");
     })
   );
+
+
 });
