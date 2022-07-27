@@ -54,165 +54,169 @@ let priceBabka = 23;
 window.addEventListener("load", () => {
   //HTML of each section
   data.forEach(function (item, index) {
-    let mainContent = document.getElementById("mainContent");
-    let section = document.createElement("section");
-    let containerHeader = document.createElement("div");
+    const mainContent = document.getElementById("mainContent");
+    const section = document.createElement("section");
+    const containerHeader = document.createElement("div");
     mainContent.append(section);
     section.append(containerHeader);
     containerHeader.className = "containerHeader";
-    let storeName = document.createElement("div");
+    const storeName = document.createElement("div");
     storeName.className = "storeName";
     containerHeader.append(storeName);
-    let storePicture = document.createElement("img");
+    const storePicture = document.createElement("img");
     storePicture.className = "store-picture";
     storePicture.src = "./images/store-alt-solid.svg";
     storeName.append(storePicture);
     storeName.setAttribute("alt", "store image");
-    let storeText = document.createElement("p");
+    const storeText = document.createElement("p");
     storeText.textContent = item.shopName;
     storeName.append(storeText);
 
-    let buttons = document.createElement("div");
+    const buttons = document.createElement("div");
     containerHeader.append(buttons);
     buttons.className = "buttons";
-    let buttonCheck = document.createElement("span");
+    const buttonCheck = document.createElement("span");
     buttons.append(buttonCheck);
     buttonCheck.textContent = "✓";
     buttonCheck.className = "buttonCheck";
-    let accordionEl = document.createElement("button");
+    const accordionEl = document.createElement("button");
     buttons.append(accordionEl);
     accordionEl.setAttribute("id", "accordion");
     accordionEl.className = "accordion";
-    let arrowEl = document.createElement("p");
+    const arrowEl = document.createElement("p");
     accordionEl.append(arrowEl);
     arrowEl.innerHTML = "&#x2c5";
     arrowEl.setAttribute("id", "arrow");
 
-    let wrapper = document.createElement("div");
+    const wrapper = document.createElement("div");
     section.append(wrapper);
     wrapper.className = "wrapper";
     wrapper.setAttribute("id", "wrapper");
-    let containerMain = document.createElement("div");
+    const containerMain = document.createElement("div");
     wrapper.append(containerMain);
     containerMain.className = "containerMain";
     containerMain.setAttribute("id", "containerMain");
-    let containerItem = document.createElement("div");
+    const containerItem = document.createElement("div");
     containerMain.append(containerItem);
     containerItem.className = "containerItem";
-    let imageItem = document.createElement("div");
+    const imageItem = document.createElement("div");
     containerItem.append(imageItem);
     imageItem.className = "imageItem";
-    let itemPictureFirst = document.createElement("img");
+    const itemPictureFirst = document.createElement("img");
     imageItem.append(itemPictureFirst);
     itemPictureFirst.className = "item-picture";
     itemPictureFirst.src = "./images/kartaczeSmall.jpg";
     itemPictureFirst.setAttribute("alt", "kartacze image");
-    let itemFirstText = document.createElement("p");
+    const itemFirstText = document.createElement("p");
     imageItem.append(itemFirstText);
     itemFirstText.textContent = "Kartacze";
 
-    let items = document.createElement("div");
+    const items = document.createElement("div");
     containerItem.append(items);
     items.className = "items";
-    let soldItemsFirst = document.createElement("div");
+    const soldItemsFirst = document.createElement("div");
     items.append(soldItemsFirst);
     soldItemsFirst.className = "soldItems";
-    let soldLabel = document.createElement("label");
+    const soldLabel = document.createElement("label");
     soldItemsFirst.append(soldLabel);
     soldLabel.setAttribute("for", "sold");
     soldLabel.textContent = "Sprzedaż";
-    let soldInput = document.createElement("input");
+    const soldInput = document.createElement("input");
     soldItemsFirst.append(soldInput);
     soldInput.setAttribute("type", "number");
     soldInput.setAttribute("min", "0");
     soldInput.setAttribute("id", "soldKartacze");
-    let itemsQuantitiesF = document.createElement("p");
+    const itemsQuantitiesF = document.createElement("p");
     soldItemsFirst.append(itemsQuantitiesF);
     itemsQuantitiesF.textContent = "szt.";
     itemsQuantitiesF.className = "itemsQuantities";
 
-    let soldItemsSecond = document.createElement("div");
+    const soldItemsSecond = document.createElement("div");
     items.append(soldItemsSecond);
     soldItemsSecond.className = "soldItems";
-    let returnLabel = document.createElement("label");
+    const returnLabel = document.createElement("label");
     soldItemsSecond.append(returnLabel);
     returnLabel.setAttribute("for", "sold");
     returnLabel.textContent = "Zwrot";
-    let returnInput = document.createElement("input");
+    const returnInput = document.createElement("input");
     soldItemsSecond.append(returnInput);
     returnInput.setAttribute("type", "number");
     returnInput.setAttribute("min", "0");
     returnInput.setAttribute("id", "returnedKartacze");
-    let itemsQuantitiesS = document.createElement("p");
+    const itemsQuantitiesS = document.createElement("p");
     soldItemsSecond.append(itemsQuantitiesS);
     itemsQuantitiesS.textContent = "szt.";
     itemsQuantitiesS.className = "itemsQuantities";
 
     //second Item(product) listed
-    let containerItemSec = document.createElement("div");
+    const containerItemSec = document.createElement("div");
     containerMain.append(containerItemSec);
     containerItemSec.className = "containerItem";
-    let imageItemSec = document.createElement("div");
+    const imageItemSec = document.createElement("div");
     containerItemSec.append(imageItemSec);
     imageItemSec.className = "imageItem";
-    let itemPictureSec = document.createElement("img");
+    const itemPictureSec = document.createElement("img");
     imageItemSec.append(itemPictureSec);
     itemPictureSec.className = "item-picture";
     itemPictureSec.src = "./images/babke-ziemniaczanaSmall.jpg";
     itemPictureSec.setAttribute("alt", "babka ziemniaczana image");
-    let itemSecText = document.createElement("p");
+    const itemSecText = document.createElement("p");
     imageItemSec.append(itemSecText);
     itemSecText.textContent = "Babka";
 
-    let itemsSec = document.createElement("div");
+    const itemsSec = document.createElement("div");
     containerItemSec.append(itemsSec);
     itemsSec.className = "items";
-    let soldItemsSec = document.createElement("div");
+    const soldItemsSec = document.createElement("div");
     itemsSec.append(soldItemsSec);
     soldItemsSec.className = "soldItems";
-    let soldLabelSec = document.createElement("label");
+    const soldLabelSec = document.createElement("label");
     soldItemsSec.append(soldLabelSec);
     soldLabelSec.setAttribute("for", "sold");
     soldLabelSec.textContent = "Sprzedaż";
-    let soldInputSec = document.createElement("input");
+    const soldInputSec = document.createElement("input");
     soldItemsSec.append(soldInputSec);
     soldInputSec.setAttribute("type", "number");
     soldInputSec.setAttribute("min", "0");
     soldInputSec.setAttribute("id", "soldBabka");
     soldInputSec.setAttribute("step", "any");
-    let itemsQuantitiesSec = document.createElement("p");
+    const itemsQuantitiesSec = document.createElement("p");
     soldItemsSec.append(itemsQuantitiesSec);
     itemsQuantitiesSec.textContent = "kg";
     itemsQuantitiesSec.className = "weight";
 
-    let returnItemsSecond = document.createElement("div");
+    const returnItemsSecond = document.createElement("div");
     itemsSec.append(returnItemsSecond);
     returnItemsSecond.className = "soldItems";
-    let returnLabelSed = document.createElement("label");
+    const returnLabelSed = document.createElement("label");
     returnItemsSecond.append(returnLabelSed);
     returnLabelSed.setAttribute("for", "returned");
     returnLabelSed.textContent = "Zwrot";
-    let returnInputSec = document.createElement("input");
+    const returnInputSec = document.createElement("input");
     returnItemsSecond.append(returnInputSec);
     returnInputSec.setAttribute("type", "number");
     returnInputSec.setAttribute("min", "0");
     returnInputSec.setAttribute("id", "returnedBabka");
     returnInputSec.setAttribute("step", "any");
-    let itemsQuantitiesRet = document.createElement("p");
+    const itemsQuantitiesRet = document.createElement("p");
     returnItemsSecond.append(itemsQuantitiesRet);
     itemsQuantitiesRet.textContent = "kg";
     itemsQuantitiesRet.className = "weight";
 
-    let containerSaving = document.createElement("div");
+    const containerSaving = document.createElement("div");
     wrapper.append(containerSaving);
     containerSaving.className = "containerSaving";
     containerSaving.setAttribute("id", "containerSaving");
 
-    let correctButton = document.createElement("button");
+    const correctButton = document.createElement("button");
     containerSaving.append(correctButton);
     correctButton.textContent = "Popraw";
 
-    let submitButton = document.createElement("button");
+    const addButton = document.createElement("button");
+    containerSaving.append(addButton);
+    addButton.innerHTML = "&#xFF0B";
+
+    const submitButton = document.createElement("button");
     containerSaving.append(submitButton);
     submitButton.textContent = "Zapisz";
 
@@ -305,9 +309,25 @@ window.addEventListener("load", () => {
       submitButton.removeEventListener("click", SavingData)
     };
     
+  //Correct data - correctButton functionality
+  function CorrectData() {
+    buttonCheck.style.removeProperty('color');
     
+    soldInput.disabled = false;
+    soldInputSec.disabled = false;
+    returnInput.disabled = false;
+    returnInputSec.disabled = false;
+
+    submitButton.addEventListener("click",SavingData);
+
+  };
+
+
+    correctButton.addEventListener("click", CorrectData);
     submitButton.addEventListener("click",SavingData);
   });
+
+
 
   //responsive nav menu
   const hamburger = document.querySelector(".hamburger");

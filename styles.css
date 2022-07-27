@@ -304,7 +304,7 @@ section {
 .containerSaving>button {
   border: none;
   color: white;
-  padding: 10px 25px;
+  padding: 4px 25px;
   border-radius: 15px;
   font-size: 1em;
   font-weight: bold;
@@ -315,6 +315,13 @@ section {
   background: linear-gradient(to bottom right,  #9f9f9f, #b9b8b8);
 }
 .containerSaving>button:nth-child(2){
+  background: linear-gradient(to bottom right, #d5d6d6eb, #ffffffeb);
+  color: #e51ead;
+  font-size: 1.5rem;
+  padding: 4px 18px;
+
+}
+.containerSaving>button:nth-child(3){
   background: linear-gradient(to bottom right, #e51ead, #e086bf);
 }
 
@@ -323,7 +330,7 @@ section {
   cursor: pointer;
 }
 
-.containerSaving>button:nth-child(2):hover {
+.containerSaving>button:nth-child(3):hover {
   background: linear-gradient(to bottom right, #cd1b9b, #c375a6);
   cursor: pointer;
 }
