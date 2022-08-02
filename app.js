@@ -208,17 +208,22 @@ window.addEventListener("load", () => {
     containerSaving.className = "containerSaving";
     containerSaving.setAttribute("id", "containerSaving");
 
-    const correctButton = document.createElement("button");
-    containerSaving.append(correctButton);
-    correctButton.textContent = "Popraw";
+    const submitReturnButton = document.createElement("button");
+    containerSaving.append(submitReturnButton);
+    submitReturnButton.textContent = "Zapisz zwrot";
+    submitReturnButton.setAttribute("id", index);
+    data[index] = item;
 
     const addButton = document.createElement("button");
     containerSaving.append(addButton);
     addButton.innerHTML = "&#xFF0B";
 
-    const submitButton = document.createElement("button");
-    containerSaving.append(submitButton);
-    submitButton.textContent = "Zapisz";
+    const submitSaleButton = document.createElement("button");
+    containerSaving.append(submitSaleButton);
+    submitSaleButton.textContent = "Zapisz sprzedaż";
+    submitSaleButton.setAttribute("id", index);
+    data[index] = item;
+
 
     //accordion to open and close wrapper
     accordionEl.addEventListener("click", (e) => {
@@ -235,27 +240,23 @@ window.addEventListener("load", () => {
     });
 
     //Saving button - sending data to summary container, summary of sale and returns
-    function SavingData(e) {
+    let sumKartacze, sumBabka;
+    const sumQuantKartacze = document.querySelector(".sumQuantityFirst");
+    const sumQuantBabka = document.querySelector(".sumQuantitySecond");
+
+
+
+    function SaveSale(e) {
       buttonCheck.style.color = "white";
       totalKartacze.push(soldInput.value);
       totalBabka.push(soldInputSec.value);
-      totalKartaczeReturn.push(returnInput.value);
-      totalBabkaReturn.push(returnInputSec.value);
       item.countKartacze += Number(soldInput.value);
       item.countBabka += Number(soldInputSec.value).toFixed(2);
-      item.countKartacze -= Number(returnInput.value);
-      item.countBabka -= Number(returnInputSec.value).toFixed(2);
 
-      let sumKartacze = Array.from(totalKartacze, Number).reduce(
+      sumKartacze = Array.from(totalKartacze, Number).reduce(
         (v, i) => v + i
       );
-      let sumBabka = Array.from(totalBabka, Number)
-        .reduce((v, i) => v + i)
-        .toFixed(2);
-      let sumReturnsKartacze = Array.from(totalKartaczeReturn, Number).reduce(
-        (v, i) => v + i
-      );
-      let sumReturnsBabka = Array.from(totalBabkaReturn, Number)
+      sumBabka = Array.from(totalBabka, Number)
         .reduce((v, i) => v + i)
         .toFixed(2);
 
@@ -263,37 +264,19 @@ window.addEventListener("load", () => {
       quantityFirstSold.innerHTML = sumKartacze + " szt";
       const quantitySecondSold = document.getElementById("quantitySecondSold");
       quantitySecondSold.innerHTML = sumBabka + " kg";
-      const quantityFirstReturned = document.getElementById(
-        "quantityFirstReturned"
-      );
-      quantityFirstReturned.innerHTML = sumReturnsKartacze + " szt";
-      const quantitySecondReturned = document.getElementById(
-        "quantitySecondReturned"
-      );
-      quantitySecondReturned.innerHTML = sumReturnsBabka + " kg";
-
-      const sumQuantKartacze = document.querySelector(".sumQuantityFirst");
-      const summaryQuantKartacze =
-        sumKartacze - parseInt(sumReturnsKartacze, 0);
+      const summaryQuantKartacze = sumKartacze;
       sumQuantKartacze.innerHTML = summaryQuantKartacze + " szt";
 
-      const sumQuantBabka = document.querySelector(".sumQuantitySecond");
-      const summaryQuantBabka = Number(sumBabka) - Number(sumReturnsBabka);
+      const summaryQuantBabka = Number(sumBabka);
       sumQuantBabka.innerHTML = summaryQuantBabka.toFixed(2) + " kg";
 
       const priceFirstSold = document.getElementById("priceFirstSold");
       priceFirstSold.innerHTML = (sumKartacze * priceKartacze).toFixed(2) + " zł";
 
-      const priceFirstReturned = document.getElementById("priceFirstReturned");
-      priceFirstReturned.innerHTML = (sumReturnsKartacze * priceKartacze).toFixed(2) + " zł";
 
       const priceSecondSold = document.getElementById("priceSecondSold");
       priceSecondSold.innerHTML = (sumBabka * priceBabka).toFixed(2) + " zł";
 
-      const priceSecondReturned = document.getElementById(
-        "priceSecondReturned"
-      );
-      priceSecondReturned.innerHTML = (sumReturnsBabka * priceBabka).toFixed(2) + " zł";
 
       const sumPriceFirst = document.querySelector(".sumPriceFirst");
       sumPriceFirst.innerHTML = (summaryQuantKartacze * priceKartacze).toFixed(2) + " zł";
@@ -303,28 +286,65 @@ window.addEventListener("load", () => {
 
       soldInput.disabled = true;
       soldInputSec.disabled = true;
+
+      console.log(data[e.currentTarget.id])
+
+      submitSaleButton.removeEventListener("click", SaveSale)
+    };
+    
+  //Correct data - submitReturnButton functionality
+  function SaveReturn(e) {
+    
+
+      totalKartaczeReturn.push(returnInput.value);
+      totalBabkaReturn.push(returnInputSec.value);
+
+      item.countKartacze -= Number(returnInput.value);
+      item.countBabka -= Number(returnInputSec.value).toFixed(2);
+
+      let sumReturnsKartacze = Array.from(totalKartaczeReturn, Number).reduce(
+        (v, i) => v + i
+      );
+      let sumReturnsBabka = Array.from(totalBabkaReturn, Number)
+        .reduce((v, i) => v + i)
+      .toFixed(2);
+    
+      const quantityFirstReturned = document.getElementById(
+        "quantityFirstReturned"
+      );
+      quantityFirstReturned.innerHTML = sumReturnsKartacze + " szt";
+      const quantitySecondReturned = document.getElementById(
+        "quantitySecondReturned"
+      );
+      quantitySecondReturned.innerHTML = sumReturnsBabka + " kg";
+
+      const priceFirstReturned = document.getElementById("priceFirstReturned");
+      priceFirstReturned.innerHTML = (sumReturnsKartacze * priceKartacze).toFixed(2) + " zł";
+
+      const priceSecondReturned = document.getElementById(
+        "priceSecondReturned"
+      );
+    priceSecondReturned.innerHTML = (sumReturnsBabka * priceBabka).toFixed(2) + " zł";
+    
+      const summaryQuantKartacze = sumKartacze - parseInt(sumReturnsKartacze, 0);
+     sumQuantKartacze.innerHTML = summaryQuantKartacze + " szt";
+    
+      const summaryQuantBabka = Number(sumBabka) - Number(sumReturnsBabka);
+      sumQuantBabka.innerHTML = summaryQuantBabka.toFixed(2) + " kg";
+
       returnInput.disabled = true;
       returnInputSec.disabled = true;
 
-      submitButton.removeEventListener("click", SavingData)
-    };
-    
-  //Correct data - correctButton functionality
-  function CorrectData() {
-    buttonCheck.style.removeProperty('color');
-    
-    soldInput.disabled = false;
-    soldInputSec.disabled = false;
-    returnInput.disabled = false;
-    returnInputSec.disabled = false;
 
-    submitButton.addEventListener("click",SavingData);
+      console.log(data[e.currentTarget.id])
+
+    submitReturnButton.removeEventListener("click",SaveReturn);
 
   };
 
 
-    correctButton.addEventListener("click", CorrectData);
-    submitButton.addEventListener("click",SavingData);
+    submitReturnButton.addEventListener("click", SaveReturn);
+    submitSaleButton.addEventListener("click",SaveSale);
   });
 
 
