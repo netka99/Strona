@@ -1,144 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SK Application</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <script
-      src="https://kit.fontawesome.com/f62b2d358c.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
 
-  <body>
-    <div class="container">
-      <nav class="menu" id="main-menu">
-        <ul class="site-nav">
-          <li><a href="" class="nav-link">Home</a></li>
-          <li><a href="/sklepy" class="nav-link">Sklepy</a></li>
-          <li><a href="/produkty" class="nav-link">Produkty</a></li>
-          <li><a href="/wykresy" class="nav-link">Wykresy</a></li>
-          <li><a href="/ustawienia" class="nav-link">Ustawienia</a></li>
-        </ul>
-        <div class="hamburger">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
-      </nav>
-      <header>
-        <div class="backgroundImage"></div>
-      </header>
-      <div class="date">
-        <input type="date" required />
-        <span class="validity"></span>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SK Application</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://kit.fontawesome.com/f62b2d358c.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="menu" id="main-menu">
+      <ul class="site-nav">
+        <li><a href="./mainMenu.html" class="nav-link">Home</a></li>
+        <li><a href="/sklepy" class="nav-link">Sklepy</a></li>
+        <li><a href="/produkty" class="nav-link">Produkty</a></li>
+        <li><a href="/wykresy" class="nav-link">Wykresy</a></li>
+        <li><a href="./settings.html" class="nav-link">Ustawienia</a></li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </div>
-      <main class="mainContent" id="mainContent">
-        <!-- <section id="section">
-          <div class="containerHeader">
-            <div class="storeName">
-              <img
-                class="store-picture"
-                src="./images/store-alt-solid.svg"
-                alt="store image"
-              />
-              <p>Sklep Maja</p>
-            </div>
-            <div class="buttons">
-              <span class="buttonCheck">✓</span>
-              <button id="accordion" class="accordion"><p id="arrow">&#709</p></button>
-            </div>
-          </div>
-          <div id="wrapper" class="wrapper">
-            <div class="containerMain" id="containerMain">
-              <div class="containerItem">
-                <div class="imageItem">
-                  <img
-                    class="item-picture"
-                    src="./images/kartaczeSmall.jpg"
-                    alt="store image"
-                  />
-                  <p>Kartacze</p>
-                </div>
-                <div class="items">
-                  <div class="soldItems">
-                    <label for="sold">Sprzedaż</label>
-                    <input type="number" min="0" id="sold" />
-                    <p class="itemsQuantities">szt.</p>
-                  </div>
-                  <div class="soldItems">
-                    <label for="returned">Zwrot</label>
-                    <input type="number" min="0" id="returned" />
-                    <p class="itemsQuantities">szt.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="containerItem">
-                <div class="imageItem">
-                  <img
-                    class="item-picture"
-                    src="./images/babke-ziemniaczanaSmall.jpg"
-                    alt="store image"
-                  />
-                  <p>Babka</p>
-                </div>
-                <div class="items">
-                  <div class="soldItems">
-                    <label for="sold">Sprzedaż</label>
-                    <input type="number" min="0" id="sold" step="any" />
-                    <p class="weight">kg</p>
-                  </div>
-                  <div class="soldItems">
-                    <label for="returned">Zwrot</label>
-                    <input type="number" min="0" id="returned" step="any" />
-                    <p class="weight">kg</p>
-                  </div>
-                </div>
+    </nav>
+    <header>
+      <div class="backgroundImage"></div>
+    </header>
+    <div class="date">
+      <input type="date" required />
+      <span class="validity"></span>
+    </div>
+
+    <form class="formTab">
+    <div class="tab">
+      <div class="tabSaleReturn">
+      <input type="radio" name="tabs" id="tabone" checked="checked" >
+      <label for="tabone">Sprzedaż</label>
+      <div class="tabs">
+        <!-- <div class="tabProduct productSale"> -->
+          <div class="productTab">
+            <input type="radio" id="tab-1" name="tab-group-1">
+            <label for="tab-1" class="receivingLabel recRetLabel"><img src="./images/kartaczeSmall.jpg" alt="kartacze"></label>
+            <div class="tabContent" >
+              <div class="mainContent" id="mainContent">
+                hello1
               </div>
             </div>
-            <div class="containerSaving" id="containerSaving">
-              <button type="submit">Zapisz</button>
+          </div>
+
+          <div class="productTab">
+            <input type="radio" id="tab-2" name="tab-group-1">
+            <label for="tab-2" class="receivingLabel recRetLabel"><img src="./images/babke-ziemniaczanaSmall.jpg"
+                alt="kartacze"></label>
+            <div class="tabContent">
+              <div class="mainContent" id="mainContent2">
+                hello2
+              </div>
             </div>
           </div>
-        </section>-->
-      </main>
-      <div class="summary">
-        <div class="summaryTitle">
-          <p>Dzienna Sprzedaż</p>
-        </div>
-        <div class="containerSummary">
-          <div class="titleFirst">Kartacze</div>
-          <div class="titleSecond">Babka</div>
-          <div class="subtitles">
-            <p>Sprzedaż</p>
-            <p>Zwrot</p>
+
+          <div class="productTab">
+            <input type="radio" id="tab-3" name="tab-group-1">
+            <label for="tab-3" class="receivingLabel recRetLabel"><img src="./images/kiszka-ziemniaczanaSmall.jpg"
+                alt="kartacze"></label>
+            <div class="tabContent">
+              <div class="mainContent" id="mainContent2">
+                hello3
+              </div>
+            </div>
           </div>
-          <div class="quantityFirst">
-            <p id="quantityFirstSold">0 szt</p>
-            <p id="quantityFirstReturned">0 szt</p>
+        <!-- </div> -->
+      </div>
+      </div>
+
+      <div class="tabSaleReturn">
+      <input type="radio" name="tabs" id="tabtwo">
+      <label for="tabtwo">Zwrot</label>
+      <div class="tabs ">
+        <!-- <div class="tabProduct productReturn"> -->
+          <div class="productTab">
+            <input type="radio" id="tab-4" name="tab-group-1">
+            <label for="tab-4" class="returnLabel recRetLabel"><img src="./images/kartaczeSmall.jpg" alt="kartacze"></label>
+            <div class="tabContent">
+              <div class="mainContent" id="mainContent">
+                hello4
+              </div>
+            </div>
           </div>
-          <div class="priceFirst">
-            <p id="priceFirstSold">0 zł</p>
-            <p id="priceFirstReturned">0 zł</p>
+
+          <div class="productTab">
+            <input type="radio" id="tab-5" name="tab-group-1">
+            <label for="tab-5" class="returnLabel recRetLabel"><img src="./images/babke-ziemniaczanaSmall.jpg"
+                alt="kartacze"></label>
+            <div class="tabContent">
+              <div class="mainContent" id="mainContent2">
+                hello5
+              </div>
+            </div>
           </div>
-          <div class="quantitySecond">
-            <p id="quantitySecondSold">0 kg</p>
-            <p id="quantitySecondReturned">0 kg</p>
+
+          <div class="productTab">
+            <input type="radio" id="tab-6" name="tab-group-1">
+            <label for="tab-6" class="returnLabel recRetLabel"><img src="./images/kiszka-ziemniaczanaSmall.jpg"
+                alt="kartacze"></label>
+            <div class="tabContent">
+              <div class="mainContent" id="mainContent2">
+                hello6
+              </div>
+            </div>
           </div>
-          <div class="priceSecond">
-            <p id="priceSecondSold">0 zł</p>
-            <p id="priceSecondReturned">0 zł</p>
-          </div>
-          <div class="sum summaryBottom">Suma</div>
-          <div class="sum sumQuantityFirst">0 szt</div>
-          <div class="sum sumPriceFirst">0 zł</div>
-          <div class="sum sumQuantitySecond">0 kg</div>
-          <div class="sum sumPriceSecond">0 zł</div>
-        </div>
+        <!-- </div> -->
+      </div>
       </div>
     </div>
-    <script src="app.js"></script>
-  </body>
+    </form>
+
+    <div class="summary">
+      <div class="summaryTitle">
+        <p>Dzienna Sprzedaż</p>
+      </div>
+      <div class="containerSummary">
+        <div class="titleFirst">Kartacze</div>
+        <div class="titleSecond">Babka</div>
+        <div class="subtitles">
+          <p>Sprzedaż</p>
+          <p>Zwrot</p>
+        </div>
+        <div class="quantityFirst">
+          <p id="quantityFirstSold">0 szt</p>
+          <p id="quantityFirstReturned">0 szt</p>
+        </div>
+        <div class="priceFirst">
+          <p id="priceFirstSold">0 zł</p>
+          <p id="priceFirstReturned">0 zł</p>
+        </div>
+        <div class="quantitySecond">
+          <p id="quantitySecondSold">0 kg</p>
+          <p id="quantitySecondReturned">0 kg</p>
+        </div>
+        <div class="priceSecond">
+          <p id="priceSecondSold">0 zł</p>
+          <p id="priceSecondReturned">0 zł</p>
+        </div>
+        <div class="sum summaryBottom">Suma</div>
+        <div class="sum sumQuantityFirst">0 szt</div>
+        <div class="sum sumPriceFirst">0 zł</div>
+        <div class="sum sumQuantitySecond">0 kg</div>
+        <div class="sum sumPriceSecond">0 zł</div>
+      </div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
 </html>

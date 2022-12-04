@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SK Application</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <div class="container">
+        <nav class="menu" id="main-menu">
+            <ul class="site-nav">
+            </ul>
+            <div class="hamburger">
+            </div>
+        </nav>
+        <header>
+            <div class="backgroundImage">
+                <div class="textWelcome">Witam</div>
+            </div>
+        </header>
+        <main class="submenu">
+            <div class="submenu-rows">
+                <div class="submenu-tabs" id="submenuSale" onclick="window.location='./main.html';">
+                    <div class="submenu-background first-menu">
+                        <img class="submenu-pic" src="./images/store-alt-solid.svg" alt="image of store">
+                    </div>
+                    <div class="submenu-title">Sprzedaż</div>
+                </div>
+                <div class="submenu-tabs" id="submenuSummary">
+                    <div class="submenu-background second-menu">
+                        <img class="submenu-pic" src="./images/shopping-basket-solid.svg"
+                            alt="image of shopping basket">
+                    </div>
+                    <div class="submenu-title">Zestawienie</div>
+                </div>
+            </div>
+            <div class="submenu-rows">
+                <div class="submenu-tabs" id="submenuCharts">
+                    <div class="submenu-background third-menu">
+                        <img class="submenu-pic" src="./images/chart-pie-solid.svg" alt="image of chart pie">
+                    </div>
+                    <div class="submenu-title">Wykresy</div>
+                </div>
+                <div class="submenu-tabs" id="submenuSettings" onclick="window.location='./settings.html';">
+                    <div class="submenu-background fourth-menu">
+                        <img class="submenu-pic" src="./images/cog-solid.svg" alt="image of cog">
+                    </div>
+                    <div class="submenu-title" >Ustawienia</div>
+                </div>
+            </div>
+        </main>
+
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
