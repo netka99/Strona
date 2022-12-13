@@ -229,6 +229,8 @@ window.addEventListener("load", () => {
       data[index] = item;
 
       //accordion to open and close wrapper
+
+      //wrong code
       accordionEl.addEventListener("click", (e) => {
         let wrapperEl =
           e.currentTarget.parentElement.parentElement.nextElementSibling;
@@ -360,38 +362,38 @@ window.addEventListener("load", () => {
 
   //===============================================================
   //Settings-shops page
-  const shopsFromDB = [
-    "Sklep Maja",
-    "Sklep Kowalskiego",
-    "Sklep Nowomiejska",
-    "Sklep Lityńskiego",
-    "Sklep Stankiewicza",
-    "Sklep Buczka",
-    "Sklep Świerkowa",
-  ];
+  // const shopsFromDB = [
+  //   "Sklep Maja",
+  //   "Sklep Kowalskiego",
+  //   "Sklep Nowomiejska",
+  //   "Sklep Lityńskiego",
+  //   "Sklep Stankiewicza",
+  //   "Sklep Buczka",
+  //   "Sklep Świerkowa",
+  // ];
 
-  const shopsList = document.getElementById("shopsList");
-  shopsFromDB.forEach((el) => {
-    const shopContainer = document.createElement("div");
-    shopContainer.className = "shopContainer";
-    shopsList.append(shopContainer);
-    const storeIcon = document.createElement("img");
-    storeIcon.className = "store-icon";
-    storeIcon.src = "./images/store-alt-solid.svg";
-    shopContainer.append(storeIcon);
-    storeIcon.setAttribute("alt", "store image");
-    const storeText = document.createElement("p");
-    storeText.textContent = el;
-    shopContainer.append(storeText);
-    const trashButton = document.createElement("button");
-    shopContainer.append(trashButton);
-    trashButton.className = "trashButton";
-    trashButton.title = "Usuń";
-    const trashImage = document.createElement("img");
-    trashImage.className = "trashImage";
-    trashButton.append(trashImage);
-    trashImage.src = "./images/icons8-trash-can.svg";
-  });
+  // const shopsList = document.getElementById("shopsList");
+  // shopsFromDB.forEach((el) => {
+  //   const shopContainer = document.createElement("div");
+  //   shopContainer.className = "shopContainer";
+  //   shopsList.append(shopContainer);
+  //   const storeIcon = document.createElement("img");
+  //   storeIcon.className = "store-icon";
+  //   storeIcon.src = "./images/store-alt-solid.svg";
+  //   shopContainer.append(storeIcon);
+  //   storeIcon.setAttribute("alt", "store image");
+  //   const storeText = document.createElement("p");
+  //   storeText.textContent = el;
+  //   shopContainer.append(storeText);
+  //   const trashButton = document.createElement("button");
+  //   shopContainer.append(trashButton);
+  //   trashButton.className = "trashButton";
+  //   trashButton.title = "Usuń";
+  //   const trashImage = document.createElement("img");
+  //   trashImage.className = "trashImage";
+  //   trashButton.append(trashImage);
+  //   trashImage.src = "./images/icons8-trash-can.svg";
+  // });
 
   //=============================================================
   //responsive nav menu
