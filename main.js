@@ -59,13 +59,13 @@ dataMain = [
   },
 ];
 
-function main() {
-  dataMain.forEach((type) => {
-    type.products.forEach((product) => {
-      console.log(product);
-      document.appendChild();
-    });
-  });
-}
+// function main() {
+//   dataMain.forEach((type) => {
+//     type.products.forEach((product) => {
+//       console.log(product);
+//       document.appendChild();
+//     });
+//   });
+// }
 
-window.addEventListener("load", main);
+// window.addEventListener("load", main);
