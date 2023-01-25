@@ -52,8 +52,40 @@ const totalBabkaReturn = [];
 let priceKartacze = 4;
 let priceBabka = 23;
 
+const shops = [
+  "Sklep Maja",
+  "Sklep Kowalskiego",
+  "Sklep Nowomiejska",
+  "Sklep Lityńskiego",
+  "Sklep Stankiewicza",
+  "Sklep Buczka",
+  "Sklep Świerkowa",
+];
+
 window.addEventListener("load", () => {
-  [...document.getElementsByClassName("tabContent")].forEach((el) => {
+  //controling buttons with products
+  const tabButton = document.querySelectorAll(".tab-button");
+  const contents = document.querySelectorAll(".mainContent");
+
+  tabButton.forEach((el) =>
+    el.addEventListener("click", (e) => {
+      const id = e.currentTarget.dataset.id;
+      if (id) {
+        tabButton.forEach((but) => {
+          but.classList.remove("active");
+        });
+        e.currentTarget.classList.add("active");
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        const element = document.getElementById(id);
+        element.classList.add("active");
+      }
+    })
+  );
+
+  //logic for main content
+  [...document.getElementsByClassName("mainContent")].forEach((el) => {
     const mainContent = document.createElement("div");
     el.append(mainContent);
 
@@ -229,17 +261,24 @@ window.addEventListener("load", () => {
       data[index] = item;
 
       //accordion to open and close wrapper
+      const formTab = document.querySelector(".formTab");
+      const summaryTab = document.querySelector(".summary");
+      let heightFormTab = formTab.offsetHeight;
+      formTab.style.height = 300 + "px";
 
-      //wrong code
       accordionEl.addEventListener("click", (e) => {
         let wrapperEl =
           e.currentTarget.parentElement.parentElement.nextElementSibling;
         let arrow = e.currentTarget.children[0];
+        let currentHeight = formTab.style.height;
         if (wrapperEl.style.height) {
           wrapperEl.style.height = null;
+          formTab.style.height = parseInt(currentHeight) - 336 + "px";
           arrow.style = "transform:rotate(" + 0 + "-180deg)";
         } else {
           wrapperEl.style.height = wrapperEl.scrollHeight + "px";
+          formTab.style.height = parseInt(currentHeight) + 336 + "px";
+          //formTab.style.height = formTab.scrollHeight + "px";
           arrow.style = "transform:rotate(" + 0 + "180deg)";
         }
       });
@@ -345,20 +384,6 @@ window.addEventListener("load", () => {
       submitSaleButton.addEventListener("click", SaveSale);
     });
   });
-
-  //Expanding size of tab with names of shops each time
-  //when icon of product is clicked
-  const receivingLabel = document.getElementsByClassName("recRetLabel");
-  const arrayreceivingLabel = Array.from(receivingLabel);
-
-  arrayreceivingLabel.forEach((el) =>
-    el.addEventListener("click", (e) => {
-      let tabContentEl =
-        e.currentTarget.parentElement.parentElement.parentElement.parentElement;
-      tabContentEl.style.height = 850 + "px";
-      console.log(tabContentEl);
-    })
-  );
 
   //===============================================================
   //Settings-shops page
