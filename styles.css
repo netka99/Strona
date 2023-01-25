@@ -6,6 +6,15 @@
   --main-color: #333333;
 }
 
+html {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+
+
 /* *,
 ::before,
 ::after {
@@ -14,15 +23,24 @@
 
 body {
   padding: 0;
-  margin: 0 auto;
+  margin: 0;
   min-height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
   font-family: "Roboto", sans-serif;
   /*display: flex;
   align-items: center;
   justify-content: center;*/
   background-color: var(--main-bg);
   display: flex;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.container {
+  height: min-content;
+  width: 100vw;
+  margin: 0;
+  max-width: 100%;
 }
 
 .menu {
@@ -145,13 +163,16 @@ focus {
 
 /* Main Product HTML Page */
 
-/* .formTab {
-  max-width: 60rem;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+.formTab {
+  margin: 0 auto;
+  padding: 50px 50px;
+  height: auto;
+  -moz-transition: height 0.5s;
+  -ms-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
 
 /* .tab {
   display: flex;
@@ -241,20 +262,20 @@ focus {
 
 .tab {
   position: relative;
-  width: 70%;
-  margin: 0 auto;
+  width: 80%;
+  margin: auto auto;
   height: 200px;
 }
 
 .tabSaleReturn {
   float: left;
   text-align: center;
-  width: 40%;
+  width: 30%;
   margin: 0 auto;
 }
 
 .tabSaleReturn label {
-  padding: 10px;
+  padding: 10px 0;
   margin: 0 auto;
   position: relative;
   height: 100%;
@@ -262,81 +283,134 @@ focus {
   overflow: hidden;
   text-align: center;
   z-index: 1;
-  display: inline-block
+  display: inline-block;
+  left: 73%;
+  border-radius: 15px;
+  /* box-shadow: 4px 6px 6px 1px rgb(0 0 0 / 30%); */
+  width: 80%;
+  background-color: #fdfdfd;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.3),
+    -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+
+
 }
+
 
 .tabs {
   position: absolute;
-  top: 28px;
-  left: 20%;
-  right: -20%;
+  top: 38px;
+  left: 33%;
+  /* right: -30%; */
   bottom: 0;
-  padding: 0px 25px 25px;
+  /* padding: 0px 25px 25px; */
   z-index: 1;
   width: 80%;
-  margin: 25px auto;
+  margin: 10px auto;
   height: 100vh;
+
 }
 
+
+
 .productTab {
-  float: left
+  float: left;
+  padding: 20px 60px;
 }
 
 .tabContent {
   position: absolute;
-  top: 78px;
-  left: -20%;
-  right: 20%;
+  top: 125px;
+  left: 20%;
   bottom: 0;
   padding: 0px 25px 25px;
   margin-top: 25px;
   z-index: 1;
+  width: 90%;
 }
+
+
 
 [type=radio]:checked~label {
-  box-shadow: inset 0 0 10px black;
-  color: orangered;
+  color: #5C35B6;
   z-index: 2;
-  width: 90%
+  width: 80%;
+  background: linear-gradient(45deg, #e3e3e3, #ede8e8);
+  border-radius: 15px;
+  /* box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 30%); */
+  font-weight: bold;
+  font-size: larger;
+  transition: 0.2s ease-in-out;
+  box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
 }
 
-.tabProduct label:nth-of-type(1) {
-  margin-right: 1rem;
+.productTab button:nth-of-type(1) {
+  margin-right: 2rem;
 }
 
-.tabProduct label:nth-of-type(3) {
-  margin-right: 1rem;
+.productTab button:nth-of-type(3) {
+  margin-right: 2rem;
 }
 
-.tabProduct label:nth-of-type(2) {
-  margin-right: 1rem;
+.productTab button:nth-of-type(2) {
+  margin-right: 2rem;
 }
 
-.productSale input[type="radio"]:checked+label {
+.productTab button {
   background: #fff;
-  box-shadow: 4px 6px 6px 1px rgb(0 0 0 / 30%);
+  box-shadow: 4px 6px 6px 1px rgb(0 0 0 / 30%), -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  padding: 4px 8px 3px;
+
+
 }
 
-.productReturn input[type="radio"]:checked+label {
-  background: #fff;
-  box-shadow: 4px 6px 6px 1px rgb(0 0 0 / 30%);
-}
-
-.tabs, .tabContent {
+.tabs {
   display: none;
 }
 
-:checked~.tabContent {
+#tabone:checked~.tabs {
   display: block;
 }
 
-:checked~.tabs {
+#tabtwo:checked~.tabs {
   display: block;
 }
 
-.tabs label img {
+.tab-button.active {
+  background-color: #f6f6f6;
+  box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* .active {
+  background-color: #dddf6d;
+} */
+
+.mainContent {
+  display: none;
+  padding: 10px 20px;
+
+
+}
+
+.mainContent.active {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  padding: 10px 20px;
+
+}
+
+.tabs button img {
   width: 55px;
   border-radius: 25px;
+  padding: 5px 10px;
 }
 
 .tab input[type="radio"] {
@@ -554,6 +628,8 @@ section {
 
 .summary {
   width: 60%;
+  position: relative;
+  top: 315px;
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -658,13 +734,78 @@ section {
   padding-left: 1em;
 }
 
-@media screen and (min-width: 1700px) {
-  .backgroundImage {
-    height: 280px;
+@media screen and (max-width: 2561px) {
+  .tabs {
+    left: 40%;
   }
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 1920px) {
+  .tabs {
+    left: 35%;
+  }
+}
+
+
+@media screen and (max-width: 1700px) {
+  .backgroundImage {
+    height: 280px;
+  }
+
+  .tabs {
+    left: 33%;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .tabs {
+    left: 32%;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .tabs {
+    left: 30%;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .tabs {
+    left: 29%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .tabs {
+    left: 27%;
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  .tabs {
+    left: 20%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .tabs {
+    left: 20%;
+  }
+}
+
+@media screen and (max-width: 962px) {
+  .tabs {
+    left: 16%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .tabs {
+    left: 48%;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .backgroundImage {
     height: 85px;
   }
@@ -688,7 +829,7 @@ section {
 
   .site-nav {
     position: fixed;
-    left: -100%;
+    left: -150%;
     gap: 0;
     flex-direction: column;
     background: linear-gradient(45deg, #4a1bb4, #6a18a4);
@@ -718,9 +859,45 @@ section {
   }
 }
 
+@media screen and (max-width: 640px) {
+  .tabs {
+    left: 48%;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .tabs {
+    left: 48%;
+  }
+}
+
 @media screen and (max-width: 426px) {
   .backgroundImage {
     height: 130px;
+  }
+
+  #shopsList {
+    width: 80%;
+    padding: 0.5rem 0.5rem;
+  }
+
+  .shopContainer {
+    width: 95%;
+    padding-left: 0.5rem;
+  }
+
+  .addShopName {
+    width: 80%;
+    margin: 1rem auto;
+  }
+
+  .titleSettShops {
+    width: 80%;
+    margin: 1.5rem auto;
+  }
+
+  .AddShopButton {
+    margin-bottom: 1rem;
   }
 }
 
@@ -940,30 +1117,4 @@ section {
   width: 18px;
   filter: invert(41%) sepia(0%) saturate(0%) hue-rotate(102deg) brightness(91%) contrast(85%);
 
-}
-
-@media screen and (max-width: 426px) {
-  #shopsList {
-    width: 80%;
-    padding: 0.5rem 0.5rem;
-  }
-
-  .shopContainer {
-    width: 95%;
-    padding-left: 0.5rem;
-  }
-
-  .addShopName {
-    width: 80%;
-    margin: 1rem auto;
-  }
-
-  .titleSettShops {
-    width: 80%;
-    margin: 1.5rem auto;
-  }
-
-  .AddShopButton {
-    margin-bottom: 1rem;
-  }
 }
