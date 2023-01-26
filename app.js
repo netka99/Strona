@@ -62,27 +62,12 @@ const shops = [
   "Sklep Świerkowa",
 ];
 
+const products = ["Kartacze", "Babka", "Kiszka"];
+
 window.addEventListener("load", () => {
   //controling buttons with products
   const tabButton = document.querySelectorAll(".tab-button");
   const contents = document.querySelectorAll(".mainContent");
-
-  tabButton.forEach((el) =>
-    el.addEventListener("click", (e) => {
-      const id = e.currentTarget.dataset.id;
-      if (id) {
-        tabButton.forEach((but) => {
-          but.classList.remove("active");
-        });
-        e.currentTarget.classList.add("active");
-        contents.forEach((content) => {
-          content.classList.remove("active");
-        });
-        const element = document.getElementById(id);
-        element.classList.add("active");
-      }
-    })
-  );
 
   //logic for main content
   [...document.getElementsByClassName("mainContent")].forEach((el) => {
@@ -90,7 +75,7 @@ window.addEventListener("load", () => {
     el.append(mainContent);
 
     //HTML of each section
-    data.forEach(function (item, index) {
+    shops.forEach(function (item, index) {
       const section = document.createElement("section");
       const containerHeader = document.createElement("div");
       mainContent.append(section);
@@ -105,7 +90,7 @@ window.addEventListener("load", () => {
       storeName.append(storePicture);
       storeName.setAttribute("alt", "store image");
       const storeText = document.createElement("p");
-      storeText.textContent = item.shopName;
+      storeText.textContent = item;
       storeName.append(storeText);
 
       const buttons = document.createElement("div");
@@ -141,7 +126,7 @@ window.addEventListener("load", () => {
       const itemPictureFirst = document.createElement("img");
       imageItem.append(itemPictureFirst);
       itemPictureFirst.className = "item-picture";
-      itemPictureFirst.src = "./images/kartaczeSmall.jpg";
+      itemPictureFirst.src = "./images/Kartacze-Small.jpg";
       itemPictureFirst.setAttribute("alt", "kartacze image");
       const itemFirstText = document.createElement("p");
       imageItem.append(itemFirstText);
@@ -194,7 +179,7 @@ window.addEventListener("load", () => {
       const itemPictureSec = document.createElement("img");
       imageItemSec.append(itemPictureSec);
       itemPictureSec.className = "item-picture";
-      itemPictureSec.src = "./images/babke-ziemniaczanaSmall.jpg";
+      itemPictureSec.src = "./images/Babka-Small.jpg";
       itemPictureSec.setAttribute("alt", "babka ziemniaczana image");
       const itemSecText = document.createElement("p");
       imageItemSec.append(itemSecText);
@@ -384,6 +369,24 @@ window.addEventListener("load", () => {
       submitSaleButton.addEventListener("click", SaveSale);
     });
   });
+
+  tabButton.forEach((el) =>
+    el.addEventListener("click", (e) => {
+      console.log("hello");
+      const id = e.currentTarget.dataset.id;
+      if (id) {
+        tabButton.forEach((but) => {
+          but.classList.remove("active");
+        });
+        e.currentTarget.classList.add("active");
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        const element = document.getElementById(id);
+        element.classList.add("active");
+      }
+    })
+  );
 
   //===============================================================
   //Settings-shops page
