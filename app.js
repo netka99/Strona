@@ -1,45 +1,175 @@
-const data = [
+dataMain = [
   {
-    id: 1,
-    shopName: "Sklep Maja",
-    countKartacze: 0,
-    countBabka: 0,
+    name: "Sprzedaż",
+    products: [
+      {
+        name: "Kartacze",
+        image: "./images/Kartacze-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+      {
+        name: "Babka",
+        image: "./images/Babka-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+      {
+        name: "Kiszka",
+        image: "./images/Kiszka-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+    ],
   },
   {
-    id: 2,
-    shopName: "Sklep Kowalskiego",
-    countKartacze: 0,
-    countBabka: 0,
-  },
-  {
-    id: 3,
-    shopName: "Sklep Nowomiejska",
-    countKartacze: 0,
-    countBabka: 0,
-  },
-  {
-    id: 4,
-    shopName: "Sklep Lityńskiego",
-    countKartacze: 0,
-    countBabka: 0,
-  },
-  {
-    id: 5,
-    shopName: "Sklep Stankiewicza",
-    countKartacze: 0,
-    countBabka: 0,
-  },
-  {
-    id: 6,
-    shopName: "Sklep Buczka",
-    countKartacze: 0,
-    countBabka: 0,
-  },
-  {
-    id: 7,
-    shopName: "Sklep Świerkowa",
-    countKartacze: 0,
-    countBabka: 0,
+    name: "Zwrot",
+    products: [
+      {
+        name: "Kartacze",
+        image: "./images/Kartacze-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+      {
+        name: "Babka",
+        image: "./images/Babka-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+      {
+        name: "Kiszka",
+        image: "./images/Kiszka-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+    ],
   },
 ];
 
@@ -62,21 +192,28 @@ const shops = [
   "Sklep Świerkowa",
 ];
 
-const products = ["Kartacze", "Babka", "Kiszka"];
+const products = [
+  ["Kartacze", "szt."],
+  ["Babka", "kg"],
+  ["Kiszka", "kg"],
+];
 
 window.addEventListener("load", () => {
   //controling buttons with products
   const tabButton = document.querySelectorAll(".tab-button");
   const contents = document.querySelectorAll(".mainContent");
+  const formTab = document.querySelector(".formTab");
+
 
   //logic for main content
-  [...document.getElementsByClassName("mainContent")].forEach((el) => {
+  [...document.getElementsByClassName("mainContent")].forEach((el, indexes) => {
     const mainContent = document.createElement("div");
     el.append(mainContent);
 
     //HTML of each section
     shops.forEach(function (item, index) {
       const section = document.createElement("section");
+      section.className = "containerProduct";
       const containerHeader = document.createElement("div");
       mainContent.append(section);
       section.append(containerHeader);
@@ -113,143 +250,97 @@ window.addEventListener("load", () => {
       section.append(wrapper);
       wrapper.className = "wrapper";
       wrapper.setAttribute("id", "wrapper");
-      const containerMain = document.createElement("div");
-      wrapper.append(containerMain);
-      containerMain.className = "containerMain";
-      containerMain.setAttribute("id", "containerMain");
-      const containerItem = document.createElement("div");
-      containerMain.append(containerItem);
-      containerItem.className = "containerItem";
-      const imageItem = document.createElement("div");
-      containerItem.append(imageItem);
-      imageItem.className = "imageItem";
-      const itemPictureFirst = document.createElement("img");
-      imageItem.append(itemPictureFirst);
-      itemPictureFirst.className = "item-picture";
-      itemPictureFirst.src = "./images/Kartacze-Small.jpg";
-      itemPictureFirst.setAttribute("alt", "kartacze image");
-      const itemFirstText = document.createElement("p");
-      imageItem.append(itemFirstText);
-      itemFirstText.textContent = "Kartacze";
 
-      const items = document.createElement("div");
-      containerItem.append(items);
-      items.className = "items";
-      const soldItemsFirst = document.createElement("div");
-      items.append(soldItemsFirst);
-      soldItemsFirst.className = "soldItems";
-      const soldLabel = document.createElement("label");
-      soldItemsFirst.append(soldLabel);
-      soldLabel.setAttribute("for", "sold");
-      soldLabel.textContent = "Sprzedaż";
-      const soldInput = document.createElement("input");
-      soldItemsFirst.append(soldInput);
-      soldInput.setAttribute("type", "number");
-      soldInput.setAttribute("min", "0");
-      soldInput.setAttribute("id", "soldKartacze");
-      const itemsQuantitiesF = document.createElement("p");
-      soldItemsFirst.append(itemsQuantitiesF);
-      itemsQuantitiesF.textContent = "szt.";
-      itemsQuantitiesF.className = "itemsQuantities";
+      //for each product created container
+      let containerMain;
 
-      const soldItemsSecond = document.createElement("div");
-      items.append(soldItemsSecond);
-      soldItemsSecond.className = "soldItems";
-      const returnLabel = document.createElement("label");
-      soldItemsSecond.append(returnLabel);
-      returnLabel.setAttribute("for", "sold");
-      returnLabel.textContent = "Zwrot";
-      const returnInput = document.createElement("input");
-      soldItemsSecond.append(returnInput);
-      returnInput.setAttribute("type", "number");
-      returnInput.setAttribute("min", "0");
-      returnInput.setAttribute("id", "returnedKartacze");
-      const itemsQuantitiesS = document.createElement("p");
-      soldItemsSecond.append(itemsQuantitiesS);
-      itemsQuantitiesS.textContent = "szt.";
-      itemsQuantitiesS.className = "itemsQuantities";
 
-      //second Item(product) listed
-      const containerItemSec = document.createElement("div");
-      containerMain.append(containerItemSec);
-      containerItemSec.className = "containerItem";
-      const imageItemSec = document.createElement("div");
-      containerItemSec.append(imageItemSec);
-      imageItemSec.className = "imageItem";
-      const itemPictureSec = document.createElement("img");
-      imageItemSec.append(itemPictureSec);
-      itemPictureSec.className = "item-picture";
-      itemPictureSec.src = "./images/Babka-Small.jpg";
-      itemPictureSec.setAttribute("alt", "babka ziemniaczana image");
-      const itemSecText = document.createElement("p");
-      imageItemSec.append(itemSecText);
-      itemSecText.textContent = "Babka";
+      products.forEach((prod, i) => {
+        containerMain = document.createElement("div");
+        wrapper.append(containerMain);
+        containerMain.className = "containerMain";
+        containerMain.setAttribute("id", prod[0] + "_" + item + indexes);
+        containerMain.setAttribute("data-product", prod[0]);
+        const containerItem = document.createElement("div");
+        containerMain.append(containerItem);
+        containerItem.className = "containerItem";
+        const imageItem = document.createElement("div");
+        containerItem.append(imageItem);
+        imageItem.className = "imageItem";
+        const itemPictureFirst = document.createElement("img");
+        imageItem.append(itemPictureFirst);
+        itemPictureFirst.className = "item-picture";
+        itemPictureFirst.src = `./images/${prod[0]}-Small.jpg`;
+        itemPictureFirst.setAttribute("alt", "kartacze image");
+        const itemFirstText = document.createElement("p");
+        imageItem.append(itemFirstText);
+        itemFirstText.textContent = `${prod[0]}`;
 
-      const itemsSec = document.createElement("div");
-      containerItemSec.append(itemsSec);
-      itemsSec.className = "items";
-      const soldItemsSec = document.createElement("div");
-      itemsSec.append(soldItemsSec);
-      soldItemsSec.className = "soldItems";
-      const soldLabelSec = document.createElement("label");
-      soldItemsSec.append(soldLabelSec);
-      soldLabelSec.setAttribute("for", "sold");
-      soldLabelSec.textContent = "Sprzedaż";
-      const soldInputSec = document.createElement("input");
-      soldItemsSec.append(soldInputSec);
-      soldInputSec.setAttribute("type", "number");
-      soldInputSec.setAttribute("min", "0");
-      soldInputSec.setAttribute("id", "soldBabka");
-      soldInputSec.setAttribute("step", "any");
-      const itemsQuantitiesSec = document.createElement("p");
-      soldItemsSec.append(itemsQuantitiesSec);
-      itemsQuantitiesSec.textContent = "kg";
-      itemsQuantitiesSec.className = "weight";
+        const items = document.createElement("div");
+        containerItem.append(items);
+        items.className = "items";
+        const soldItemsFirst = document.createElement("div");
+        items.append(soldItemsFirst);
+        soldItemsFirst.className = "soldItems";
+        const soldLabel = document.createElement("label");
+        soldItemsFirst.append(soldLabel);
+        soldLabel.setAttribute("for", "sold");
+        soldLabel.textContent = "Sprzedaż";
+        const soldInput = document.createElement("input");
+        soldItemsFirst.append(soldInput);
+        soldInput.setAttribute("type", "number");
+        soldInput.setAttribute("min", "0");
+        soldInput.setAttribute("id", `${item}_${prod[0]}_${i}`);
+        const itemsQuantitiesF = document.createElement("p");
+        soldItemsFirst.append(itemsQuantitiesF);
+        itemsQuantitiesF.textContent = `${prod[1]}`;
+        itemsQuantitiesF.className = "itemsQuantities";
 
-      const returnItemsSecond = document.createElement("div");
-      itemsSec.append(returnItemsSecond);
-      returnItemsSecond.className = "soldItems";
-      const returnLabelSed = document.createElement("label");
-      returnItemsSecond.append(returnLabelSed);
-      returnLabelSed.setAttribute("for", "returned");
-      returnLabelSed.textContent = "Zwrot";
-      const returnInputSec = document.createElement("input");
-      returnItemsSecond.append(returnInputSec);
-      returnInputSec.setAttribute("type", "number");
-      returnInputSec.setAttribute("min", "0");
-      returnInputSec.setAttribute("id", "returnedBabka");
-      returnInputSec.setAttribute("step", "any");
-      const itemsQuantitiesRet = document.createElement("p");
-      returnItemsSecond.append(itemsQuantitiesRet);
-      itemsQuantitiesRet.textContent = "kg";
-      itemsQuantitiesRet.className = "weight";
+        const soldItemsSecond = document.createElement("div");
+        items.append(soldItemsSecond);
+        soldItemsSecond.className = "returnItems";
+        const returnLabel = document.createElement("label");
+        soldItemsSecond.append(returnLabel);
+        returnLabel.setAttribute("for", "return");
+        returnLabel.textContent = "Zwrot";
+        const returnInput = document.createElement("input");
+        soldItemsSecond.append(returnInput);
+        returnInput.setAttribute("type", "number");
+        returnInput.setAttribute("min", "0");
+        returnInput.setAttribute("id", "returnedKartacze");
+        const itemsQuantitiesS = document.createElement("p");
+        soldItemsSecond.append(itemsQuantitiesS);
+        itemsQuantitiesS.textContent = `${prod[1]}`;
+        itemsQuantitiesS.className = "itemsQuantities";
 
-      const containerSaving = document.createElement("div");
-      wrapper.append(containerSaving);
-      containerSaving.className = "containerSaving";
-      containerSaving.setAttribute("id", "containerSaving");
+        const containerSave = document.createElement("div");
+        containerMain.append(containerSave);
+        containerSave.className = "containerSaving";
 
-      const submitReturnButton = document.createElement("button");
-      containerSaving.append(submitReturnButton);
-      submitReturnButton.textContent = "Zapisz zwrot";
-      submitReturnButton.setAttribute("id", index);
-      data[index] = item;
+        const submitReturnBut = document.createElement("button");
+        containerSave.append(submitReturnBut);
+        submitReturnBut.textContent = "Zapisz zwrot";
+        submitReturnBut.className = "save-return-button";
+        submitReturnBut.setAttribute("id", index + "_" + prod[0] + "_Return");
+        shops[index] = item;
 
-      const addButton = document.createElement("button");
-      containerSaving.append(addButton);
-      addButton.innerHTML = "&#xFF0B";
+        const addContainer = document.createElement("button");
+        containerSave.append(addContainer);
+        addContainer.innerHTML = "&#xFF0B";
+        addContainer.className = "add-container";
 
-      const submitSaleButton = document.createElement("button");
-      containerSaving.append(submitSaleButton);
-      submitSaleButton.textContent = "Zapisz sprzedaż";
-      submitSaleButton.setAttribute("id", index);
-      data[index] = item;
+        const submitSaleBut = document.createElement("button");
+        containerSave.append(submitSaleBut);
+        submitSaleBut.textContent = "Zapisz sprzedaż";
+        submitSaleBut.className = "save-sale-button";
+        submitSaleBut.setAttribute("id", index + "_" + prod[0] + "_Sale");
+        shops[index] = item;
+      });
 
       //accordion to open and close wrapper
-      const formTab = document.querySelector(".formTab");
       const summaryTab = document.querySelector(".summary");
       let heightFormTab = formTab.offsetHeight;
-      formTab.style.height = 300 + "px";
+      formTab.style.height = 250 + "px";
 
       accordionEl.addEventListener("click", (e) => {
         let wrapperEl =
@@ -258,15 +349,16 @@ window.addEventListener("load", () => {
         let currentHeight = formTab.style.height;
         if (wrapperEl.style.height) {
           wrapperEl.style.height = null;
-          formTab.style.height = parseInt(currentHeight) - 336 + "px";
+          formTab.style.height = parseInt(currentHeight) - 156 + "px";
           arrow.style = "transform:rotate(" + 0 + "-180deg)";
         } else {
           wrapperEl.style.height = wrapperEl.scrollHeight + "px";
-          formTab.style.height = parseInt(currentHeight) + 336 + "px";
+          formTab.style.height = parseInt(currentHeight) + 156 + "px";
           //formTab.style.height = formTab.scrollHeight + "px";
           arrow.style = "transform:rotate(" + 0 + "180deg)";
         }
       });
+
 
       //Saving button - sending data to summary container, summary of sale and returns
       let sumKartacze, sumBabka;
@@ -365,28 +457,11 @@ window.addEventListener("load", () => {
         submitReturnButton.removeEventListener("click", SaveReturn);
       }
 
-      submitReturnButton.addEventListener("click", SaveReturn);
-      submitSaleButton.addEventListener("click", SaveSale);
+      //CORRECT!!!
+      // submitReturnButton.addEventListener("click", SaveReturn);
+      // submitSaleButton.addEventListener("click", SaveSale);
     });
   });
-
-  tabButton.forEach((el) =>
-    el.addEventListener("click", (e) => {
-      console.log("hello");
-      const id = e.currentTarget.dataset.id;
-      if (id) {
-        tabButton.forEach((but) => {
-          but.classList.remove("active");
-        });
-        e.currentTarget.classList.add("active");
-        contents.forEach((content) => {
-          content.classList.remove("active");
-        });
-        const element = document.getElementById(id);
-        element.classList.add("active");
-      }
-    })
-  );
 
   //===============================================================
   //Settings-shops page
@@ -422,6 +497,119 @@ window.addEventListener("load", () => {
   //   trashButton.append(trashImage);
   //   trashImage.src = "./images/icons8-trash-can.svg";
   // });
+
+  tabButton.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      const id = e.currentTarget.dataset.id;
+      const productId = id.split("_")[0];
+      const contMainAll = document.querySelectorAll("[data-product]");
+      const contMainProd = document.querySelectorAll(
+        `[data-product=${productId}]`
+      );
+      contMainAll.forEach((container) => {
+        if (container.classList.contains("active")) {
+          container.classList.remove("active");
+        }
+      });
+      contMainProd.forEach((cont) => {
+        cont.classList.add("active");
+      });
+      if (id) {
+        tabButton.forEach((but) => {
+          but.classList.remove("active");
+        });
+
+        e.currentTarget.classList.add("active");
+        contents.forEach((content) => {
+          content.classList.remove("active");
+        });
+        const element = document.getElementById(id);
+        element.classList.add("active");
+      }
+    });
+  });
+
+  const contMainKart = document.querySelectorAll('[data-product="Kartacze"]');
+  const contMainAll = document.querySelectorAll("[data-product]");
+  contMainKart.forEach((container) => {
+    container.classList.add("active");
+  });
+
+  const returnItemsInput = document.querySelectorAll('.returnItems');
+  returnItemsInput.forEach((item) => {
+    item.classList.add("hide");
+  });
+  const saveReturnButton = document.querySelectorAll('.save-return-button');
+  saveReturnButton.forEach((item) => {
+    item.classList.add("invisible");
+  })
+
+  const activeButton = document.querySelectorAll(".tab-button");
+  const returnKartaczeButton = document.querySelector('[data-id="Kartacze_Return"]');
+  const returnButton = document.querySelector('.return-button');
+  const soldItemsInput = document.querySelectorAll('.soldItems');
+  const saveSaleButton = document.querySelectorAll('.save-sale-button');
+  const addContainerButton = document.querySelectorAll('.add-container');
+  returnButton.addEventListener("click", ()=>{
+    activeButton.forEach((button) => {
+      button.classList.remove("active");
+    })
+    returnItemsInput.forEach((item) => {
+      item.classList.remove("hide");
+    });
+    saveReturnButton.forEach((item) => {
+      item.classList.remove("invisible");
+    });
+    soldItemsInput.forEach((item) =>{
+      item.classList.add("hide")
+    });
+    saveSaleButton.forEach((item) => {
+      item.classList.add("invisible");
+    });
+    returnKartaczeButton.classList.add("active");
+    addContainerButton.forEach((item) => {
+      item.classList.add("invisible");
+    })
+  });
+
+  const saleButton = document.querySelector('.sale-button');
+  const KartaczeSaleButton = document.querySelector('[data-id="Kartacze_Sale"]')
+
+  saleButton.addEventListener("click", ()=>{
+    returnItemsInput.forEach((item) => {
+      item.classList.add("hide");
+    });
+    soldItemsInput.forEach((item) =>{
+      item.classList.remove("hide")
+    });
+    saveReturnButton.forEach((item) => {
+      item.classList.add("invisible");
+    })
+    saveSaleButton.forEach((item) => {
+      item.classList.remove("invisible");
+    });
+    returnKartaczeButton.classList.remove("active");
+    KartaczeSaleButton.classList.add("active");
+    addContainerButton.forEach((item) => {
+      item.classList.remove("invisible");
+    })
+  });
+
+  
+  addContainerButton.forEach((button) => {
+    button.addEventListener("click",(e) => {
+      console.log("hello");
+      const extraSaleContainer = document.createElement("div");
+      const wrapperElCont = e.currentTarget.parentElement.parentElement.parentElement;
+      wrapperElCont.append(extraSaleContainer);
+      extraSaleContainer.className = "extra-sale-container";
+      wrapperElCont.style.height = wrapperElCont.scrollHeight + "px";
+      let currentHeight = formTab.style.height;
+      formTab.style.height = parseInt(currentHeight) + 100 + "px";
+    })
+  
+  })
+  
 
   //=============================================================
   //responsive nav menu

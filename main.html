@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SK Application</title>
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
 </head>
 
 <body>
@@ -37,14 +38,14 @@
       <div class="tab">
         <div class="tabSaleReturn">
           <input type="radio" name="tabs" id="tabone" checked="checked">
-          <label for="tabone">Sprzedaż</label>
+          <label for="tabone" class="sale-button">Sprzedaż</label>
           <div class="tabs">
             <div class="productTab">
-              <button class="tab-button active" data-id="product1Sale"><img src="./images/Kartacze-Small.jpg"
+              <button class="tab-button active" data-id="Kartacze_Sale"><img src="./images/Kartacze-Small.jpg"
                   alt="kartacze"></button>
-              <button class="tab-button" data-id="product2Sale"><img src="./images/Babka-Small.jpg"
+              <button class="tab-button" data-id="Babka_Sale"><img src="./images/Babka-Small.jpg"
                   alt="babka ziemniaczana"></button>
-              <button class="tab-button" data-id="product3Sale"><img src="./images/Kiszka-Small.jpg"
+              <button class="tab-button" data-id="Kiszka_Sale"><img src="./images/Kiszka-Small.jpg"
                   alt="kiszka ziemniaczana"></button>
             </div>
           </div>
@@ -52,35 +53,35 @@
 
         <div class="tabSaleReturn">
           <input type="radio" name="tabs" id="tabtwo">
-          <label for="tabtwo">Zwrot</label>
+          <label for="tabtwo" class="return-button">Zwrot</label>
           <div class="tabs ">
             <div class="productTab">
-              <button class="tab-button" data-id="product1Return"><img src="./images/Kartacze-Small.jpg"
+              <button class="tab-button" data-id="Kartacze_Return"><img src="./images/Kartacze-Small.jpg"
                   alt="kartacze"></button>
-              <button class="tab-button" data-id="product2Return"><img src="./images/Babka-Small.jpg"
+              <button class="tab-button" data-id="Babka_Return"><img src="./images/Babka-Small.jpg"
                   alt="babka ziemniaczana"></button>
-              <button class="tab-button" data-id="product3Return"><img src="./images/Kiszka-Small.jpg"
+              <button class="tab-button" data-id="Kiszka_Return"><img src="./images/Kiszka-Small.jpg"
                   alt="kiszka ziemniaczana"></button>
             </div>
           </div>
         </div>
         <div class="tabContent">
-          <div class="mainContent active" id="product1Sale">
+          <div class="mainContent active" id="Kartacze_Sale">
             hello1
           </div>
-          <div class="mainContent" id="product2Sale">
+          <div class="mainContent" id="Babka_Sale">
             hello2
           </div>
-          <div class="mainContent" id="product3Sale">
+          <div class="mainContent" id="Kiszka_Sale">
             hello3
           </div>
-          <div class="mainContent" id="product1Return">
+          <div class="mainContent" id="Kartacze_Return">
             hello4
           </div>
-          <div class="mainContent" id="product2Return">
+          <div class="mainContent" id="Babka_Return">
             hello5
           </div>
-          <div class="mainContent" id="product3Return">
+          <div class="mainContent" id="Kiszka_Return">
             hello6
           </div>
         </div>

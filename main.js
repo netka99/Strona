@@ -1,57 +1,171 @@
 dataMain = [
   {
-    name: "sales",
+    name: "Sprzedaż",
     products: [
       {
-        name: "Babka",
-        image: "images/babka.jpg",
+        name: "Kartacze",
+        image: "./images/Kartacze-Small.jpg",
         shops: [
           {
             name: "Sklep Maya",
-            value: 42,
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
           },
         ],
       },
       {
-        name: "Kartacze",
-        image: "images/kartacze.jpg",
+        name: "Babka",
+        image: "./images/Babka-Small.jpg",
         shops: [
           {
             name: "Sklep Maya",
-            value: 42,
           },
           {
-            name: "Sklep Lila",
-            value: 421,
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+      {
+        name: "Kiszka",
+        image: "./images/Kiszka-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
           },
         ],
       },
     ],
   },
   {
-    name: "returns",
+    name: "Zwrot",
     products: [
       {
-        name: "Babka",
-        image: "images/babka.jpg",
+        name: "Kartacze",
+        image: "./images/Kartacze-Small.jpg",
         shops: [
           {
             name: "Sklep Maya",
-            value: 42,
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
           },
         ],
       },
       {
-        name: "Kartacze",
-        image: "images/kartacze.jpg",
+        name: "Babka",
+        image: "./images/Babka-Small.jpg",
         shops: [
           {
             name: "Sklep Maya",
-            value: 42,
           },
           {
-            name: "Sklep Lila",
-            value: 421,
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
+          },
+        ],
+      },
+      {
+        name: "Kiszka",
+        image: "./images/Kiszka-Small.jpg",
+        shops: [
+          {
+            name: "Sklep Maya",
+          },
+          {
+            name: "Sklep Kowalskiego",
+          },
+          {
+            name: "Sklep Nowomiejska",
+          },
+          {
+            name: "Sklep Lityńskiego",
+          },
+          {
+            name: "Sklep Stankiewicza",
+          },
+          {
+            name: "Sklep Buczka",
+          },
+          {
+            name: "Sklep Świerkowa",
           },
         ],
       },
