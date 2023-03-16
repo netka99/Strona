@@ -11,6 +11,7 @@ html {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+   min-height:100vh;
 }
 
 
@@ -24,14 +25,12 @@ html {
 body {
   padding: 0;
   margin: 0;
-  min-height: 100vh;
+  min-height:100vh;
+
   width: 100vw;
   font-family: "Roboto", sans-serif;
-  /*display: flex;
-  align-items: center;
-  justify-content: center;*/
   background-color: var(--main-bg);
-  display: flex;
+  /* display: flex; */
   overflow-x: hidden;
   max-width: 100%;
 }
@@ -131,6 +130,10 @@ span::after {
 input:invalid+span::after {
   content: "✖";
   font-size: 1.4rem;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }
 
 input:valid+span::after {
@@ -379,7 +382,7 @@ focus {
   content: "✓";
   font-size: 1.4rem;
   padding: 5px 20px 5px 20px;
-  background: linear-gradient(to bottom right, #5c35b6, #8461c5);
+  background: linear-gradient(to bottom right,#e51ead, #e086bf);
   color: transparent;
   border-radius: 25px;
   font-weight: bold;
@@ -387,7 +390,7 @@ focus {
 }
 
 .accordion {
-  background: linear-gradient(to bottom right, #e51ead, #e086bf);
+  background: linear-gradient(to bottom right, #5c35b6, #8461c5);
   padding: 2px 1.5rem 2px 1.5rem;
   border-radius: 15px;
   border: none;
@@ -403,7 +406,7 @@ focus {
 }
 
 .accordion:hover {
-  background: linear-gradient(to bottom right, #c91a97, #c376a7);
+  background: linear-gradient(to bottom right,#512fa1, #7656b0);
   cursor: pointer;
 }
 
@@ -524,7 +527,7 @@ focus {
 }
 
 .containerSaving>button:nth-child(3) {
-  background: linear-gradient(to bottom right, #5c35b6, #8461c5);
+  background: linear-gradient(to bottom right, #e51ead, #e086bf);
 }
 
 .containerSaving>button:nth-child(1):hover {
@@ -538,7 +541,7 @@ focus {
 }
 
 .containerSaving>button:nth-child(3):hover {
-  background: linear-gradient(to bottom right, #5330a3, #7153a8);
+  background: linear-gradient(to bottom right,  #c91a97, #c376a7);
   cursor: pointer;
 }
 
@@ -566,41 +569,47 @@ focus {
   padding: 1em;
   margin: auto;
   margin-top: 1.5em;
-  margin-bottom: 1em;
+  margin-bottom: 3rem;
+  height: 100%;
 }
 
 .containerSummary {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
   grid-template-rows: min-content min-content;
   margin: 0;
   align-items: center;
 }
 
 .titleFirst {
-  grid-column: 2 / 4;
+  grid-column: 2 / 3;
   grid-row: span 1;
 }
 
 .titleSecond {
-  grid-column: 4 / 6;
+  grid-column: 3 / 4;
+  grid-row: span 1;
+}
+
+.titleThird {
+  grid-column: 4 / 5;
   grid-row: span 1;
 }
 
 .subtitles,
 .quantityFirst,
-.priceFirst,
 .quantitySecond,
-.priceSecond {
+.quantityThird
+{
   border-bottom: 3px solid #d9d9d9;
   border-top: 3px solid #d9d9d9;
 }
 
 .subtitles>p,
 .quantityFirst>p,
-.priceFirst>p,
 .quantitySecond>p,
-.priceSecond>p {
+.quantityThird>p
+ {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
 }
@@ -610,7 +619,8 @@ focus {
 }
 
 .titleFirst,
-.titleSecond {
+.titleSecond,
+.titleThird {
   margin-bottom: 0.5rem;
 }
 
@@ -623,7 +633,8 @@ focus {
 }
 
 .titleFirst,
-.titleSecond {
+.titleSecond,
+.titleThird {
   font-size: 1.2rem;
   font-weight: bold;
   color: #4a1bb4;
@@ -631,36 +642,30 @@ focus {
 
 .quantityFirst,
 .quantitySecond,
+.quantityThird{
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #4f4f4f;
+}
+
 .sumQuantityFirst,
 .sumQuantitySecond,
-.sumPriceFirst,
-.sumPriceSecond {
+.sumQuantityThird {
   font-size: 1.1rem;
   font-weight: bold;
   color: #4a1bb4;
 }
 
-.priceFirst,
-.priceSecond {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #e31baa;
-}
-
-.priceFirst>p:nth-of-type(1),
-.priceSecond>p:nth-of-type(1) {
-  color: #4a1bb4;
-}
 
 .quantityFirst>p:nth-of-type(2),
 .quantitySecond>p:nth-of-type(2) {
-  color: #e31baa;
+  color: #4f4f4f;
 }
 
 .subtitles>p {
   font-size: 1.1rem;
   font-weight: bold;
-  color: #333232;
+  color: #4f4f4f;
   padding-left: 1em;
 }
 
