@@ -1,3 +1,41 @@
+@import "./mediaQueries";
+@import "./header";
+
+
+    $mobileS: 321px;
+    $mobileL: 426px;
+    $tabletS: 576px;
+    $tablet: 768px;
+    $desktopS: 1700px;
+    $desktop: 1024px;
+    $desktopL: 1440px;
+    $desktopXL: 2560px;
+
+
+.mainContent {
+    display: none;
+    padding: 10px 0px;
+  
+    &.active {
+        display: block;
+        margin: auto;
+        width: 65%;
+
+        @media screen and (max-width: $tablet) {
+             width: 75%;
+          }
+        @media screen and (max-width: $mobileL) {
+            width: 100%;
+         } 
+      
+      }
+
+  }
+  
+
+
+
+
 .extra-sale-container {
     display: flex;
     flex-direction: column;
@@ -82,7 +120,8 @@
     }
 
     .extra-sale-button.active{
-        background: linear-gradient(45deg,  #690b0b, #C8C8C8);
+        background: linear-gradient(45deg,  #888888, #636363);
+        color: #f2f2f2;
     }
 }
 }

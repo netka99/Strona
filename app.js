@@ -185,6 +185,8 @@ totalsReturn.Kartacze = [];
 totalsReturn.Babka = [];
 totalsReturn.Kiszka = [];
 
+let totalsExtraDelivery = [];
+
 const shops = [
   "Sklep Maja",
   "Sklep Kowalskiego",
@@ -448,20 +450,29 @@ window.addEventListener("load", () => {
       extraSaleButton.innerHTML = "Zapisz dowóz";
 
       extraSaleButton.addEventListener("click", function extraSale(e) {
-        e.currentTarget.style.color = "linear-gradient(45deg, #e51ead, #b7b6b6)";
-        console.log("heloo")
+        e.currentTarget.classList.add("active");
+        extraSaleButton.innerHTML = "Zapisany";
+
+        totalsExtraDelivery.push(Number(extraSaleInput.value));
+        extraSaleInput.disabled = true;
+
+        e.currentTarget.removeEventListener("click", extraSale)
+
+        summarySaleReturn()
       })
     });
   });
 
   //Saving button - sending data to summary container, summary of sale and returns
-  let sumSaleKartacze, sumSaleBabka, sumSaleKiszka, sumReturnKartacze, sumReturnBabka, sumReturnKiszka;
-  sumSaleKartacze = sumSaleBabka = sumSaleKiszka = sumReturnKartacze = sumReturnBabka = sumReturnKiszka = 0;
+  let sumSaleKartacze, sumSaleBabka, sumSaleKiszka, sumReturnKartacze, sumReturnBabka, sumReturnKiszka, sumExtraDelivery;
+  sumSaleKartacze = sumSaleBabka = sumSaleKiszka = sumReturnKartacze = sumReturnBabka = sumReturnKiszka = sumExtraDelivery = 0;
   const sumQuantKartacze = document.querySelector(".sumQuantityFirst");
   const sumQuantBabka = document.querySelector(".sumQuantitySecond");
   const sumQuantKiszka = document.querySelector(".sumQuantityThird");
   const saveSaleButtons = document.querySelectorAll(".save-sale-button");
   const saveReturnButtons = document.querySelectorAll(".save-return-button");
+  const initialValue = 0;
+
 
 
 // functionality for Sale Button
@@ -479,7 +490,6 @@ window.addEventListener("load", () => {
     const soldInputIdName = `${soldInputIdProduct}`;
     totals[soldInputIdName].push(Number(soldInputValue.value));
 
-    const initialValue = 0;
     sumSaleKartacze = totals.Kartacze.reduce((v, i) => v + i, initialValue);
     sumSaleBabka = totals.Babka.reduce((v, i) => v + i, initialValue);
     sumSaleKiszka = totals.Kiszka.reduce((v, i) => v + i, initialValue);
@@ -559,7 +569,9 @@ window.addEventListener("load", () => {
 
 
   function summarySaleReturn() {
-    const sumSaleReturnKartacze =  sumSaleKartacze - sumReturnKartacze;
+    sumExtraDelivery = totalsExtraDelivery.reduce((v, i) => v + i, initialValue);
+
+    const sumSaleReturnKartacze =  sumSaleKartacze + sumExtraDelivery - sumReturnKartacze;
     sumQuantKartacze.innerHTML = sumSaleReturnKartacze + " szt";
 
     const sumSaleReturnBabka =  sumSaleBabka - sumReturnBabka;

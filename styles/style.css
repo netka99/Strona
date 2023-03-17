@@ -1,3 +1,23 @@
+.mainContent {
+  display: none;
+  padding: 10px 0px;
+}
+.mainContent.active {
+  display: block;
+  margin: auto;
+  width: 65%;
+}
+@media screen and (max-width: 768px) {
+  .mainContent.active {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 426px) {
+  .mainContent.active {
+    width: 100%;
+  }
+}
+
 .extra-sale-container {
   display: flex;
   flex-direction: column;
@@ -71,7 +91,8 @@
   box-shadow: 1px 1px 4px 1px rgba(54, 54, 54, 0.3);
 }
 .extra-sale-container .extra-sale .extra-sale-button.active {
-  background: linear-gradient(45deg, #690b0b, #C8C8C8);
+  background: linear-gradient(45deg, #888888, #636363);
+  color: #f2f2f2;
 }
 
 .footer {
