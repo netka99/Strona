@@ -1,4 +1,56 @@
 @charset "UTF-8";
+.date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2em;
+}
+
+span::after {
+  padding-left: 5px;
+}
+
+input:invalid + span::after {
+  content: "✖";
+  font-size: 1.4rem;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+input:valid + span::after {
+  content: "✓";
+  color: green;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+input[type=date] {
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  color: #656464;
+  font-size: 1.6rem;
+  border: 1px solid #616161;
+  border-radius: 10px;
+  background: #ecf0f1;
+  padding: 10px;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+@media screen and (max-width: 426px) {
+  input[type=date] {
+    font-size: 1.2rem;
+  }
+}
+input[type=date]:focus {
+  color: #656464;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
 .tabSaleReturn {
   float: left;
   text-align: center;
@@ -108,6 +160,12 @@
   .storeName p {
     font-size: 1rem;
   }
+}
+
+.store-picture {
+  width: 24px;
+  margin: 8px;
+  filter: invert(41%) sepia(0%) saturate(0%) hue-rotate(102deg) brightness(91%) contrast(85%);
 }
 
 .buttons {
@@ -318,6 +376,12 @@
 .containerSaving button:nth-child(3):hover {
   background: linear-gradient(to bottom right, #c91a97, #c376a7);
   cursor: pointer;
+}
+
+.wrapper {
+  transition: height 0.5s;
+  height: 0;
+  overflow: hidden;
 }
 
 .extra-sale-container {

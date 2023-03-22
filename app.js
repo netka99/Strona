@@ -451,7 +451,7 @@ window.addEventListener("load", () => {
 
       extraSaleButton.addEventListener("click", function extraSale(e) {
         e.currentTarget.classList.add("active");
-        extraSaleButton.innerHTML = "Zapisany";
+        extraSaleButton.innerHTML = "Zapisana";
 
         totalsExtraDelivery.push(Number(extraSaleInput.value));
         extraSaleInput.disabled = true;
@@ -469,6 +469,7 @@ window.addEventListener("load", () => {
   const sumQuantKartacze = document.querySelector(".sumQuantityFirst");
   const sumQuantBabka = document.querySelector(".sumQuantitySecond");
   const sumQuantKiszka = document.querySelector(".sumQuantityThird");
+  const sumQuantExtra = document.querySelector("#quantityFirstExtra");
   const saveSaleButtons = document.querySelectorAll(".save-sale-button");
   const saveReturnButtons = document.querySelectorAll(".save-return-button");
   const initialValue = 0;
@@ -501,6 +502,7 @@ window.addEventListener("load", () => {
     const quantityThirdSold = document.getElementById("quantityThirdSold");
     quantityThirdSold.innerHTML = sumSaleKiszka.toFixed(2) + " kg";
 
+    e.currentTarget.innerHTML = "Zapisana";
     soldInputValue.disabled = true;
 
     e.currentTarget.removeEventListener("click", SaveSale);
@@ -570,6 +572,7 @@ window.addEventListener("load", () => {
 
   function summarySaleReturn() {
     sumExtraDelivery = totalsExtraDelivery.reduce((v, i) => v + i, initialValue);
+    sumQuantExtra.innerHTML = sumExtraDelivery + " szt";
 
     const sumSaleReturnKartacze =  sumSaleKartacze + sumExtraDelivery - sumReturnKartacze;
     sumQuantKartacze.innerHTML = sumSaleReturnKartacze + " szt";
