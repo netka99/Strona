@@ -406,7 +406,7 @@ focus {
   transform: rotate(90deg);
 } */
 
-.containerItem {
+/* .containerItem {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -424,7 +424,7 @@ focus {
 
 .containerMain.active {
   display: block;
-}
+} */
 
 
 /* .imageItem {
