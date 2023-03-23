@@ -1,9 +1,190 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+.menu {
+  box-shadow: 5px 6px 6px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: flex-end;
+  list-style-type: none;
+  background: linear-gradient(45deg, #4a1bb4, #6a18a4);
+  margin: 0;
+  padding-top: 1em;
+}
+
+.site-nav {
+  display: flex;
+  padding: 0.5em;
+  list-style-type: none;
+  margin: 0;
+  justify-content: flex-end;
+}
+@media screen and (max-width: 768px) {
+  .site-nav li {
+    margin: 16px 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .site-nav.active {
+    left: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .site-nav {
+    position: fixed;
+    left: -150%;
+    gap: 0;
+    flex-direction: column;
+    background: linear-gradient(45deg, #4a1bb4, #6a18a4);
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+  }
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  padding: 0.5em;
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+    padding: 1em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+}
+@media screen and (max-width: 768px) {
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5em 1.5em;
+  color: #ececec;
+  text-decoration: none;
+  margin-left: auto;
+  font-size: 1rem;
+  transition: 0.7s ease;
+  position: relative;
+}
+
+.nav-link:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #e51ead;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.nav-link:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.backgroundImage {
+  background-image: url("../images/backgroundBig.svg");
+  background-repeat: no-repeat;
+  position: relative;
+  height: 170px;
+  width: 100vw;
+  background-size: 100% auto;
+  display: block;
+  z-index: -1;
+}
+@media screen and (max-width: 321px) {
+  .backgroundImage {
+    height: 90px;
+  }
+}
+@media screen and (min-width: 321px) and (max-width: 426px) {
+  .backgroundImage {
+    height: 130px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .backgroundImage {
+    background-image: url("../images/background.svg");
+    background-size: 120%;
+  }
+}
+@media screen and (min-width: 426px) and (max-width: 576px) {
+  .backgroundImage {
+    height: 150px;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .backgroundImage {
+    height: 85px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1700px) {
+  .backgroundImage {
+    height: 280px;
+  }
+}
+
+html {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  width: 100vw;
+  font-family: "Roboto", sans-serif;
+  background-color: #e5e5e5;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.container {
+  height: -moz-min-content;
+  height: min-content;
+  width: 100vw;
+  margin: 0;
+  max-width: 100%;
+}
+
 .date {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2em;
+  padding: 2rem;
+}
+@media screen and (max-width: 768px) {
+  .date {
+    padding: 1rem;
+  }
 }
 
 span::after {
@@ -51,6 +232,28 @@ input[type=date]:focus {
   -moz-box-shadow: none;
 }
 
+.formTab {
+  margin: 0 auto;
+  padding: 50px 50px;
+  height: auto;
+  transition: height 0.5s;
+}
+@media screen and (max-width: 576px) {
+  .formTab {
+    padding: 20px 20px;
+  }
+}
+
+.tab {
+  position: relative;
+  width: 100%;
+  margin: auto auto;
+  height: 200px;
+}
+.tab input[type=radio] {
+  display: none;
+}
+
 .tabSaleReturn {
   float: left;
   text-align: center;
@@ -58,7 +261,7 @@ input[type=date]:focus {
   margin: 0 auto;
 }
 .tabSaleReturn label {
-  padding: 10px 0;
+  padding: 10px 20px;
   margin: 0 auto;
   position: relative;
   height: 100%;
@@ -70,13 +273,14 @@ input[type=date]:focus {
   border-radius: 15px;
   width: 80%;
   background-color: #fdfdfd;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.3), -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
 }
 @media screen and (max-width: 426px) {
   .tabSaleReturn label {
-    padding: 10px 30px;
+    padding: 10px 35px;
   }
 }
 
@@ -88,18 +292,38 @@ input[type=date]:focus {
     left: 80%;
   }
 }
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .return-button {
+    left: 92%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .return-button {
+    left: 80%;
+  }
+}
 
 .sale-button {
   left: 73%;
 }
 @media screen and (max-width: 426px) {
   .sale-button {
-    left: 30%;
+    left: 15%;
+  }
+}
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .sale-button {
+    left: 48%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .sale-button {
+    left: 66%;
   }
 }
 
 .productTab {
-  padding: 20px 0px;
+  padding: 1.5rem 0rem 3rem 0rem;
 }
 .productTab button {
   background: #fff;
@@ -123,6 +347,57 @@ input[type=date]:focus {
   box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
 }
 
+.tabs {
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  margin: 10px auto;
+  height: 100vh;
+  display: none;
+}
+.tabs button img {
+  width: 55px;
+  border-radius: 25px;
+  padding: 5px 10px;
+}
+
+#tabone:checked ~ .tabs {
+  display: block;
+}
+
+#tabtwo:checked ~ .tabs {
+  display: block;
+}
+
+.tabContent {
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 0;
+  margin-top: 25px;
+  z-index: 1;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[type=radio]:checked ~ label {
+  color: #5C35B6;
+  z-index: 2;
+  width: 80%;
+  background: linear-gradient(45deg, #e3e3e3, #ede8e8);
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: 0.2s ease-in-out;
+  box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3), inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+}
+
 .mainContent {
   display: none;
   padding: 10px 0px;
@@ -132,15 +407,45 @@ input[type=date]:focus {
   margin: auto;
   width: 65%;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1700px) {
   .mainContent.active {
-    width: 75%;
+    width: 35%;
+  }
+}
+@media screen and (min-width: 1440px) and (max-width: 1700px) {
+  .mainContent.active {
+    width: 45%;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .mainContent.active {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .mainContent.active {
+    width: 85%;
   }
 }
 @media screen and (max-width: 426px) {
   .mainContent.active {
     width: 100%;
   }
+}
+
+.containerProduct {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 15px;
+  margin: 1rem 0rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.containerHeader {
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .storeName {

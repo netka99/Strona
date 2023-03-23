@@ -346,7 +346,7 @@ window.addEventListener("load", () => {
       //accordion to open and close wrapper
       const summaryTab = document.querySelector(".summary");
       let heightFormTab = formTab.offsetHeight;
-      formTab.style.height = 720 + "px";
+      formTab.style.height = 750 + "px";
 
       accordionEl.addEventListener("click", (e) => {
         let wrapperEl =
@@ -617,7 +617,7 @@ window.addEventListener("load", () => {
         element.classList.add("active");
       }
 
-      formTab.style.height = 720 + "px";
+      formTab.style.height = 750 + "px";
       wrapperContainers.forEach((item) => {
         item.style.height = null;
       });
@@ -696,7 +696,7 @@ window.addEventListener("load", () => {
       cont.classList.add("active");
     });
 
-    formTab.style.height = 720 + "px";
+    formTab.style.height = 750 + "px";
     wrapperContainers.forEach((item) => {
       item.style.height = null;
     });
@@ -750,7 +750,7 @@ window.addEventListener("load", () => {
     });
     kartaczeSaleContainer.classList.add("active");
 
-    formTab.style.height = 720 + "px";
+    formTab.style.height = 750 + "px";
     wrapperContainers.forEach((item) => {
       item.style.height = null;
     });

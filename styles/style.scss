@@ -1,23 +1,61 @@
 @import "./mediaQueries";
 @import "./header";
 
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
-$mobileS: 321px;
-$mobileL: 426px;
-$tabletS: 576px;
-$tablet: 768px;
-$desktopS: 1700px;
-$desktop: 1024px;
-$desktopL: 1440px;
-$desktopXL: 2560px;
 
+//media queries
+// $mobileS: 321px;
+// $mobileL: 426px;
+// $tabletS: 576px;
+// $tablet: 768px;
+// $desktop: 1024px;
+// $desktopS: 1440px;
+// $desktopL: 1700px;
+// $desktopXL: 2560px;
+
+
+$main-bg: #e5e5e5;
+$main-color: #333333;
+
+html {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+     min-height:100vh;
+     box-sizing: border-box;
+  }
+  
+  
+  body {
+    padding: 0;
+    margin: 0;
+    min-height:100vh;
+    width: 100vw;
+    font-family: "Roboto", sans-serif;
+    background-color: $main-bg;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  
+  .container {
+    height: min-content;
+    width: 100vw;
+    margin: 0;
+    max-width: 100%;
+  }
 
 //date container
 .date {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2em;
+    padding: 2rem;
+
+    @media screen and (max-width: $tablet) {
+        padding: 1rem;
+    }
   }
   
   span::after {
@@ -64,7 +102,32 @@ $desktopXL: 2560px;
       }
   }
   
+  //Content
+  .formTab {
+    margin: 0 auto;
+    padding: 50px 50px;
+    height: auto;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    transition: height 0.5s;
 
+    @media screen and (max-width: $tabletS) {
+        padding: 20px 20px;
+    }
+  }
+
+  .tab {
+    position: relative;
+    width: 100%;
+    margin: auto auto;
+    height: 200px;
+
+    input[type="radio"] {
+  display: none;
+} 
+  }
 
 //two main top buttons Sale and Return
 .tabSaleReturn {
@@ -74,7 +137,7 @@ $desktopXL: 2560px;
     margin: 0 auto;
 
     label {
-        padding: 10px 0;
+        padding: 10px 20px;
         margin: 0 auto;
         position: relative;
         height: 100%;
@@ -86,13 +149,14 @@ $desktopXL: 2560px;
         border-radius: 15px;
         width: 80%;
         background-color: #fdfdfd;
+        font-size: 1.1rem;
         font-weight: bold;
         cursor: pointer;
         box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.3),
             -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
 
         @media screen and (max-width: $mobileL) {
-            padding: 10px 30px;
+            padding: 10px 35px;
 
         }
     }
@@ -104,20 +168,38 @@ $desktopXL: 2560px;
     @media screen and (max-width: $mobileL) {
         left: 80%;
     }
+
+    @media screen and (min-width: $mobileL) and (max-width: $tablet) {
+        left: 92%;
+    }
+
+    @media screen and (min-width: $tablet) and (max-width: $desktop) {
+        left: 80%;
+    }
+
 }
 
 .sale-button {
     left: 73%;
 
     @media screen and (max-width: $mobileL) {
-        left: 30%;
+        left: 15%;
     }
+
+    @media screen and (min-width: $mobileL) and (max-width: $tablet) {
+        left: 48%;
+    }
+
+    @media screen and (min-width: $tablet) and (max-width: $desktop) {
+        left: 66%;
+    }
+
 }
 
 
 //three button of products
 .productTab {
-    padding: 20px 0px;
+    padding: 1.5rem 0rem 3rem 0rem;
 
     button {
         background: #fff;
@@ -143,9 +225,64 @@ $desktopXL: 2560px;
         inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
 }
 
+.tabs {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    margin: 10px auto;
+    height: 100vh;
+    display: none;
 
+    button img {
+        width: 55px;
+        border-radius: 25px;
+        padding: 5px 10px;
+      }
+
+  }
+
+  #tabone:checked~.tabs {
+    display: block;
+  }
+  
+  #tabtwo:checked~.tabs {
+    display: block;
+  }
 
 //content with all products and shops
+
+.tabContent {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 0;
+    margin-top: 25px;
+    z-index: 1;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  
+  
+  [type=radio]:checked~label {
+    color: #5C35B6;
+    z-index: 2;
+    width: 80%;
+    background: linear-gradient(45deg, #e3e3e3, #ede8e8);
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 0.2s ease-in-out;
+    box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3),
+      inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+  }
+
 .mainContent {
     display: none;
     padding: 10px 0px;
@@ -155,8 +292,20 @@ $desktopXL: 2560px;
         margin: auto;
         width: 65%;
 
-        @media screen and (max-width: $tablet) {
-            width: 75%;
+        @media screen and (min-width: $desktopL)  {
+            width: 35%;
+        }
+
+        @media screen and (min-width: $desktopS) and (max-width: $desktopL) {
+            width: 45%;
+        }
+
+        @media screen and (min-width: $desktop) and (max-width: $desktopS) {
+            width: 50%;
+        }
+
+        @media screen and (min-width: $mobileL) and (max-width: $tablet) {
+            width: 85%;
         }
 
         @media screen and (max-width: $mobileL) {
@@ -164,6 +313,21 @@ $desktopXL: 2560px;
         }
     }
 }
+
+.containerProduct {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: 1rem 0rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .containerHeader {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+  }
 
 .storeName {
     display: flex;
