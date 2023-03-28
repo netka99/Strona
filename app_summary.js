@@ -188,9 +188,27 @@ const dataReturn = [
   },
 ];
 
+// "https://virtserver.swaggerhub.com/zedr/shop-manager/1.0.0/sales?start=2023-10-11&end=2023-10-15"
+
+const shops = [
+    "Sklep Maja",
+    "Sklep Kowalskiego",
+    "Sklep Nowomiejska",
+    "Sklep Lityńskiego",
+    "Sklep Stankiewicza",
+    "Sklep Buczka",
+    "Sklep Świerkowa",
+  ];
+  
+  const products = [
+    ["Kartacze", "szt."],
+    ["Babka", "kg"],
+    ["Kiszka", "kg"],
+  ];
 
 //filtering data based on date
 let date = "2023-03-24";
+
 
 const filteredByDate = (data,chosenData) => {
    const dailySale = data.filter((saleReturn) => saleReturn.date === chosenData);
@@ -214,6 +232,7 @@ const filteredByDate = (data,chosenData) => {
     const filteredSales = filteredByDate(dataSale, date);
     const filteredReturns = filteredByDate(dataReturn, date);
   
+    //summary of Sale and Return per date
     const sumSalesReturns = (sumSale, sumReturn)  => {
         const summary = {};
         for (const product in sumSale){
@@ -231,51 +250,4 @@ const filteredByDate = (data,chosenData) => {
 
    console.log (sumSalesReturns(filteredSales,filteredReturns));
 
-    // function sumObjectsByKey(obj1, obj2, key) {
-    //     const result = {};
-    //     for (const prop in obj1) {
-    //       if (prop in obj2) {
-    //         const propValues = {};
-    //         for (const subprop in obj1[prop]) {
-    //           if (subprop in obj2[prop]) {
-    //             propValues[subprop] = obj1[prop][subprop] + obj2[prop][subprop];
-    //           }
-    //         }
-    //         result[prop] = propValues;
-    //       }
-    //     }
-    //     return result;
-    //   }
-
-// console.log(filteredReturns);
-
-
-
-
-// console.log("Sale:",filteredByDate(dataSale,"2023-03-24"));
-// console.log("Return",filteredByDate(dataReturn,"2023-03-24"));
-// Sale: {
-//     Kartacze: {
-//       Maja: 57,
-//       Kowalskiego: 20,
-//       Nowomiejska: 14,
-//       'Lityńskiego': 33,
-//       Stankiewicza: 50,
-//       Buczka: 26,
-//       'Świerkowa': 20
-//     },
-//     Babka: {
-//       Maja: 3.2,
-//       Kowalskiego: 4.2,
-//       Nowomiejska: 2.1,
-//       'Lityńskiego': 5.6,
-//       Stankiewicza: 1.2,
-//       Buczka: 3.2,
-//       'Świerkowa': 2.5
-//     },
-//     Kiszka: { 'Lityńskiego': 7.6, Stankiewicza: 2.1, Buczka: 5.1 }
-//   }
-//   Return 
-//      { Kartacze:
-//      {   Kowalskiego: 2,   
-//          Nowomiejska: 5 } }   
+   
