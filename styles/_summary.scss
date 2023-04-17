@@ -16,6 +16,11 @@
     justify-content: center;
     gap: 2rem;
 
+    @media screen and (max-width:$mobileL) {
+        gap: 0.3rem;
+    }
+
+
     .date-container{
         padding: 10px;
         background-color: $button-baground ;
@@ -23,6 +28,10 @@
         color: $main-text;
         box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.3), -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
 
+
+        @media screen and (max-width:$mobileL) {
+            padding: 5px;
+        }
         p{
             margin: 0;
             padding-bottom: 5px;
@@ -34,6 +43,10 @@
             font-size: 1.2rem;
             background:  $button-baground;
             border: none;
+
+            @media screen and (max-width:$mobileL) {
+                font-size: 1rem;
+            }
 
             &:focus{
                 outline: none;
@@ -74,7 +87,12 @@
     display: flex;
     justify-content: center;
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+
+    
+    @media screen and (max-width:$mobileL) {
+        gap: 1rem;
+    }
 
     button{
         background: $sec-bg;
@@ -92,6 +110,157 @@
             width: 80px;
             border-radius: 45px;
             padding: 12px 5px;
+
+            @media screen and (max-width:$mobileL) {
+                width: 60px;
+            }
         }
     }
 }
+
+.summary-output-container{
+    display: grid;
+    grid-template-columns:  2fr 1fr 1fr;
+    padding: 2rem 2rem 1rem 2rem;
+
+    @media screen and (max-width: 370px) {
+        padding: 2rem 0.2rem 1rem 0.2rem;
+    }
+
+    @media screen and (min-width: 370px) and (max-width: $mobileL) {
+        padding: 2rem 1rem 1rem 1rem;
+    }
+
+}
+
+
+
+.summary-container{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: 1rem auto;
+    padding-bottom: 0.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    display: none;
+
+    @media screen and (max-width: $tabletS) {
+        width: 95%;
+    }
+
+    @media screen and (min-width: $tabletS) and (max-width: $tablet) {
+        width: 80%;
+    }
+
+    @media screen and (min-width: $tablet) and (max-width: $desktop) {
+        width: 70%;
+    }
+
+    @media screen and (min-width: $desktop) and (max-width: $desktopXS) {
+        width: 60%;
+    }
+}
+
+.summary-container.active {
+    display: block;
+}
+
+.summary-product-image{
+    width: 60px;
+    border-radius: 45px;
+    border: 5px solid #ffffff;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+}
+
+.summary-shop-name{
+    color: $main-text;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.summary-shop-name, .summary-daily-sale, .summary-daily-price{
+    padding: 10px 0px 2px 15px;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.summary-daily-sale, .summary-daily-price{
+    @media screen and (max-width: 370px) {
+        padding: 10px 0px 2px 0px;
+    }
+}
+
+
+.summary-title{
+    padding-left: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: $main-color;
+}
+
+.summary-total{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: $sec-bg;
+    margin: 1rem 2rem 1rem 2rem ;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.1rem;
+    font-weight: bold;
+
+
+    p{
+        padding-right: 0rem;
+        margin: 0em 0em;
+        padding-left: 15px;
+
+        
+
+    }
+
+    .summary-total-quantity{
+        padding-right: 0rem;
+        padding-left: 15px;
+        color: rgb(92, 53, 182);
+
+        @media screen and (max-width: $desktopXS) {
+            padding-left: 0px;
+        }
+    }
+
+    .summary-total-prize{
+      padding-left: 15px;
+      color: rgb(92, 53, 182);
+
+      @media screen and (max-width: $desktopXS) {
+        padding-left: 0px;
+    }
+    }
+
+    @media screen and (max-width: 370px) {
+        margin: 1rem 0.2rem 2rem 0.2rem;
+        padding: 1rem 0rem 1rem 0rem;
+        font-size: 0.9rem;
+    }
+
+    @media screen and (min-width: 370px) and (max-width: $mobileL) {
+        margin: 1rem 0.5rem 2rem 0.5rem;
+        padding: 1rem 0rem 1rem 0rem;
+        font-size: 1rem;
+    }
+
+    @media screen  and (min-width: $mobileL) and (max-width: $desktopXS) {
+        margin: 1rem 1rem 2rem 1rem ;
+        padding: 1rem 0rem 1rem 1rem;
+    }
+}
+
+.summary-footer{
+    padding: 3rem;
+}
+

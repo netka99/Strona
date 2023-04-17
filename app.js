@@ -431,8 +431,8 @@ window.addEventListener("load", () => {
         cont.classList.add("active");
       });
       if (id) {
-        tabButton.forEach((but) => {
-          but.classList.remove("active");
+        tabButton.forEach((button) => {
+          button.classList.remove("active");
         });
 
         e.currentTarget.classList.add("active");

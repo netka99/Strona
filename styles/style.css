@@ -9,6 +9,11 @@
   margin: 0;
   padding-top: 1em;
 }
+@media screen and (max-width: 768px) {
+  .menu {
+    padding-top: 0em;
+  }
+}
 
 .site-nav {
   display: flex;
@@ -52,7 +57,7 @@
 @media screen and (max-width: 768px) {
   .hamburger {
     display: block;
-    padding: 1em;
+    padding: 0.7rem 1rem;
     z-index: 10;
   }
 }
@@ -168,6 +173,18 @@
 @media screen and (min-width: 1700px) {
   .backgroundImage {
     height: 320px;
+  }
+}
+
+.textWelcome {
+  padding: 0.6em 2em;
+  color: #ececec;
+  font-size: 1.6rem;
+  font-weight: bolder;
+}
+@media screen and (max-width: 768px) {
+  .textWelcome {
+    font-size: 1rem;
   }
 }
 
@@ -301,7 +318,7 @@ input[type=date]:focus {
     left: 92%;
   }
 }
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1025px) {
   .return-button {
     left: 80%;
   }
@@ -320,7 +337,7 @@ input[type=date]:focus {
     left: 48%;
   }
 }
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+@media screen and (min-width: 768px) and (max-width: 1025px) {
   .sale-button {
     left: 66%;
   }
@@ -421,7 +438,7 @@ input[type=date]:focus {
     width: 45%;
   }
 }
-@media screen and (min-width: 1024px) and (max-width: 1440px) {
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
   .mainContent.active {
     width: 50%;
   }
@@ -967,12 +984,22 @@ input[type=date]:focus {
   justify-content: center;
   gap: 2rem;
 }
+@media screen and (max-width: 426px) {
+  .date-range-container {
+    gap: 0.3rem;
+  }
+}
 .date-range-container .date-container {
   padding: 10px;
   background-color: #fdfdfd;
   border-radius: 15px;
   color: #656464;
   box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.3), -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+}
+@media screen and (max-width: 426px) {
+  .date-range-container .date-container {
+    padding: 5px;
+  }
 }
 .date-range-container .date-container p {
   margin: 0;
@@ -983,6 +1010,11 @@ input[type=date]:focus {
   font-size: 1.2rem;
   background: #fdfdfd;
   border: none;
+}
+@media screen and (max-width: 426px) {
+  .date-range-container .date-container input {
+    font-size: 1rem;
+  }
 }
 .date-range-container .date-container input:focus {
   outline: none;
@@ -1016,7 +1048,12 @@ input[type=date]:focus {
   display: flex;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+}
+@media screen and (max-width: 426px) {
+  .summary-buttons {
+    gap: 1rem;
+  }
 }
 .summary-buttons button {
   background: #f4f4f4;
@@ -1033,6 +1070,157 @@ input[type=date]:focus {
   width: 80px;
   border-radius: 45px;
   padding: 12px 5px;
+}
+@media screen and (max-width: 426px) {
+  .summary-buttons button img {
+    width: 60px;
+  }
+}
+
+.summary-output-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 2rem 2rem 1rem 2rem;
+}
+@media screen and (max-width: 370px) {
+  .summary-output-container {
+    padding: 2rem 0.2rem 1rem 0.2rem;
+  }
+}
+@media screen and (min-width: 370px) and (max-width: 426px) {
+  .summary-output-container {
+    padding: 2rem 1rem 1rem 1rem;
+  }
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  background-color: #ffffff;
+  border-radius: 15px;
+  margin: 1rem auto;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  display: none;
+}
+@media screen and (max-width: 576px) {
+  .summary-container {
+    width: 95%;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .summary-container {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1025px) {
+  .summary-container {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1250px) {
+  .summary-container {
+    width: 60%;
+  }
+}
+
+.summary-container.active {
+  display: block;
+}
+
+.summary-product-image {
+  width: 60px;
+  border-radius: 45px;
+  border: 5px solid #ffffff;
+  position: absolute;
+  top: -20px;
+  left: 10px;
+}
+
+.summary-shop-name {
+  color: #656464;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.summary-shop-name, .summary-daily-sale, .summary-daily-price {
+  padding: 10px 0px 2px 15px;
+  border-bottom: 2px solid #d9d9d9;
+}
+
+@media screen and (max-width: 370px) {
+  .summary-daily-sale, .summary-daily-price {
+    padding: 10px 0px 2px 0px;
+  }
+}
+
+.summary-title {
+  padding-left: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333333;
+}
+
+.summary-total {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 1rem 1rem 1rem 1rem;
+  background-color: #f4f4f4;
+  margin: 1rem 2rem 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.summary-total p {
+  padding-right: 0rem;
+  margin: 0em 0em;
+  padding-left: 15px;
+}
+.summary-total .summary-total-quantity {
+  padding-right: 0rem;
+  padding-left: 15px;
+  color: rgb(92, 53, 182);
+}
+@media screen and (max-width: 1250px) {
+  .summary-total .summary-total-quantity {
+    padding-left: 0px;
+  }
+}
+.summary-total .summary-total-prize {
+  padding-left: 15px;
+  color: rgb(92, 53, 182);
+}
+@media screen and (max-width: 1250px) {
+  .summary-total .summary-total-prize {
+    padding-left: 0px;
+  }
+}
+@media screen and (max-width: 370px) {
+  .summary-total {
+    margin: 1rem 0.2rem 2rem 0.2rem;
+    padding: 1rem 0rem 1rem 0rem;
+    font-size: 0.9rem;
+  }
+}
+@media screen and (min-width: 370px) and (max-width: 426px) {
+  .summary-total {
+    margin: 1rem 0.5rem 2rem 0.5rem;
+    padding: 1rem 0rem 1rem 0rem;
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 426px) and (max-width: 1250px) {
+  .summary-total {
+    margin: 1rem 1rem 2rem 1rem;
+    padding: 1rem 0rem 1rem 1rem;
+  }
+}
+
+.summary-footer {
+  padding: 3rem;
 }
 
 html {

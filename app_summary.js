@@ -206,6 +206,11 @@ const shops = [
     ["Kiszka", "kg"],
   ];
 
+  const productPrices = {
+    "Kartacze": 5,
+    "Babka": 52,
+    "Kiszka":41
+  }
 //filtering data based on date
 let date = "2023-03-24";
 
@@ -248,6 +253,129 @@ const filteredByDate = (data,chosenData) => {
         return summary
     };
 
-   console.log (sumSalesReturns(filteredSales,filteredReturns));
 
-   
+   let summaryPerDay = sumSalesReturns(filteredSales,filteredReturns);
+
+   window.addEventListener("load", () => {
+    const summaryContainer = document.querySelector(".summary-output");
+
+    for (const product in summaryPerDay){
+
+        const productContainer = document.createElement("div");
+        summaryContainer.append(productContainer);
+        productContainer.className = "summary-container";
+        productContainer.setAttribute("data-product",`${product}`)
+        
+        const productImage = document.createElement("img");
+        productContainer.append(productImage);
+        productImage.className = "summary-product-image";
+        productImage.src = `./images/${product}-Small.jpg`;
+        productImage.setAttribute("alt", "kartacze image");
+
+        //summary output container
+        const outputContainer = document.createElement("div");
+        productContainer.append(outputContainer);
+        outputContainer.className = "summary-output-container";
+
+        //summary subcontainers
+        const outputSubcontShops = document.createElement("div");
+        outputContainer.append(outputSubcontShops);
+        outputSubcontShops.className = "summary-subcont subcont-shops";
+
+        const titlesShop = document.createElement("p");
+        outputSubcontShops.append(titlesShop);
+        titlesShop.className = "summary-title";
+        titlesShop.textContent = "Sklep";
+
+        const outputSubcontQuantities = document.createElement("div");
+        outputContainer.append(outputSubcontQuantities);
+        outputSubcontQuantities.className = "summary-subcont subcont-quantities";
+
+        const titlesQuantities = document.createElement("p");
+        outputSubcontQuantities.append(titlesQuantities);
+        titlesQuantities.className = "summary-title";
+        titlesQuantities.textContent = "Ilość";
+
+
+        const outputSubcontValue = document.createElement("div");
+        outputContainer.append(outputSubcontValue);
+        outputSubcontValue.className = "summary-subcont subcont-value";
+
+        const titlesValue = document.createElement("p");
+        outputSubcontValue.append(titlesValue);
+        titlesValue.className = "summary-title";
+        titlesValue.textContent = "Koszt";
+
+        let sumQuantity = 0;
+        for(const shop in summaryPerDay[product]){
+            const shopName = document.createElement("div");
+            outputSubcontShops.appendChild(shopName);
+            shopName.className = "summary-shop-name";
+            shopName.textContent = `${shop}`
+
+            const dailyPerShop = document.createElement("div");
+            outputSubcontQuantities.appendChild(dailyPerShop);
+            dailyPerShop.className = "summary-daily-sale";
+            if(product == "Babka" || product == "Kiszka"  ){
+                dailyPerShop.textContent = `${summaryPerDay[product][shop]} kg`;
+            }else{
+            dailyPerShop.textContent = `${summaryPerDay[product][shop]} szt.`;}
+
+            sumQuantity += summaryPerDay[product][shop];
+
+            let sumPricePerShop = summaryPerDay[product][shop]*productPrices[product];
+
+            const dailyPricePerShop = document.createElement("div");
+            outputSubcontValue.append(dailyPricePerShop);
+            dailyPricePerShop.className = "summary-daily-price";
+            dailyPricePerShop.textContent = sumPricePerShop.toFixed(2) +" zł";
+        }
+
+        const summaryPerProduct = document.createElement("div");
+        productContainer.append(summaryPerProduct);
+        summaryPerProduct.className = "summary-total";
+
+        const summarytext = document.createElement("p");
+        summaryPerProduct.append(summarytext);
+        summarytext.textContent = "Suma";
+
+        const summaryQuantity = document.createElement("div");
+        summaryPerProduct.append(summaryQuantity);
+        summaryQuantity.className = "summary-total-quantity";
+        if(product == "Babka" || product == "Kiszka"  ){
+            summaryQuantity.textContent = sumQuantity.toFixed(2) + " kg" ;
+        }else{
+            summaryQuantity.textContent = sumQuantity + " szt.";
+        };
+
+        let sumPrize = sumQuantity*productPrices[product];
+        const summaryPrize = document.createElement("div");
+        summaryPerProduct.append(summaryPrize);
+        summaryPrize.className = "summary-total-prize";
+        summaryPrize.textContent = sumPrize.toFixed(2)+" zł";
+
+   }
+
+   const hiddenBabkaContainer = document.querySelector("[data-product=Kartacze]");
+   hiddenBabkaContainer.classList.add("active");
+
+
+   const buttonsProductMenu = document.querySelectorAll(".summary-buttons-product");
+   buttonsProductMenu.forEach((button) => {
+        button.addEventListener("click", (e) => {
+            const id = e.currentTarget.dataset.id;
+            const summaryContainerAll = document.querySelectorAll("[data-product]");
+            const summaryContainerProduct = document.querySelector(`[data-product=${id}`);
+        
+            summaryContainerAll.forEach((container) => {
+                if (container.classList.contains("active")) {
+                  container.classList.remove("active");
+                }
+              });
+
+            if(id){
+                summaryContainerProduct.classList.add("active");
+            }
+        })
+   })
+   })
