@@ -1,0 +1,324 @@
+{
+    "Sale": [
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 42,
+            "isDiscounted": false,
+            "shop": "Maja",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 15,
+            "isDiscounted": false,
+            "shop": "Kowalskiego",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 10,
+            "isDiscounted": false,
+            "shop": "Nowomiejska",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 33,
+            "isDiscounted": false,
+            "shop": "Lityńskiego",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 50,
+            "isDiscounted": false,
+            "shop": "Stankiewicza",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 26,
+            "isDiscounted": false,
+            "shop": "Buczka",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 20,
+            "isDiscounted": false,
+            "shop": "Świerkowa",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 3.2,
+            "isDiscounted": false,
+            "shop": "Maja",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 4.2,
+            "isDiscounted": false,
+            "shop": "Kowalskiego",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 2.1,
+            "isDiscounted": false,
+            "shop": "Nowomiejska",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 5.6,
+            "isDiscounted": false,
+            "shop": "Lityńskiego",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 1.2,
+            "isDiscounted": false,
+            "shop": "Stankiewicza",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 3.2,
+            "isDiscounted": false,
+            "shop": "Buczka",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 2.5,
+            "isDiscounted": false,
+            "shop": "Świerkowa",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kiszka",
+            "quantity": 7.6,
+            "isDiscounted": false,
+            "shop": "Lityńskiego",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kiszka",
+            "quantity": 2.1,
+            "isDiscounted": false,
+            "shop": "Stankiewicza",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kiszka",
+            "quantity": 5.1,
+            "isDiscounted": false,
+            "shop": "Buczka",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 15,
+            "isDiscounted": false,
+            "shop": "Maja",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 5,
+            "isDiscounted": false,
+            "shop": "Kowalskiego",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 4,
+            "isDiscounted": false,
+            "shop": "Nowomiejska",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 42,
+            "isDiscounted": false,
+            "shop": "Maja",
+            "date": "2023-03-25"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 15,
+            "isDiscounted": false,
+            "shop": "Kowalskiego",
+            "date": "2023-03-25"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 10,
+            "isDiscounted": false,
+            "shop": "Nowomiejska",
+            "date": "2023-03-26"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 33,
+            "isDiscounted": false,
+            "shop": "Lityńskiego",
+            "date": "2023-03-26"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 50,
+            "isDiscounted": false,
+            "shop": "Stankiewicza",
+            "date": "2023-03-27"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 26,
+            "isDiscounted": false,
+            "shop": "Buczka",
+            "date": "2023-03-27"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 20,
+            "isDiscounted": false,
+            "shop": "Świerkowa",
+            "date": "2023-03-28"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 3.2,
+            "isDiscounted": false,
+            "shop": "Maja",
+            "date": "2023-03-25"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 4.2,
+            "isDiscounted": false,
+            "shop": "Kowalskiego",
+            "date": "2023-03-26"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 2.1,
+            "isDiscounted": false,
+            "shop": "Nowomiejska",
+            "date": "2023-03-27"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 5.6,
+            "isDiscounted": false,
+            "shop": "Lityńskiego",
+            "date": "2023-03-28"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 1.2,
+            "isDiscounted": false,
+            "shop": "Stankiewicza",
+            "date": "2023-03-29"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 3.2,
+            "isDiscounted": false,
+            "shop": "Buczka",
+            "date": "2023-03-30"
+        },
+        {
+            "id": 1,
+            "product": "Babka",
+            "quantity": 2.5,
+            "isDiscounted": false,
+            "shop": "Świerkowa",
+            "date": "2023-03-25"
+        },
+        {
+            "id": 1,
+            "product": "Kiszka",
+            "quantity": 7.6,
+            "isDiscounted": false,
+            "shop": "Lityńskiego",
+            "date": "2023-03-24"
+        },
+        {
+            "id": 1,
+            "product": "Kiszka",
+            "quantity": 2.1,
+            "isDiscounted": false,
+            "shop": "Stankiewicza",
+            "date": "2023-03-25"
+        },
+        {
+            "id": 1,
+            "product": "Kiszka",
+            "quantity": 5.1,
+            "isDiscounted": false,
+            "shop": "Buczka",
+            "date": "2023-03-26"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 15,
+            "isDiscounted": false,
+            "shop": "Maja",
+            "date": "2023-03-27"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 5,
+            "isDiscounted": false,
+            "shop": "Kowalskiego",
+            "date": "2023-03-248"
+        },
+        {
+            "id": 1,
+            "product": "Kartacze",
+            "quantity": 4,
+            "isDiscounted": false,
+            "shop": "Nowomiejska",
+            "date": "2023-03-29"
+        }
+    ]
+}
