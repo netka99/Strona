@@ -12,33 +12,64 @@ function updateChart() {
 
   fetchData().then((dataArr) => {
     // Create an empty object to store the summarized data
-    const summary = {};
+    const summarySale = {};
+    const summaryReturn = {};
 
     // Loop through each sale in the data
     dataArr[0].Sale.forEach((sale) => {
-      // If the product doesn't exist in the summary object, add it with an empty object
-      if (!summary[sale.product]) {
-        summary[sale.product] = {};
+      // If the product doesn't exist in the summarySale object, add it with an empty object
+      if (!summarySale[sale.product]) {
+        summarySale[sale.product] = {};
       }
 
-      // If the date doesn't exist in the summary object for the product, add it with a quantity of 0
-      if (!summary[sale.product][sale.date]) {
-        summary[sale.product][sale.date] = 0;
+      // If the date doesn't exist in the summarySale object for the product, add it with a quantity of 0
+      if (!summarySale[sale.product][sale.date]) {
+        summarySale[sale.product][sale.date] = 0;
       }
 
-      // Add the quantity of the sale to the summary object for the product and date
-      summary[sale.product][sale.date] += sale.quantity;
+      // Add the quantity of the sale to the summarySale object for the product and date
+      summarySale[sale.product][sale.date] += sale.quantity;
     });
+
+    dataArr[1].Return.forEach((sale) => {
+      if (!summaryReturn[sale.product]) {
+        summaryReturn[sale.product] = {};
+      }
+      if (!summaryReturn[sale.product][sale.date]) {
+        summaryReturn[sale.product][sale.date] = 0;
+      }
+      summaryReturn[sale.product][sale.date] += sale.quantity;
+    });
+
+    console.log("summaryReturn", summaryReturn);
+    console.log("summarySale", summarySale);
 
     //Dividing data by date and values in arrays
     const valuesByProduct = {};
     const datesByProduct = {};
 
-    console.log("values", valuesByProduct);
-    console.log("dates", datesByProduct);
+    // console.log("values", valuesByProduct);
+    // console.log("dates", datesByProduct);
 
-    for (const product in summary) {
-      const productData = summary[product];
+    const returnsByProduct = {};
+
+    for (const product in summarySale) {
+      returnsByProduct[product] = {};
+      const saleDates = Object.keys(summarySale[product]);
+      const returnDates = Object.keys(summaryReturn[product] || {});
+
+      const allDates = [...new Set([...saleDates, ...returnDates])];
+
+      for (const date of allDates) {
+        const returnValue = summaryReturn[product]?.[date] || 0;
+        returnsByProduct[product][date] = returnValue;
+      }
+    }
+
+    console.log(returnsByProduct);
+
+    for (const product in summarySale) {
+      const productData = summarySale[product];
 
       const values = [];
       const dates = [];
@@ -51,9 +82,6 @@ function updateChart() {
       valuesByProduct[product] = values;
       datesByProduct[product] = dates;
     }
-
-    console.log(dataArr[1]);
-    // datesByProduct.Kartacze;
 
     const graphsPerProduct = document.querySelectorAll(
       ".summary-buttons-product"
