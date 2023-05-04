@@ -14,7 +14,7 @@
             "quantity": 3,
             "isDiscounted": false,
             "shop": "Kowalskiego",
-            "date": "2023-03-24"
+            "date": "2023-03-25"
         },
         {
             "id": 1,
@@ -22,7 +22,7 @@
             "quantity": 1,
             "isDiscounted": false,
             "shop": "Nowomiejska",
-            "date": "2023-03-24"
+            "date": "2023-03-26"
         },
         {
             "id": 1,
@@ -30,7 +30,7 @@
             "quantity": 3,
             "isDiscounted": false,
             "shop": "Lityńskiego",
-            "date": "2023-03-24"
+            "date": "2023-03-27"
         },
         {
             "id": 1,
@@ -46,7 +46,7 @@
             "quantity": 0.5,
             "isDiscounted": false,
             "shop": "Kowalskiego",
-            "date": "2023-03-24"
+            "date": "2023-03-25"
         },
         {
             "id": 1,
@@ -54,7 +54,7 @@
             "quantity": 0.7,
             "isDiscounted": false,
             "shop": "Nowomiejska",
-            "date": "2023-03-24"
+            "date": "2023-03-26"
         },
         {
             "id": 1,
@@ -70,7 +70,7 @@
             "quantity": 0.5,
             "isDiscounted": false,
             "shop": "Stankiewicza",
-            "date": "2023-03-24"
+            "date": "2023-03-25"
         }
     ]
 }

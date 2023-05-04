@@ -41,18 +41,9 @@ function updateChart() {
       summaryReturn[sale.product][sale.date] += sale.quantity;
     });
 
-    console.log("summaryReturn", summaryReturn);
-    console.log("summarySale", summarySale);
-
-    //Dividing data by date and values in arrays
-    const valuesByProduct = {};
-    const datesByProduct = {};
-
-    // console.log("values", valuesByProduct);
-    // console.log("dates", datesByProduct);
-
+    // Comparison of two objects for Sale and Return and concatinating dates
+    // if there is no return for a sale's date pass 0
     const returnsByProduct = {};
-
     for (const product in summarySale) {
       returnsByProduct[product] = {};
       const saleDates = Object.keys(summarySale[product]);
@@ -66,23 +57,42 @@ function updateChart() {
       }
     }
 
-    console.log(returnsByProduct);
+    //spliting data for Return into separate arrays to be able to pass to graph
+    const valuesByProductReturn = {};
+    const datesByProductReturn = {};
+
+    for (const product in returnsByProduct) {
+      const productDataReturn = returnsByProduct[product];
+      const valuesReturn = [];
+      const datesReturn = [];
+      for (const date in productDataReturn) {
+        valuesReturn.push(productDataReturn[date]);
+        datesReturn.push(date);
+      }
+      valuesByProductReturn[product] = valuesReturn;
+      datesByProductReturn[product] = datesReturn;
+    }
+
+    console.log(valuesByProductReturn, datesByProductReturn);
+
+    //spliting data for Sale into separate arrays to be able to pass to graph
+    const valuesByProduct = {};
+    const datesByProduct = {};
 
     for (const product in summarySale) {
       const productData = summarySale[product];
-
       const values = [];
       const dates = [];
-
       for (const date in productData) {
         values.push(productData[date]);
         dates.push(date);
       }
-
       valuesByProduct[product] = values;
       datesByProduct[product] = dates;
     }
 
+    //for each product button is assign event listener to
+    //show graph with corresponding data
     const graphsPerProduct = document.querySelectorAll(
       ".summary-buttons-product"
     );
@@ -92,16 +102,19 @@ function updateChart() {
         const id = e.currentTarget.dataset.id;
         console.log(id);
         if (id === "Kartacze") {
-          myChart.config.data.labels = datesByProduct.Kartacze;
+          myChart.config.data.labels = datesByProductReturn.Kartacze;
           myChart.config.data.datasets[0].data = valuesByProduct.Kartacze;
+          myChart.config.data.datasets[1].data = valuesByProductReturn.Kartacze;
         }
         if (id === "Babka") {
-          myChart.config.data.labels = datesByProduct.Babka;
+          myChart.config.data.labels = datesByProductReturn.Babka;
           myChart.config.data.datasets[0].data = valuesByProduct.Babka;
+          myChart.config.data.datasets[1].data = valuesByProductReturn.Babka;
         }
         if (id === "Kiszka") {
-          myChart.config.data.labels = datesByProduct.Kiszka;
+          myChart.config.data.labels = datesByProductReturn.Kiszka;
           myChart.config.data.datasets[0].data = valuesByProduct.Kiszka;
+          myChart.config.data.datasets[1].data = valuesByProductReturn.Kiszka;
         }
         myChart.update();
         graphContainer.classList.add("active");
@@ -110,6 +123,7 @@ function updateChart() {
   });
 }
 
+//graph's logic
 updateChart();
 const ctx = document.getElementById("myChart");
 const data = {
@@ -129,6 +143,7 @@ const data = {
       data: [10, 20, 30, 50],
       fill: false,
       borderColor: "rgb(54, 162, 235)",
+      backgroundColor: ["rgba(54, 162, 235)"],
     },
   ],
 };
