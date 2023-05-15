@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SK Application</title>
+    <title>Ceny produktów</title>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./styles/style.css" />
 
@@ -16,9 +16,9 @@
         <nav class="menu" id="main-menu">
             <ul class="site-nav">
                 <li><a href="./mainMenu.html" class="nav-link">Home</a></li>
-                <li><a href="./sprzedaz.html" class="nav-link">Sklepy</a></li>
-                <li><a href="/produkty" class="nav-link">Produkty</a></li>
-                <li><a href="/wykresy" class="nav-link">Wykresy</a></li>
+                <li><a href="./sale.html" class="nav-link">Sklepy</a></li>
+                <li><a href="./summary.html" class="nav-link">Produkty</a></li>
+                <li><a href="./graphs.html" class="nav-link">Wykresy</a></li>
                 <li><a href="./settings.html" class="nav-link">Ustawienia</a></li>
             </ul>
             <div class="hamburger">
@@ -29,23 +29,55 @@
         </nav>
         <header>
             <div class="backgroundImage">
-                <div class="textWelcome">Lista Sklepów</div>
+                <div class="textWelcome">Ceny produktów</div>
             </div>
         </header>
-        <main>
-            <div class="addShopName">
-                <input type="text" id="shopName" class="shopNameSett" placeholder="Dodaj Nazwę sklepu" />
-                <br>
-                <input class="AddShopButton" type="submit" value="Dodaj">
+        <main class="prices-main">
+            <div class="prices-Maincontainer">
+                <div class="prices-containers">
+                    <div class="prices-image"><img src="./images/Kartacze-Small.jpg" alt="kartacze image">
+                        <p>Kartacze</p>
+                    </div>
+                    <div class="prices-InputContainer">
+                        <div class="prices-inputDescription">
+                            <label for="price">Cena</label>
+                            <input type="number" min="0" id="Price_Kartacze">
+                            <p>zł</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="prices-containers">
+                    <div class="prices-image"><img src="./images/Babka-Small.jpg" alt="babka image">
+                        <p>Babka</p>
+                    </div>
+                    <div class="prices-InputContainer">
+                        <div class="prices-inputDescription">
+                            <label for="price">Cena</label>
+                            <input type="number" min="0" id="Price_Babka">
+                            <p>zł</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="prices-containers">
+                    <div class="prices-image"><img src="./images/Kiszka-Small.jpg" alt="kiszka image">
+                        <p>Kiszka</p>
+                    </div>
+                    <div class="prices-InputContainer">
+                        <div class="prices-inputDescription">
+                            <label for="price">Cena</label>
+                            <input type="number" min="0" id="Price_Kiszka">
+                            <p>zł</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <div class="titleSettShops">Sklepy</div>
-                <div id="shopsList"></div>
-            </div>
+            <button class="prices-save">Zapisz</button>
         </main>
 
     </div>
     <script src="app.js"></script>
+    <script src="nav.js"></script>
+
 </body>
 
 </html>

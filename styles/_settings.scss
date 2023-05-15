@@ -1,0 +1,288 @@
+/* Settings Page */
+.addShopName {
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 3rem auto 3rem auto;
+    flex-direction: column;
+}
+
+.shopNameSett {
+    width: 100%;
+    height: 2.5rem;
+    padding-left: 1rem;
+    background: linear-gradient(to bottom right, #f2f2f2, #dfdfdf);
+    border-radius: 20px;
+    box-shadow: 4px 6px 6px 1px rgb(0 0 0 / 30%);
+    border: none;
+    font-size: 1rem;
+}
+
+.shopNameSett:focus {
+    outline: none;
+}
+
+.AddShopButton {
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    margin-top: 0.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 2px 3px 4px 1px rgb(0 0 0 / 30%);
+    background: linear-gradient(to bottom right, #5c35b6, #8461c5);
+    cursor: pointer;
+}
+
+.AddShopButton:active {
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+.AddShopButton:hover {
+    background: linear-gradient(to bottom right, #512fa1, #7456ad);
+}
+
+
+
+.titleSettShops {
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 2rem auto;
+    flex-direction: column;
+    padding-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #515050;
+}
+
+.store-icon {
+    width: 24px;
+    margin: 8px;
+    filter: invert(41%) sepia(0%) saturate(0%) hue-rotate(102deg) brightness(91%) contrast(85%);
+}
+
+.settings-title-container {
+    width: 28rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 2rem auto 3rem auto;
+    padding: 1rem 1rem;
+    flex-direction: row;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    cursor: pointer;
+
+    @media screen and (max-width: $mobileL) {
+            width: 80%;
+            padding: 0.5rem 0.5rem;
+        }
+}
+
+.settings-title-background {
+    padding: 0.5rem;
+    border-radius: 4rem;
+    height: auto;
+    width: auto;
+    margin: 0rem 2rem 0rem 2rem;
+}
+
+.set-first-menu {
+    background: linear-gradient(45deg, #ffd3a5, #fd6585);
+}
+
+.set-second-menu {
+    background: linear-gradient(45deg, #5efce8,
+            #736efe);
+}
+
+.settings-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #656464;
+    // padding-left: 2rem;
+}
+
+
+.settings-title-pic {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    filter: invert(99%) sepia(5%) saturate(53%) hue-rotate(15deg) brightness(113%) contrast(95%);
+}
+
+.shopContainer {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    padding-left: 1rem;
+    border-bottom: 2px solid #dfdfdf;
+}
+
+.trashButton {
+    width: 2rem;
+    height: 1.5rem;
+    background: linear-gradient(to bottom right, #f2f2f2, #dfdfdf);
+    border-radius: 15px;
+    box-shadow: 2px 3px 4px 1px rgb(0 0 0 / 30%);
+    border: none;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.trashButton:active {
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+.trashImage {
+    width: 18px;
+    filter: invert(41%) sepia(0%) saturate(0%) hue-rotate(102deg) brightness(91%) contrast(85%);
+
+}
+
+
+//========================================================
+//Prices Page
+
+.prices-main {
+    width: 37rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0rem auto;
+    align-items: flex-end;
+
+    @media screen and (min-width: $mobileL) and (max-width: $tabletL) {
+        width: 80%;
+    }
+
+    @media screen  and (max-width: $mobileL) {
+        width: 90%;
+    }
+}
+
+.prices-Maincontainer {
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin: 1rem auto;
+    padding: 0rem 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.prices-containers {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    background-color: #f6f6f6;
+    margin: 2rem auto 2rem auto;
+    padding: 0.5rem 0rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.prices-image {
+    flex: 1 1 33.33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media screen and (max-width: $tablet) {
+        flex: 18%;
+        padding-left: 10px;
+    }
+
+    img {
+        width: 55px;
+        border-radius: 25px;
+        margin-right: 1rem;
+    }
+
+    p {
+        color: #292929;
+        font-weight: bold;
+
+        @media screen and (max-width: $tablet) {
+            display: none;
+        }
+    }
+}
+
+.prices-InputContainer {
+    flex: 1 1 66.67%;
+
+    @media screen and (max-width: $tablet) {
+        flex: 78%;
+    }
+}
+
+.prices-inputDescription {
+    display: flex;
+    align-items: center;
+    gap: 1.2em;
+    justify-content: flex-end;
+    margin: 10px 0px 10px 0px;
+
+    @media screen and (max-width: $tablet) {
+        gap: 0.5rem;
+    }
+
+    label {
+        margin-right: 2rem;
+
+        @media screen and (max-width: $tablet) {
+            margin-right: 0%;
+        }
+    }
+
+    input {
+        width: 5em;
+        height: 1.8em;
+        border-radius: 5px;
+        border: 1px solid #a3a3a3;
+        text-align: right;
+
+        &:hover {
+            border: 1px solid #939393;
+        }
+    }
+
+    p {
+        margin: 0px 20px 0px 0px;
+
+        @media screen and (max-width: $tablet) {
+            margin: 0px 10px 0px 0px;
+        }
+    }
+}
+
+.prices-save {
+    width: 7rem;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    margin-top: 0.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom right, #5c35b6, #8461c5);
+    cursor: pointer;
+
+    &:active {
+        box-shadow: 1px 1px 4px 1px rgba(54, 54, 54, 0.3);
+    }
+
+    &:hover {
+        background: linear-gradient(to bottom right, #512fa1,
+                #7656b0);
+    }
+}

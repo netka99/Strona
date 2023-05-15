@@ -19,8 +19,8 @@
             <ul class="site-nav">
                 <li><a href="./index.html" class="nav-link">Home</a></li>
                 <li><a href="./sprzedaz.html" class="nav-link">Sklepy</a></li>
-                <li><a href="/produkty" class="nav-link">Produkty</a></li>
-                <li><a href="/wykresy" class="nav-link">Wykresy</a></li>
+                <li><a href="./sale.html" class="nav-link">Produkty</a></li>
+                <li><a href="./graphs.html" class="nav-link">Wykresy</a></li>
                 <li><a href="./settings.html" class="nav-link">Ustawienia</a></li>
             </ul>
             <div class="hamburger">
@@ -36,17 +36,27 @@
         </header>
         <main>
             <div>
-                <div class="titleSettShops">Sklepy</div>
-                <div id="shopsList"></div>
+                <div class="settings-title-container" id="shopsList" onclick="window.location='./settings_shops.html'">
+                    <div class="settings-title-background set-first-menu">
+                        <img class="settings-title-pic" src="./images/store-alt-solid.svg"
+                            alt="image of shopping basket">
+                    </div>
+                    <div class="settings-title">Lista Sklepów</div>
+                </div>
             </div>
             <div>
-                <div class="titleSettShops">Sklepy</div>
-                <div id="shopsList"></div>
+                <div class="settings-title-container" id="pricesList" onclick="window.location='./settings_prices.html'">
+                    <div class="settings-title-background set-second-menu">
+                        <img class="settings-title-pic" src="./images/price-tag.svg" alt="price tag">
+                    </div>
+                    <div class="settings-title">Ceny produktów</div>
+                </div>
             </div>
         </main>
 
     </div>
-    <script src="app.js"></script>
+<script src="app_settings.js"></script>
+<script src="nav.js"></script>
 </body>
 
 </html>
