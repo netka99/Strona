@@ -169,6 +169,8 @@ window.addEventListener("load", () => {
         shops[index] = item;
       });
 
+      
+
       //accordion to open and close wrapper
       const summaryTab = document.querySelector(".summary");
       let heightFormTab = formTab.offsetHeight;
@@ -289,6 +291,84 @@ window.addEventListener("load", () => {
     });
   });
 
+  async function postDataToApi() {
+    // Your JSON data
+    const data = {
+      "id": null,
+      "product": "Kartacze",
+      "quantity": 15,
+      "isDiscounted": false,
+      "shop": "Maja",
+      "date": "2023-08-29"
+    };
+  
+    // API endpoint URL
+    const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales"; // Replace with your actual API URL
+  
+    try {
+      // Prepare the request headers
+      const headers = {
+        "Content-Type": "application/json",
+        // Add any other headers you may need (e.g., authorization token)
+      };
+  
+      // Create the request options
+      const requestOptions = {
+        method: "POST", // Use the appropriate HTTP method (e.g., POST, PUT, GET, etc.)
+        headers: headers,
+        body: JSON.stringify(data) // Convert the JSON data to a string
+      };
+  
+      // Send the POST request to the API and await the response
+      const response = await fetch(apiUrl, requestOptions);
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      // Parse the response JSON (if the API returns JSON)
+      const responseData = await response.json();
+  
+      // Handle the API response data here
+      console.log("API Response:", responseData);
+    } catch (error) {
+      // Handle any errors that occurred during the fetch
+      console.error("Error:", error);
+    }
+  }
+  
+  // Call the function to post data to the API
+  postDataToApi();
+  
+  
+  // async function fetchDataFromApi() {
+  //   // API endpoint URL
+  //   const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales"; // Replace with your actual API URL
+  
+  //   try {
+  //     // Send the GET request to the API and await the response
+  //     const response = await fetch(apiUrl);
+  
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! Status: ${response.status}`);
+  //     }
+  
+  //     // Parse the response JSON
+  //     const responseData = await response.json();
+  
+  //     // Handle the API response data here
+  //     console.log("API Response:", responseData);
+  //   } catch (error) {
+  //     // Handle any errors that occurred during the fetch
+  //     console.error("Error:", error);
+  //   }
+  // }
+  
+  // // Call the function to fetch data from the API
+  // fetchDataFromApi();
+  
+  
+
   //Saving button - sending data to summary container, summary of sale and returns
   let sumSaleKartacze, sumSaleBabka, sumSaleKiszka, sumReturnKartacze, sumReturnBabka, sumReturnKiszka, sumExtraDelivery;
   sumSaleKartacze = sumSaleBabka = sumSaleKiszka = sumReturnKartacze = sumReturnBabka = sumReturnKiszka = sumExtraDelivery = 0;
@@ -300,6 +380,7 @@ window.addEventListener("load", () => {
   const saveReturnButtons = document.querySelectorAll(".save-return-button");
   const initialValue = 0;
 
+  
 
 
 // functionality for Sale Button
@@ -334,6 +415,8 @@ window.addEventListener("load", () => {
     e.currentTarget.removeEventListener("click", SaveSale);
 
     summarySaleReturn()
+      
+
   }
 
  // functionality for Return Button

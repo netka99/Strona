@@ -1,3 +1,4 @@
+
 const dataSale = [
   {
     id: 1,
@@ -188,55 +189,37 @@ const dataReturn = [
   },
 ];
 
-// "https://virtserver.swaggerhub.com/zedr/shop-manager/1.0.0/sales?start=2023-10-11&end=2023-10-15"
-
 const shops = [
-    "Sklep Maja",
-    "Sklep Kowalskiego",
-    "Sklep Nowomiejska",
-    "Sklep Lityńskiego",
-    "Sklep Stankiewicza",
-    "Sklep Buczka",
-    "Sklep Świerkowa",
-  ];
-  
-  const products = [
-    ["Kartacze", "szt."],
-    ["Babka", "kg"],
-    ["Kiszka", "kg"],
-  ];
+  "Sklep Maja",
+  "Sklep Kowalskiego",
+  "Sklep Nowomiejska",
+  "Sklep Lityńskiego",
+  "Sklep Stankiewicza",
+  "Sklep Buczka",
+  "Sklep Świerkowa",
+];
 
-  const productPrices = {
-    "Kartacze": 5,
-    "Babka": 52,
-    "Kiszka":41
-  }
+const products = [
+  ["Kartacze", "szt."],
+  ["Babka", "kg"],
+  ["Kiszka", "kg"],
+];
+
+const productPrices = {
+  "Kartacze": 5,
+  "Babka": 52,
+  "Kiszka":41
+}
 //filtering data based on date
 let date = "2023-03-24";
 
+const dateStart = document.getElementById('dateStart');
+const dateEnd = document.getElementById('dateEnd');
+const dateStartValue = dateStart.value;
+const dateEndValue = dateEnd.value;
+const searchDate = document.getElementById('searchDate');
 
-const filteredByDate = (data,chosenData) => {
-   const dailySale = data.filter((saleReturn) => saleReturn.date === chosenData);
 
-   const dailySaleSummary = dailySale.reduce((acc,sale) => {
-    const {product,quantity,shop} = sale;
-    
-    if(!acc[product]){
-        acc[product] = {};
-    }
-    if(!acc[product][shop]){
-        acc[product][shop] = 0;
-    }
-    acc[product][shop] += quantity;
-        return acc;
-    },{});
-
-    return dailySaleSummary;
-};
-
-    const filteredSales = filteredByDate(dataSale, date);
-    const filteredReturns = filteredByDate(dataReturn, date);
-  
     //summary of Sale and Return per date
     const sumSalesReturns = (sumSale, sumReturn)  => {
         const summary = {};
@@ -254,12 +237,50 @@ const filteredByDate = (data,chosenData) => {
     };
 
 
-   let summaryPerDay = sumSalesReturns(filteredSales,filteredReturns);
 
-   window.addEventListener("load", () => {
-    const summaryContainer = document.querySelector(".summary-output");
 
-    for (const product in summaryPerDay){
+async function fetchData() {
+  try {
+    const response = await fetch(`https://smacznykaseksuwalki.com/api/sales?start=2023-08-24&end=2024-08-24`);
+
+    // Check if the response status code indicates success (e.g., 200 OK)
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    // Parse the response body as JSON
+    const data = await response.json();
+    filteredByDate(data);
+    console.log('data:',data);
+
+  } catch (error) {
+    // Handle any errors that occurred during the request
+    console.error('Error:', error);
+  }
+}
+
+ 
+ 
+ //const filteredSales = filteredByDate(data);
+ //const filteredReturns = filteredByDate(dataReturn, date);
+
+ //let summaryPerDay = sumSalesReturns(filteredByDate,filteredReturns);
+
+
+
+const summaryContainer = document.querySelector(".summary-output");
+
+// Function to clear existing data in the summary container
+function clearSummaryContainer() {
+  while (summaryContainer.firstChild) {
+    summaryContainer.removeChild(summaryContainer.firstChild);
+  }
+}
+
+
+const loadingComponent = function(filteredData) {
+  clearSummaryContainer();
+ console.log('running loading Component');
+    for (const product in filteredData){
 
         const productContainer = document.createElement("div");
         summaryContainer.append(productContainer);
@@ -307,7 +328,7 @@ const filteredByDate = (data,chosenData) => {
         titlesValue.textContent = "Koszt";
 
         let sumQuantity = 0;
-        for(const shop in summaryPerDay[product]){
+        for(const shop in filteredData[product]){
             const shopName = document.createElement("div");
             outputSubcontShops.appendChild(shopName);
             shopName.className = "summary-shop-name";
@@ -317,13 +338,13 @@ const filteredByDate = (data,chosenData) => {
             outputSubcontQuantities.appendChild(dailyPerShop);
             dailyPerShop.className = "summary-daily-sale";
             if(product == "Babka" || product == "Kiszka"  ){
-                dailyPerShop.textContent = `${summaryPerDay[product][shop]} kg`;
+                dailyPerShop.textContent = `${filteredData[product][shop].toFixed(2)} kg`;
             }else{
-            dailyPerShop.textContent = `${summaryPerDay[product][shop]} szt.`;}
+            dailyPerShop.textContent = `${filteredData[product][shop]} szt.`;}
 
-            sumQuantity += summaryPerDay[product][shop];
+            sumQuantity += filteredData[product][shop];
 
-            let sumPricePerShop = summaryPerDay[product][shop]*productPrices[product];
+            let sumPricePerShop = filteredData[product][shop]*productPrices[product];
 
             const dailyPricePerShop = document.createElement("div");
             outputSubcontValue.append(dailyPricePerShop);
@@ -357,7 +378,7 @@ const filteredByDate = (data,chosenData) => {
    }
 
    const hiddenBabkaContainer = document.querySelector("[data-product=Kartacze]");
-   hiddenBabkaContainer.classList.add("active");
+  hiddenBabkaContainer.classList.add("active");
 
 
    const buttonsProductMenu = document.querySelectorAll(".summary-buttons-product");
@@ -378,4 +399,202 @@ const filteredByDate = (data,chosenData) => {
             }
         })
    })
-   })
+   }
+
+
+const filteredByDate = function(data) {
+
+  const dailySaleSummary = data.reduce((acc,sale) => {
+   const {product,quantity,shop} = sale;
+   
+   if(!acc[product]){
+       acc[product] = {};
+   }
+   if(!acc[product][shop]){
+       acc[product][shop] = 0;
+   }
+   acc[product][shop] += quantity;
+       return acc;
+   },{});
+ 
+   console.log('sorted data',dailySaleSummary);
+   loadingComponent(dailySaleSummary);
+   return dailySaleSummary;
+ };
+
+   const dateSearching = () => {
+
+    fetchData();
+    console.log(dateStartValue);
+    console.log(dateEndValue);
+
+  }
+  
+  
+  searchDate.addEventListener('click', dateSearching);
+
+
+   /*
+[
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 32,
+    "isDiscounted": false,
+    "shop": "Maja",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 18,
+    "isDiscounted": false,
+    "shop": "Kowalskiego",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 17,
+    "isDiscounted": false,
+    "shop": "Nowomiejska",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 39,
+    "isDiscounted": false,
+    "shop": "Lityńskiego",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 40,
+    "isDiscounted": false,
+    "shop": "Stankiewicza",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 29,
+    "isDiscounted": false,
+    "shop": "Buczka",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 29,
+    "isDiscounted": false,
+    "shop": "Świerkowa",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Babka",
+    "quantity": 2.2,
+    "isDiscounted": false,
+    "shop": "Maja",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Babka",
+    "quantity": 6.2,
+    "isDiscounted": false,
+    "shop": "Kowalskiego",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Babka",
+    "quantity": 2.9,
+    "isDiscounted": false,
+    "shop": "Nowomiejska",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Babka",
+    "quantity": 3.6,
+    "isDiscounted": false,
+    "shop": "Lityńskiego",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Babka",
+    "quantity": 3.2,
+    "isDiscounted": false,
+    "shop": "Stankiewicza",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Babka",
+    "quantity": 2.2,
+    "isDiscounted": false,
+    "shop": "Buczka",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Babka",
+    "quantity": 3.9,
+    "isDiscounted": false,
+    "shop": "Świerkowa",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kiszka",
+    "quantity": 4.6,
+    "isDiscounted": false,
+    "shop": "Lityńskiego",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kiszka",
+    "quantity": 2.8,
+    "isDiscounted": false,
+    "shop": "Stankiewicza",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kiszka",
+    "quantity": 3.2,
+    "isDiscounted": false,
+    "shop": "Buczka",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 13,
+    "isDiscounted": false,
+    "shop": "Maja",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 8,
+    "isDiscounted": false,
+    "shop": "Kowalskiego",
+    "date": "2023-08-25"
+  },
+  {
+    "id": null,
+    "product": "Kartacze",
+    "quantity": 9,
+    "isDiscounted": false,
+    "shop": "Nowomiejska",
+    "date": "2023-08-25"
+  }
+]
+   */
