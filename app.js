@@ -14,13 +14,13 @@ totalsReturn.Kiszka = [];
 let totalsExtraDelivery = [];
 
 const shops = [
-  "Sklep Maja",
-  "Sklep Kowalskiego",
-  "Sklep Nowomiejska",
-  "Sklep Lityńskiego",
-  "Sklep Stankiewicza",
-  "Sklep Buczka",
-  "Sklep Świerkowa",
+  "Maja",
+  "Kowalskiego",
+  "Nowomiejska",
+  "Lityńskiego",
+  "Stankiewicza",
+  "Buczka",
+  "Świerkowa",
 ];
 
 const products = [
@@ -58,7 +58,7 @@ window.addEventListener("load", () => {
       storeName.append(storePicture);
       storeName.setAttribute("alt", "store image");
       const storeText = document.createElement("p");
-      storeText.textContent = item;
+      storeText.textContent = "Sklep " + item;
       storeName.append(storeText);
 
       const buttons = document.createElement("div");
@@ -165,11 +165,11 @@ window.addEventListener("load", () => {
         containerSave.append(submitSaleBut);
         submitSaleBut.textContent = "Zapisz sprzedaż";
         submitSaleBut.className = "save-sale-button";
-        submitSaleBut.setAttribute("id", index + "_" + prod[0] + "_Sale");
+        submitSaleBut.setAttribute("id", index + "_" + prod[0] + "_" + item + "_Sale");
         shops[index] = item;
       });
 
-      
+
 
       //accordion to open and close wrapper
       const summaryTab = document.querySelector(".summary");
@@ -291,83 +291,39 @@ window.addEventListener("load", () => {
     });
   });
 
-  async function postDataToApi() {
-    // Your JSON data
-    const data = {
-      "id": null,
-      "product": "Kartacze",
-      "quantity": 15,
-      "isDiscounted": false,
-      "shop": "Maja",
-      "date": "2023-08-29"
-    };
-  
-    // API endpoint URL
-    const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales"; // Replace with your actual API URL
-  
+  async function postDataToApi(data) {
+
+    const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales";
+
     try {
-      // Prepare the request headers
       const headers = {
         "Content-Type": "application/json",
         // Add any other headers you may need (e.g., authorization token)
       };
-  
-      // Create the request options
+
+      // the request options
       const requestOptions = {
-        method: "POST", // Use the appropriate HTTP method (e.g., POST, PUT, GET, etc.)
+        method: "POST",
         headers: headers,
         body: JSON.stringify(data) // Convert the JSON data to a string
       };
-  
+
       // Send the POST request to the API and await the response
       const response = await fetch(apiUrl, requestOptions);
-  
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-  
+
       // Parse the response JSON (if the API returns JSON)
       const responseData = await response.json();
-  
+
       // Handle the API response data here
       console.log("API Response:", responseData);
     } catch (error) {
-      // Handle any errors that occurred during the fetch
-      console.error("Error:", error);
+      console.error("Error sending data:", error);
     }
   }
-  
-  // Call the function to post data to the API
-  postDataToApi();
-  
-  
-  // async function fetchDataFromApi() {
-  //   // API endpoint URL
-  //   const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales"; // Replace with your actual API URL
-  
-  //   try {
-  //     // Send the GET request to the API and await the response
-  //     const response = await fetch(apiUrl);
-  
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! Status: ${response.status}`);
-  //     }
-  
-  //     // Parse the response JSON
-  //     const responseData = await response.json();
-  
-  //     // Handle the API response data here
-  //     console.log("API Response:", responseData);
-  //   } catch (error) {
-  //     // Handle any errors that occurred during the fetch
-  //     console.error("Error:", error);
-  //   }
-  // }
-  
-  // // Call the function to fetch data from the API
-  // fetchDataFromApi();
-  
-  
 
   //Saving button - sending data to summary container, summary of sale and returns
   let sumSaleKartacze, sumSaleBabka, sumSaleKiszka, sumReturnKartacze, sumReturnBabka, sumReturnKiszka, sumExtraDelivery;
@@ -380,10 +336,30 @@ window.addEventListener("load", () => {
   const saveReturnButtons = document.querySelectorAll(".save-return-button");
   const initialValue = 0;
 
-  
+
+  // Modal functionality
+  const modal = document.getElementById('myModal');
+  const closeBtn = document.getElementsByClassName('close-modal')[0];
+
+  function openModal() {
+    modal.style.display = 'block';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+
+  // Close the modal if the user clicks outside of it
+  window.addEventListener('click', function (event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  });
 
 
-// functionality for Sale Button
+  // functionality for Sale Button
   function SaveSale(e) {
     const checkedButton =
       e.currentTarget.parentElement.parentElement.parentElement.parentElement
@@ -391,35 +367,55 @@ window.addEventListener("load", () => {
     const soldInputValue =
       e.currentTarget.parentElement.parentElement.children[0].children[1]
         .children[0].children[1];
-    checkedButton.style.color = "white";
 
     const soldInputId = soldInputValue.id;
     const soldInputIdProduct = soldInputId.split("_")[1];
+    const soldInputIdShop = soldInputId.split("_")[0];
     const soldInputIdName = `${soldInputIdProduct}`;
     totals[soldInputIdName].push(Number(soldInputValue.value));
+    const dateofSale = document.getElementById("dateOfSale");
+    const dateofSaleValue = dateofSale.value;
+    const soldInputData = soldInputValue.value;
 
-    sumSaleKartacze = totals.Kartacze.reduce((v, i) => v + i, initialValue);
-    sumSaleBabka = totals.Babka.reduce((v, i) => v + i, initialValue);
-    sumSaleKiszka = totals.Kiszka.reduce((v, i) => v + i, initialValue);
+    console.log(dateofSale.value);
 
-    const quantityFirstSold = document.getElementById("quantityFirstSold");
-    quantityFirstSold.innerHTML = sumSaleKartacze + " szt";
-    const quantitySecondSold = document.getElementById("quantitySecondSold");
-    quantitySecondSold.innerHTML = sumSaleBabka.toFixed(2) + " kg";
-    const quantityThirdSold = document.getElementById("quantityThirdSold");
-    quantityThirdSold.innerHTML = sumSaleKiszka.toFixed(2) + " kg";
+    if (dateofSaleValue === "") {
+      openModal();
+    } else {
+      sumSaleKartacze = totals.Kartacze.reduce((v, i) => v + i, initialValue);
+      sumSaleBabka = totals.Babka.reduce((v, i) => v + i, initialValue);
+      sumSaleKiszka = totals.Kiszka.reduce((v, i) => v + i, initialValue);
 
-    e.currentTarget.innerHTML = "Zapisana";
-    soldInputValue.disabled = true;
+      const quantityFirstSold = document.getElementById("quantityFirstSold");
+      quantityFirstSold.innerHTML = sumSaleKartacze + " szt";
+      const quantitySecondSold = document.getElementById("quantitySecondSold");
+      quantitySecondSold.innerHTML = sumSaleBabka.toFixed(2) + " kg";
+      const quantityThirdSold = document.getElementById("quantityThirdSold");
+      quantityThirdSold.innerHTML = sumSaleKiszka.toFixed(2) + " kg";
 
-    e.currentTarget.removeEventListener("click", SaveSale);
+      const data = {
+        "id": null,
+        "product": soldInputIdProduct,
+        "quantity": soldInputData,
+        "isDiscounted": false,
+        "shop": soldInputIdShop,
+        "date": dateofSaleValue
+      };
 
-    summarySaleReturn()
-      
+      postDataToApi(data);
+      e.currentTarget.innerHTML = "Zapisana";
+      soldInputValue.disabled = true;
 
+      //  checkedButton.classList.remove("invisible");
+      checkedButton.style.color = "white";
+
+      e.currentTarget.removeEventListener("click", SaveSale);
+
+      summarySaleReturn()
+    }
   }
 
- // functionality for Return Button
+  // functionality for Return Button
   function SaveReturn(e) {
     const checkedButtonReturn =
       e.currentTarget.parentElement.parentElement.parentElement.parentElement
@@ -468,9 +464,6 @@ window.addEventListener("load", () => {
     summarySaleReturn();
   };
 
-
- 
-
   saveSaleButtons.forEach((button) => {
     button.addEventListener("click", SaveSale);
   });
@@ -483,17 +476,17 @@ window.addEventListener("load", () => {
     sumExtraDelivery = totalsExtraDelivery.reduce((v, i) => v + i, initialValue);
     sumQuantExtra.innerHTML = sumExtraDelivery + " szt";
 
-    const sumSaleReturnKartacze =  sumSaleKartacze + sumExtraDelivery - sumReturnKartacze;
+    const sumSaleReturnKartacze = sumSaleKartacze + sumExtraDelivery - sumReturnKartacze;
     sumQuantKartacze.innerHTML = sumSaleReturnKartacze + " szt";
 
-    const sumSaleReturnBabka =  sumSaleBabka - sumReturnBabka;
+    const sumSaleReturnBabka = sumSaleBabka - sumReturnBabka;
     sumQuantBabka.innerHTML = sumSaleReturnBabka.toFixed(2) + " kg";
 
-    const sumSaleReturnKiszka =  sumSaleKiszka - sumReturnKiszka;
+    const sumSaleReturnKiszka = sumSaleKiszka - sumReturnKiszka;
     sumQuantKiszka.innerHTML = sumSaleReturnKiszka.toFixed(2) + " kg";
   }
 
-  
+
   const wrapperContainers = document.querySelectorAll(".wrapper");
   const arrowElements = document.querySelectorAll(".arrow");
 
@@ -534,7 +527,7 @@ window.addEventListener("load", () => {
       arrowElements.forEach((item) => {
         item.style = "transform:rotate(" + 0 + "-180deg)";
       });
-     
+
     });
   });
 
@@ -677,7 +670,7 @@ window.addEventListener("load", () => {
     item.classList.add("invisible");
   });
 
-  
+
 
   //=============================================================
   //responsive nav menu
@@ -695,40 +688,68 @@ window.addEventListener("load", () => {
       siteNav.classList.remove("active");
     })
   );
+
+ 
+  //Date functionality: updating todays date and reloads as date is changed
+    const dateInput = document.getElementById("dateOfSale");
+    let originalDate = dateInput.value;
+    // Get today's date in the format YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Set today's date as the default value for the input
+    dateInput.value = today;
+
+    // Event listener for changes in the parent container
+    document.querySelector('.date').addEventListener("input", (event) => {
+        // Check if the event target is the date input
+        if (event.target === dateInput) {
+            // Track changes when the input value changes
+            if (dateInput.value !== originalDate) {
+                // Implement your logic here for handling the changed date
+                // For example, you can make an AJAX request to fetch updated data
+                // or update the content dynamically without reloading the page.
+                window.location.reload();
+                console.log("Date has been changed:", dateInput.value);
+            }
+        }
+    });
+
+
+
 });
 
 //===============================================================
-  //Settings-shops page
-  // const shopsFromDB = [
-  //   "Sklep Maja",
-  //   "Sklep Kowalskiego",
-  //   "Sklep Nowomiejska",
-  //   "Sklep Lityńskiego",
-  //   "Sklep Stankiewicza",
-  //   "Sklep Buczka",
-  //   "Sklep Świerkowa",
-  // ];
+//Settings-shops page
+// const shopsFromDB = [
+//   "Sklep Maja",
+//   "Sklep Kowalskiego",
+//   "Sklep Nowomiejska",
+//   "Sklep Lityńskiego",
+//   "Sklep Stankiewicza",
+//   "Sklep Buczka",
+//   "Sklep Świerkowa",
+// ];
 
-  // const shopsList = document.getElementById("shopsList");
-  // shopsFromDB.forEach((el) => {
-  //   const shopContainer = document.createElement("div");
-  //   shopContainer.className = "shopContainer";
-  //   shopsList.append(shopContainer);
-  //   const storeIcon = document.createElement("img");
-  //   storeIcon.className = "store-icon";
-  //   storeIcon.src = "./images/store-alt-solid.svg";
-  //   shopContainer.append(storeIcon);
-  //   storeIcon.setAttribute("alt", "store image");
-  //   const storeText = document.createElement("p");
-  //   storeText.textContent = el;
-  //   shopContainer.append(storeText);
-  //   const trashButton = document.createElement("button");
-  //   shopContainer.append(trashButton);
-  //   trashButton.className = "trashButton";
-  //   trashButton.title = "Usuń";
-  //   const trashImage = document.createElement("img");
-  //   trashImage.className = "trashImage";
-  //   trashButton.append(trashImage);
-  //   trashImage.src = "./images/icons8-trash-can.svg";
-  // });
+// const shopsList = document.getElementById("shopsList");
+// shopsFromDB.forEach((el) => {
+//   const shopContainer = document.createElement("div");
+//   shopContainer.className = "shopContainer";
+//   shopsList.append(shopContainer);
+//   const storeIcon = document.createElement("img");
+//   storeIcon.className = "store-icon";
+//   storeIcon.src = "./images/store-alt-solid.svg";
+//   shopContainer.append(storeIcon);
+//   storeIcon.setAttribute("alt", "store image");
+//   const storeText = document.createElement("p");
+//   storeText.textContent = el;
+//   shopContainer.append(storeText);
+//   const trashButton = document.createElement("button");
+//   shopContainer.append(trashButton);
+//   trashButton.className = "trashButton";
+//   trashButton.title = "Usuń";
+//   const trashImage = document.createElement("img");
+//   trashImage.className = "trashImage";
+//   trashButton.append(trashImage);
+//   trashImage.src = "./images/icons8-trash-can.svg";
+// });
 

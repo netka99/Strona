@@ -1,53 +1,9 @@
-const dataReturn = [
-  {
-    id: 1,
-    product: "Babka",
-    quantity: 3,
-    isDiscounted: false,
-    shop: "Maja",
-    date: "2016-08-29",
-  },
-  {
-    id: 1,
-    product: "Kartacze",
-    quantity: 2,
-    isDiscounted: false,
-    shop: "Kowalskiego",
-    date: "2023-03-24",
-  },
-  {
-    id: 1,
-    product: "Kartacze",
-    quantity: 5,
-    isDiscounted: false,
-    shop: "Nowomiejska",
-    date: "2023-03-24",
-  },
-];
-
-const shops = [
-  "Sklep Maja",
-  "Sklep Kowalskiego",
-  "Sklep Nowomiejska",
-  "Sklep Lityńskiego",
-  "Sklep Stankiewicza",
-  "Sklep Buczka",
-  "Sklep Świerkowa",
-];
-
-const products = [
-  ["Kartacze", "szt."],
-  ["Babka", "kg"],
-  ["Kiszka", "kg"],
-];
-
 const productPrices = {
   Kartacze: 5,
   Babka: 52,
   Kiszka: 41,
 };
-//filtering data based on date
-let date = "2023-03-24";
+
 
 const searchDate = document.getElementById("searchDate");
 
@@ -92,7 +48,7 @@ async function fetchData() {
 }
 
 //const filteredSales = filteredByDate(data);
-//const filteredReturns = filteredByDate(dataReturn, date);
+
 
 //let summaryPerDay = sumSalesReturns(filteredByDate,filteredReturns);
 
