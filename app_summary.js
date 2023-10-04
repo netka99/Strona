@@ -10,27 +10,39 @@ const searchDate = document.getElementById("searchDate");
 //summary of Sale and Return per date
 const sumSalesReturns = (sumSale, sumReturn) => {
   const summary = {};
+
   for (const product in sumSale) {
     summary[product] = {};
     for (const shop in sumSale[product]) {
       summary[product][shop] = sumSale[product][shop];
-      if (sumReturn[product] && sumReturn[product][shop]) {
+    }
+  }
+
+  for (const product in sumReturn) {
+    if (!summary[product]) {
+      summary[product] = {};
+    }
+
+    for (const shop in sumReturn[product]) {
+      if (!summary[product][shop]) {
+        summary[product][shop] = -sumReturn[product][shop];
+      } else {
         summary[product][shop] -= sumReturn[product][shop];
       }
     }
   }
+
   return summary;
 };
 
-async function fetchData() {
+
+async function fetchData(apiEndpoint) {
   try {
-    const dateStart = document.getElementById("dateStart");
-    const dateEnd = document.getElementById("dateEnd");
-    const dateStartValue = dateStart.value;
-    const dateEndValue = dateEnd.value;
+    const dateStart = document.getElementById("dateStart").value;
+    const dateEnd = document.getElementById("dateEnd").value;
 
     const response = await fetch(
-      `https://smacznykaseksuwalki.com/api/sales?start=${dateStartValue}&end=${dateEndValue}`
+      `https://smacznykaseksuwalki.com/api/${apiEndpoint}?start=${dateStart}&end=${dateEnd}`
     );
 
     // Check if the response status code indicates success (e.g., 200 OK)
@@ -39,18 +51,51 @@ async function fetchData() {
     }
     // Parse the response body as JSON
     const data = await response.json();
-    filteredByDate(data);
-    console.log("data:", data);
+    return data; // Return the fetched data
   } catch (error) {
     // Handle any errors that occurred during the request
+    console.error("Error:", error);
+    throw error; // Rethrow the error to handle it outside this function if needed
+  }
+}
+
+async function getData(apiEndpoint) {
+  try {
+    const apiData = await fetchData(apiEndpoint);
+    return apiData; 
+    console.log("API Data:", apiData);
+
+  } catch (error) {
     console.error("Error:", error);
   }
 }
 
-//const filteredSales = filteredByDate(data);
+async function calculateSummary() {
+  try {
+    const [returnsData, salesData] = await Promise.all([
+      getData('returns'), // Fetch returns data
+      getData('sales')    // Fetch sales data
+    ]);
+
+    // Process the fetched data as needed
+    const filteredSales = filteredByDate(salesData);
+    const filteredReturns = filteredByDate(returnsData);
+    const summaryPerDay = sumSalesReturns(filteredSales, filteredReturns);
+
+    loadingComponent(summaryPerDay);
+
+    console.log("Summary Per Day Sale:", filteredSales);
+    console.log("Summary Per Day Return:", filteredReturns);
+    console.log("Summary Per Day:", summaryPerDay);
 
 
-//let summaryPerDay = sumSalesReturns(filteredByDate,filteredReturns);
+    console.log("All:", returnsData, salesData);
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
 
 const summaryContainer = document.querySelector(".summary-output");
 
@@ -211,174 +256,8 @@ const filteredByDate = function (data) {
 };
 
 const dateSearching = () => {
-  fetchData();
-  console.log(dateStartValue);
-  console.log(dateEndValue);
+  calculateSummary();
 };
 
 searchDate.addEventListener("click", dateSearching);
 
-/*
-[
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 32,
-    "isDiscounted": false,
-    "shop": "Maja",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 18,
-    "isDiscounted": false,
-    "shop": "Kowalskiego",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 17,
-    "isDiscounted": false,
-    "shop": "Nowomiejska",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 39,
-    "isDiscounted": false,
-    "shop": "Lityńskiego",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 40,
-    "isDiscounted": false,
-    "shop": "Stankiewicza",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 29,
-    "isDiscounted": false,
-    "shop": "Buczka",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 29,
-    "isDiscounted": false,
-    "shop": "Świerkowa",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Babka",
-    "quantity": 2.2,
-    "isDiscounted": false,
-    "shop": "Maja",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Babka",
-    "quantity": 6.2,
-    "isDiscounted": false,
-    "shop": "Kowalskiego",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Babka",
-    "quantity": 2.9,
-    "isDiscounted": false,
-    "shop": "Nowomiejska",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Babka",
-    "quantity": 3.6,
-    "isDiscounted": false,
-    "shop": "Lityńskiego",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Babka",
-    "quantity": 3.2,
-    "isDiscounted": false,
-    "shop": "Stankiewicza",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Babka",
-    "quantity": 2.2,
-    "isDiscounted": false,
-    "shop": "Buczka",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Babka",
-    "quantity": 3.9,
-    "isDiscounted": false,
-    "shop": "Świerkowa",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kiszka",
-    "quantity": 4.6,
-    "isDiscounted": false,
-    "shop": "Lityńskiego",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kiszka",
-    "quantity": 2.8,
-    "isDiscounted": false,
-    "shop": "Stankiewicza",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kiszka",
-    "quantity": 3.2,
-    "isDiscounted": false,
-    "shop": "Buczka",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 13,
-    "isDiscounted": false,
-    "shop": "Maja",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 8,
-    "isDiscounted": false,
-    "shop": "Kowalskiego",
-    "date": "2023-08-25"
-  },
-  {
-    "id": null,
-    "product": "Kartacze",
-    "quantity": 9,
-    "isDiscounted": false,
-    "shop": "Nowomiejska",
-    "date": "2023-08-25"
-  }
-]
-   */

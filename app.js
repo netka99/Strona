@@ -291,9 +291,13 @@ window.addEventListener("load", () => {
     });
   });
 
-  async function postDataToApi(data) {
+  const apiUrlSale = "https://www.smacznykaseksuwalki.com/api/sales";
+  const apiUrlReturn = "https://www.smacznykaseksuwalki.com/api/returns";
 
-    const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales";
+
+  async function postDataToApi(data,url) {
+
+    // const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales";
 
     try {
       const headers = {
@@ -309,7 +313,7 @@ window.addEventListener("load", () => {
       };
 
       // Send the POST request to the API and await the response
-      const response = await fetch(apiUrl, requestOptions);
+      const response = await fetch(url, requestOptions);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -358,6 +362,33 @@ window.addEventListener("load", () => {
     }
   });
 
+  // const dateofSale = document.getElementById("dateOfSale");
+  // const dateofSaleValue = dateofSale.value;
+
+    //Date functionality: updating todays date and reloads as date is changed
+    const dateInput = document.getElementById("dateOfSale");
+    let originalDate = dateInput.value;
+    // Get today's date in the format YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Set today's date as the default value for the input
+    dateInput.value = today;
+
+    // Event listener for changes in the parent container
+    document.querySelector('.date').addEventListener("input", (event) => {
+        // Check if the event target is the date input
+        if (event.target === dateInput) {
+            // Track changes when the input value changes
+            if (dateInput.value !== originalDate) {
+                // Implement your logic here for handling the changed date
+                // For example, you can make an AJAX request to fetch updated data
+                // or update the content dynamically without reloading the page.
+                window.location.reload();
+                console.log("Date has been changed:", dateInput.value);
+            }
+        }
+    });
+ 
 
   // functionality for Sale Button
   function SaveSale(e) {
@@ -373,13 +404,10 @@ window.addEventListener("load", () => {
     const soldInputIdShop = soldInputId.split("_")[0];
     const soldInputIdName = `${soldInputIdProduct}`;
     totals[soldInputIdName].push(Number(soldInputValue.value));
-    const dateofSale = document.getElementById("dateOfSale");
-    const dateofSaleValue = dateofSale.value;
     const soldInputData = soldInputValue.value;
 
-    console.log(dateofSale.value);
 
-    if (dateofSaleValue === "") {
+    if (dateInput.value === "") {
       openModal();
     } else {
       sumSaleKartacze = totals.Kartacze.reduce((v, i) => v + i, initialValue);
@@ -399,14 +427,13 @@ window.addEventListener("load", () => {
         "quantity": soldInputData,
         "isDiscounted": false,
         "shop": soldInputIdShop,
-        "date": dateofSaleValue
+        "date": dateInput.value
       };
 
-      postDataToApi(data);
+      postDataToApi(data,apiUrlSale);
       e.currentTarget.innerHTML = "Zapisana";
       soldInputValue.disabled = true;
 
-      //  checkedButton.classList.remove("invisible");
       checkedButton.style.color = "white";
 
       e.currentTarget.removeEventListener("click", SaveSale);
@@ -427,10 +454,16 @@ window.addEventListener("load", () => {
 
     const returnInputId = returnInputValue.id;
     const returnInputIdProduct = returnInputId.split("_")[1];
+    const returnInputIdShop = returnInputId.split("_")[0];
     const returnInputIdName = `${returnInputIdProduct}`;
     totalsReturn[returnInputIdName].push(Number(returnInputValue.value));
+    const returnInputData = returnInputValue.value;
 
     const initialValue = 0;
+
+    if (dateInput.value === "") {
+      openModal();
+    } else {
     sumReturnKartacze = totalsReturn.Kartacze.reduce(
       (v, i) => v + i,
       initialValue
@@ -457,11 +490,21 @@ window.addEventListener("load", () => {
     );
     quantityThirdReturned.innerHTML = sumReturnKiszka.toFixed(2) + " kg";
 
+    const data = {
+      "id": null,
+      "product": returnInputIdProduct,
+      "quantity": returnInputData,
+      "shop": returnInputIdShop,
+      "date": dateInput.value
+    };
+
+    postDataToApi(data,apiUrlReturn);
     returnInputValue.disabled = true;
 
     e.currentTarget.removeEventListener("click", SaveReturn);
 
     summarySaleReturn();
+  }
   };
 
   saveSaleButtons.forEach((button) => {
@@ -690,29 +733,7 @@ window.addEventListener("load", () => {
   );
 
  
-  //Date functionality: updating todays date and reloads as date is changed
-    const dateInput = document.getElementById("dateOfSale");
-    let originalDate = dateInput.value;
-    // Get today's date in the format YYYY-MM-DD
-    const today = new Date().toISOString().split('T')[0];
-    
-    // Set today's date as the default value for the input
-    dateInput.value = today;
 
-    // Event listener for changes in the parent container
-    document.querySelector('.date').addEventListener("input", (event) => {
-        // Check if the event target is the date input
-        if (event.target === dateInput) {
-            // Track changes when the input value changes
-            if (dateInput.value !== originalDate) {
-                // Implement your logic here for handling the changed date
-                // For example, you can make an AJAX request to fetch updated data
-                // or update the content dynamically without reloading the page.
-                window.location.reload();
-                console.log("Date has been changed:", dateInput.value);
-            }
-        }
-    });
 
 
 
