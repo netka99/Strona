@@ -1,14 +1,14 @@
 // Create an empty object to store the summarized data
-const summarySale = {};
-const summaryReturn = {};
+let summarySale = {};
+let summaryReturn = {};
 
 //spliting data for Return into separate arrays to be able to pass to graph
-const valuesByProductReturn = {};
-const datesByProductReturn = {};
-const valuesByProductSale = {};
-const datesByProductSale = {};
+let valuesByProductReturn = {};
+let valuesByProductSale = {};
+let datesByProductSale = {};
+let datesByProductReturn = {};
 
-const returnsByProduct = {};
+let returnsByProduct = {};
 let sortedSale;
 let sortedReturn;
 
@@ -17,9 +17,6 @@ async function fetchData(apiEndpoint) {
   try {
     const dateStart = document.getElementById("startDate").value;
     const dateEnd = document.getElementById("endDate").value;
-    // const dateStart = "2023-08-03";
-    // const dateEnd = "2023-10-03";
-
 
     const response = await fetch(
       `https://smacznykaseksuwalki.com/api/${apiEndpoint}?start=${dateStart}&end=${dateEnd}`
@@ -42,7 +39,6 @@ async function fetchData(apiEndpoint) {
 async function getData(apiEndpoint) {
   try {
     const apiData = await fetchData(apiEndpoint);
-    // console.log("API Data:", apiData);
     return apiData;
   } catch (error) {
     console.error("Error:", error);
@@ -57,6 +53,14 @@ const sortObjectsByDate = (objectList) => {
 };
 
 async function calculateSummary() {
+   summarySale = {};
+   summaryReturn = {};
+   valuesByProductReturn = {};
+   valuesByProductSale = {};
+   datesByProductSale = {};
+   datesByProductReturn = {};
+   returnsByProduct = {};
+   
   try {
     const [salesData, returnsData] = await Promise.all([
       getData('sales'),    // Fetch sales data
@@ -66,14 +70,9 @@ async function calculateSummary() {
     sortedSale = sortObjectsByDate(salesData);
     sortedReturn = sortObjectsByDate(returnsData);
 
-
     // Process the fetched data as needed
     summaryData(sortedSale, summarySale, valuesByProductSale, datesByProductSale);
     summaryData(sortedReturn, summaryReturn, valuesByProductReturn, datesByProductReturn);
-
-    console.log("Summary Per Day Sale:", summarySale);
-    console.log("Summary Per Day Return:", summaryReturn);
-
 
   } catch (error) {
     console.error("Error:", error);
@@ -95,7 +94,6 @@ const objectsComparison = () => {
       returnsByProduct[product][date] = returnValue;
     }
   }
-  console.log("objectsComparison:", returnsByProduct);
 }
 
 
@@ -187,9 +185,6 @@ const graphsSummary = () => {
     });
   });
 
-  const ctx = document.getElementById("myChart");
-
-
   const config = {
     type: "scatter",
     data: data,
@@ -202,6 +197,22 @@ const graphsSummary = () => {
       },
     },
   };
+
+  const ctx = document.getElementById("myChart");
+
+    const chart = Chart.getChart(ctx);
+  //   function removeData(chart) {
+  //     chart.data.labels.pop();
+  //     chart.data.datasets.forEach((dataset) => {
+  //         dataset.data.pop();
+  //     });
+  //     chart.update();
+  // }
+    if (chart) {
+      // removeData(chart);
+      chart.destroy();
+    }
+
 
   const myChart = new Chart(ctx, config);
 

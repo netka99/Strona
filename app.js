@@ -115,13 +115,14 @@ window.addEventListener("load", () => {
         soldItemsFirst.className = "soldItems";
         const soldLabel = document.createElement("label");
         soldItemsFirst.append(soldLabel);
-        soldLabel.setAttribute("for", "sold");
+        soldLabel.setAttribute("for", `${item}_${prod[0]}_${i}_sale`);
         soldLabel.textContent = "Sprzedaż";
         const soldInput = document.createElement("input");
         soldItemsFirst.append(soldInput);
         soldInput.setAttribute("type", "number");
         soldInput.setAttribute("min", "0");
-        soldInput.setAttribute("id", `${item}_${prod[0]}_${i}`);
+        soldInput.setAttribute("name", `${item}_${prod[0]}_${i}_sale`);       
+        soldInput.setAttribute("id", `${item}_${prod[0]}_${i}_sale_${indexes}`);
         const itemsQuantitiesF = document.createElement("p");
         soldItemsFirst.append(itemsQuantitiesF);
         itemsQuantitiesF.textContent = `${prod[1]}`;
@@ -138,7 +139,7 @@ window.addEventListener("load", () => {
         soldItemsSecond.append(returnInput);
         returnInput.setAttribute("type", "number");
         returnInput.setAttribute("min", "0");
-        returnInput.setAttribute("id", `${item}_${prod[0]}_return`);
+        returnInput.setAttribute("id", `${item}_${prod[0]}_${i}_return_${indexes}`);
         const itemsQuantitiesS = document.createElement("p");
         soldItemsSecond.append(itemsQuantitiesS);
         itemsQuantitiesS.textContent = `${prod[1]}`;
@@ -275,12 +276,24 @@ window.addEventListener("load", () => {
       const extraSaleButton = document.createElement("button");
       extraSaleButtonCont.append(extraSaleButton);
       extraSaleButton.className = "extra-sale-button";
-      extraSaleButton.innerHTML = "Zapisz dowóz";
+      extraSaleButton.textContent = "Zapisz dowóz";
 
       extraSaleButton.addEventListener("click", function extraSale(e) {
+        const ExtraSaleInputId = extraSaleInput.id;
+        const ExtraSaleInputIdProduct = ExtraSaleInputId.split("_")[1];
+        const ExtraSaleInputIdShop = ExtraSaleInputId.split("_")[0];
+        const data = {
+          "id": null,
+          "product": ExtraSaleInputIdProduct,
+          "quantity": extraSaleInput.value,
+          "isDiscounted": false,
+          "shop": ExtraSaleInputIdShop,
+          "date": dateInput.value
+        };
+        postDataToApi(data,apiUrlSale);
         e.currentTarget.classList.add("active");
         extraSaleButton.innerHTML = "Zapisana";
-
+        console.log(extraSaleInput.id);
         totalsExtraDelivery.push(Number(extraSaleInput.value));
         extraSaleInput.disabled = true;
 
