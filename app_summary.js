@@ -1,6 +1,6 @@
 const productPrices = {
   Kartacze: 5,
-  Babka: 52,
+      Babka: 52,
   Kiszka: 41,
 };
 
@@ -11,7 +11,7 @@ const searchDate = document.getElementById("searchDate");
 const sumSalesReturns = (sumSale, sumReturn) => {
   const summary = {};
 
-  for (const product in sumSale) {
+       for (const product in sumSale) {
     summary[product] = {};
     for (const shop in sumSale[product]) {
       summary[product][shop] = sumSale[product][shop];
@@ -52,6 +52,7 @@ async function fetchData(apiEndpoint) {
     // Parse the response body as JSON
     const data = await response.json();
     return data; // Return the fetched data
+    console.log("Data:", data);
   } catch (error) {
     // Handle any errors that occurred during the request
     console.error("Error:", error);
@@ -61,9 +62,20 @@ async function fetchData(apiEndpoint) {
 
 async function getData(apiEndpoint) {
   try {
+    const dateStart = document.getElementById("dateStart").value;
+
     const apiData = await fetchData(apiEndpoint);
+    if (apiEndpoint === 'returns' && apiData.length === 0) {
+      // If the fetch from 'returns' is empty, return an array of dummy 0 values
+      return [{
+        "id": 100001,
+        "product": "Kartacze",
+        "shop": "Maja",
+        "quantity": 0,
+        "date": dateStart
+        }];
+    }
     return apiData; 
-    console.log("API Data:", apiData);
 
   } catch (error) {
     console.error("Error:", error);

@@ -1,238 +1,238 @@
-
 const shops = [
-  "Maja",
-  "Kowalskiego",
-  "Nowomiejska",
-  "Lityńskiego",
-  "Stankiewicza",
-  "Buczka",
-  "Świerkowa",
+  'Maja',
+  'Kowalskiego',
+  'Nowomiejska',
+  'Lityńskiego',
+  'Stankiewicza',
+  'Buczka',
+  'Świerkowa',
 ];
 
 const products = [
-  ["Kartacze", "szt."],
-  ["Babka", "kg"],
-  ["Kiszka", "kg"],
+  ['Kartacze', 'szt.'],
+  ['Babka', 'kg'],
+  ['Kiszka', 'kg'],
 ];
 
-
 //Date functionality: updating todays date
-const dateInput = document.getElementById("dateOfSale");
+const dateInput = document.getElementById('dateOfSale');
 let originalDate = dateInput.value;
 // Get today's date in the format YYYY-MM-DD
 const today = new Date().toISOString().split('T')[0];
 dateInput.value = today;
 
 //controling buttons with products
-const tabButton = document.querySelectorAll(".tab-button");
-const contents = document.querySelectorAll(".mainContent");
-const formTab = document.querySelector(".formTab");
-const dateConfirmation = document.getElementById("dateButton");
-const quantityFirstSold = document.getElementById("quantityFirstSold");
-const quantitySecondSold = document.getElementById("quantitySecondSold");
-const quantityThirdSold = document.getElementById("quantityThirdSold");
-const quantityFirstReturned = document.getElementById("quantityFirstReturned");
-const quantitySecondReturned = document.getElementById("quantitySecondReturned");
-const quantityThirdReturned = document.getElementById("quantityThirdReturned");
-const sumQuantKartacze = document.querySelector(".sumQuantityFirst");
-const sumQuantBabka = document.querySelector(".sumQuantitySecond");
-const sumQuantKiszka = document.querySelector(".sumQuantityThird");
-const sumQuantExtra = document.querySelector("#quantityFirstExtra");
-
+const tabButton = document.querySelectorAll('.tab-button');
+const contents = document.querySelectorAll('.mainContent');
+const formTab = document.querySelector('.formTab');
+const dateConfirmation = document.getElementById('dateButton');
+const quantityFirstSold = document.getElementById('quantityFirstSold');
+const quantitySecondSold = document.getElementById('quantitySecondSold');
+const quantityThirdSold = document.getElementById('quantityThirdSold');
+const quantityFirstReturned = document.getElementById('quantityFirstReturned');
+const quantitySecondReturned = document.getElementById(
+  'quantitySecondReturned'
+);
+const quantityThirdReturned = document.getElementById('quantityThirdReturned');
+const sumQuantKartacze = document.querySelector('.sumQuantityFirst');
+const sumQuantBabka = document.querySelector('.sumQuantitySecond');
+const sumQuantKiszka = document.querySelector('.sumQuantityThird');
+const sumQuantExtra = document.querySelector('#quantityFirstExtra');
 
 let totals = {};
 let totalsReturn = {};
-
-
 
 const contentLoad = () => {
   const headerButtons = [];
   totals = {
     Kartacze: [],
     Babka: [],
-    Kiszka: []
+    Kiszka: [],
   };
 
-totalsReturn = {
-  Kartacze: [],
-  Babka: [],
-  Kiszka: []
-};
+  totalsReturn = {
+    Kartacze: [],
+    Babka: [],
+    Kiszka: [],
+  };
 
-
-let totalsExtraDelivery = [];
+  let totalsExtraDelivery = [];
 
   let counterExtraSale = 0; //counter of button's clicks
 
   //logic for main content
-  [...document.getElementsByClassName("mainContent")].forEach((el, indexes) => {
-    const mainContent = document.createElement("div");
+  [...document.getElementsByClassName('mainContent')].forEach((el, indexes) => {
+    const mainContent = document.createElement('div');
     el.append(mainContent);
 
     //HTML of each section
     shops.forEach(function (item, index) {
-      const section = document.createElement("section");
-      section.className = "containerProduct";
-      const containerHeader = document.createElement("div");
+      const section = document.createElement('section');
+      section.className = 'containerProduct';
+      const containerHeader = document.createElement('div');
       mainContent.append(section);
       section.append(containerHeader);
-      containerHeader.className = "containerHeader";
-      const storeName = document.createElement("div");
-      storeName.className = "storeName";
+      containerHeader.className = 'containerHeader';
+      const storeName = document.createElement('div');
+      storeName.className = 'storeName';
       containerHeader.append(storeName);
-      const storePicture = document.createElement("img");
-      storePicture.className = "store-picture";
-      storePicture.src = "./images/store-alt-solid.svg";
+      const storePicture = document.createElement('img');
+      storePicture.className = 'store-picture';
+      storePicture.src = './images/store-alt-solid.svg';
       storeName.append(storePicture);
-      storeName.setAttribute("alt", "store image");
-      const storeText = document.createElement("p");
-      storeText.textContent = "Sklep " + item;
+      storeName.setAttribute('alt', 'store image');
+      const storeText = document.createElement('p');
+      storeText.textContent = 'Sklep ' + item;
       storeName.append(storeText);
 
-      const buttons = document.createElement("div");
+      const buttons = document.createElement('div');
       containerHeader.append(buttons);
-      buttons.className = "buttons";
-      const buttonCheck = document.createElement("span");
+      buttons.className = 'buttons';
+      const buttonCheck = document.createElement('span');
       buttons.append(buttonCheck);
-      buttonCheck.textContent = "✓";
-      buttonCheck.className = "buttonCheck";
-      const accordionEl = document.createElement("button");
+      buttonCheck.textContent = '✓';
+      buttonCheck.className = 'buttonCheck';
+      const accordionEl = document.createElement('button');
       buttons.append(accordionEl);
-      accordionEl.setAttribute("id", "accordion");
-      accordionEl.className = "accordion";
-      const arrowEl = document.createElement("p");
+      accordionEl.setAttribute('id', 'accordion');
+      accordionEl.className = 'accordion';
+      const arrowEl = document.createElement('p');
       accordionEl.append(arrowEl);
-      arrowEl.innerHTML = "&#x2c5";
-      arrowEl.setAttribute("id", "arrow");
-      arrowEl.className = "arrow";
+      arrowEl.innerHTML = '&#x2c5';
+      arrowEl.setAttribute('id', 'arrow');
+      arrowEl.className = 'arrow';
 
-      const wrapper = document.createElement("div");
+      const wrapper = document.createElement('div');
       section.append(wrapper);
-      wrapper.className = "wrapper";
-      wrapper.setAttribute("id", "wrapper");
+      wrapper.className = 'wrapper';
+      wrapper.setAttribute('id', 'wrapper');
 
       //for each product created container
       let containerMain;
 
       products.forEach((prod, i) => {
-        containerMain = document.createElement("div");
+        containerMain = document.createElement('div');
         wrapper.append(containerMain);
-        containerMain.className = "containerMain";
-        containerMain.setAttribute("id", prod[0] + "_" + item + "_" + indexes);
-        containerMain.setAttribute("data-product", prod[0]);
-        const containerItem = document.createElement("div");
+        containerMain.className = 'containerMain';
+        containerMain.setAttribute('id', prod[0] + '_' + item + '_' + indexes);
+        containerMain.setAttribute('data-product', prod[0]);
+        const containerItem = document.createElement('div');
         containerMain.append(containerItem);
-        containerItem.className = "containerItem";
-        const imageItem = document.createElement("div");
+        containerItem.className = 'containerItem';
+        const imageItem = document.createElement('div');
         containerItem.append(imageItem);
-        imageItem.className = "imageItem";
-        const itemPictureFirst = document.createElement("img");
+        imageItem.className = 'imageItem';
+        const itemPictureFirst = document.createElement('img');
         imageItem.append(itemPictureFirst);
-        itemPictureFirst.className = "item-picture";
+        itemPictureFirst.className = 'item-picture';
         itemPictureFirst.src = `./images/${prod[0]}-Small.jpg`;
-        itemPictureFirst.setAttribute("alt", "kartacze image");
-        const itemFirstText = document.createElement("p");
+        itemPictureFirst.setAttribute('alt', 'kartacze image');
+        const itemFirstText = document.createElement('p');
         imageItem.append(itemFirstText);
         itemFirstText.textContent = `${prod[0]}`;
 
-        const items = document.createElement("div");
+        const items = document.createElement('div');
         containerItem.append(items);
-        items.className = "items";
-        const soldItemsFirst = document.createElement("div");
+        items.className = 'items';
+        const soldItemsFirst = document.createElement('div');
         items.append(soldItemsFirst);
-        soldItemsFirst.className = "soldItems";
-        const soldLabel = document.createElement("label");
+        soldItemsFirst.className = 'soldItems';
+        const soldLabel = document.createElement('label');
         soldItemsFirst.append(soldLabel);
-        soldLabel.setAttribute("for", `${item}_${prod[0]}_${i}_sale`);
-        soldLabel.textContent = "Sprzedaż";
-        const soldInput = document.createElement("input");
+        soldLabel.setAttribute('for', `${item}_${prod[0]}_${i}_sale`);
+        soldLabel.textContent = 'Sprzedaż';
+        const soldInput = document.createElement('input');
         soldItemsFirst.append(soldInput);
-        soldInput.setAttribute("type", "number");
-        soldInput.setAttribute("min", "0");
-        soldInput.setAttribute("name", `${item}_${prod[0]}_${i}_sale`);
-        soldInput.setAttribute("id", `${item}_${prod[0]}_${i}_sale_${indexes}`);
-        const itemsQuantitiesF = document.createElement("p");
+        soldInput.setAttribute('type', 'number');
+        soldInput.setAttribute('min', '0');
+        soldInput.setAttribute('name', `${item}_${prod[0]}_${i}_sale`);
+        soldInput.setAttribute('id', `${item}_${prod[0]}_${i}_sale_${indexes}`);
+        const itemsQuantitiesF = document.createElement('p');
         soldItemsFirst.append(itemsQuantitiesF);
         itemsQuantitiesF.textContent = `${prod[1]}`;
-        itemsQuantitiesF.className = "itemsQuantities";
+        itemsQuantitiesF.className = 'itemsQuantities';
 
-        const soldItemsSecond = document.createElement("div");
+        const soldItemsSecond = document.createElement('div');
         items.append(soldItemsSecond);
-        soldItemsSecond.className = "returnItems";
-        const returnLabel = document.createElement("label");
+        soldItemsSecond.className = 'returnItems';
+        const returnLabel = document.createElement('label');
         soldItemsSecond.append(returnLabel);
-        returnLabel.setAttribute("for", "return");
-        returnLabel.textContent = "Zwrot";
-        const returnInput = document.createElement("input");
+        returnLabel.setAttribute('for', 'return');
+        returnLabel.textContent = 'Zwrot';
+        const returnInput = document.createElement('input');
         soldItemsSecond.append(returnInput);
-        returnInput.setAttribute("type", "number");
-        returnInput.setAttribute("min", "0");
-        returnInput.setAttribute("id", `${item}_${prod[0]}_${i}_return_${indexes}`);
-        const itemsQuantitiesS = document.createElement("p");
+        returnInput.setAttribute('type', 'number');
+        returnInput.setAttribute('min', '0');
+        returnInput.setAttribute(
+          'id',
+          `${item}_${prod[0]}_${i}_return_${indexes}`
+        );
+        const itemsQuantitiesS = document.createElement('p');
         soldItemsSecond.append(itemsQuantitiesS);
         itemsQuantitiesS.textContent = `${prod[1]}`;
-        itemsQuantitiesS.className = "itemsQuantities";
+        itemsQuantitiesS.className = 'itemsQuantities';
 
-        const containerSave = document.createElement("div");
+        const containerSave = document.createElement('div');
         containerMain.append(containerSave);
-        containerSave.className = "containerSaving";
+        containerSave.className = 'containerSaving';
 
-        const submitReturnBut = document.createElement("button");
+        const submitReturnBut = document.createElement('button');
         containerSave.append(submitReturnBut);
-        submitReturnBut.textContent = "Zapisz zwrot";
-        submitReturnBut.className = "save-return-button";
-        submitReturnBut.setAttribute("id", index + "_" + prod[0] + "_Return");
+        submitReturnBut.textContent = 'Zapisz zwrot';
+        submitReturnBut.className = 'save-return-button';
+        submitReturnBut.setAttribute('id', index + '_' + prod[0] + '_Return');
         shops[index] = item;
 
-        const addContainer = document.createElement("button");
+        const addContainer = document.createElement('button');
         containerSave.append(addContainer);
-        addContainer.innerHTML = "&#xFF0B";
-        addContainer.className = "add-container";
-        addContainer.setAttribute("data-extrasale", prod[0]);
+        addContainer.innerHTML = '&#xFF0B';
+        addContainer.className = 'add-container';
+        addContainer.setAttribute('data-extrasale', prod[0]);
 
-        const submitSaleBut = document.createElement("button");
+        const submitSaleBut = document.createElement('button');
         containerSave.append(submitSaleBut);
-        submitSaleBut.textContent = "Zapisz sprzedaż";
-        submitSaleBut.className = "save-sale-button";
-        submitSaleBut.setAttribute("id", index + "_" + prod[0] + "_" + item + "_Sale");
+        submitSaleBut.textContent = 'Zapisz sprzedaż';
+        submitSaleBut.className = 'save-sale-button';
+        submitSaleBut.setAttribute(
+          'id',
+          index + '_' + prod[0] + '_' + item + '_Sale'
+        );
         shops[index] = item;
       });
 
-
-
       //accordion to open and close wrapper
-      const summaryTab = document.querySelector(".summary");
+      const summaryTab = document.querySelector('.summary');
       let heightFormTab = formTab.offsetHeight;
-      formTab.style.height = 750 + "px";
+      formTab.style.height = 750 + 'px';
 
-      accordionEl.addEventListener("click", (e) => {
+      accordionEl.addEventListener('click', (e) => {
         let wrapperEl =
           e.currentTarget.parentElement.parentElement.nextElementSibling;
         let arrow = e.currentTarget.children[0];
         let currentHeight = formTab.style.height;
         if (wrapperEl.style.height) {
           wrapperEl.style.height = null;
-          arrow.style = "transform:rotate(" + 0 + "-180deg)";
+          arrow.style = 'transform:rotate(' + 0 + '-180deg)';
           if (counterExtraSale >= 1) {
             formTab.style.height =
               parseInt(currentHeight) -
               (160 + (counterExtraSale * 140) / counterExtraSale) +
-              "px";
+              'px';
           }
           if (counterExtraSale === 0) {
-            formTab.style.height = parseInt(currentHeight) - 160 + "px";
+            formTab.style.height = parseInt(currentHeight) - 160 + 'px';
           }
         } else {
-          wrapperEl.style.height = wrapperEl.scrollHeight + "px";
-          arrow.style = "transform:rotate(" + 0 + "180deg)";
+          wrapperEl.style.height = wrapperEl.scrollHeight + 'px';
+          arrow.style = 'transform:rotate(' + 0 + '180deg)';
           if (counterExtraSale >= 1) {
             formTab.style.height =
               parseInt(currentHeight) +
               (160 + (counterExtraSale * 140) / counterExtraSale) +
-              "px";
+              'px';
           }
           if (counterExtraSale === 0) {
-            formTab.style.height = parseInt(currentHeight) + 160 + "px";
+            formTab.style.height = parseInt(currentHeight) + 160 + 'px';
           }
           // formTab.style.height = parseInt(currentHeight) + 160 + "px";
           //formTab.style.height = formTab.scrollHeight + "px";
@@ -241,14 +241,14 @@ let totalsExtraDelivery = [];
     });
   });
 
-  const addContainerButton = document.querySelectorAll(".add-container");
+  const addContainerButton = document.querySelectorAll('.add-container');
 
   //container for extra delivery
   addContainerButton.forEach((button) => {
-    button.addEventListener("click", (e) => {
+    button.addEventListener('click', (e) => {
       counterExtraSale += 1;
 
-      const extraSaleContainer = document.createElement("div");
+      const extraSaleContainer = document.createElement('div');
       const wrapperElCont =
         e.currentTarget.parentElement.parentElement.parentElement;
       wrapperElCont.append(extraSaleContainer);
@@ -256,101 +256,99 @@ let totalsExtraDelivery = [];
       const extraSaleId =
         e.currentTarget.parentElement.parentElement.parentElement.children[0]
           .id;
-      const extraSaleProductId = extraSaleId.split("_")[1];
+      const extraSaleProductId = extraSaleId.split('_')[1];
 
-      extraSaleContainer.className = "extra-sale-container";
-      wrapperElCont.style.height = wrapperElCont.scrollHeight + "px";
+      extraSaleContainer.className = 'extra-sale-container';
+      wrapperElCont.style.height = wrapperElCont.scrollHeight + 'px';
       let currentHeight = formTab.style.height;
-      formTab.style.height = parseInt(currentHeight) + 145 + "px";
+      formTab.style.height = parseInt(currentHeight) + 145 + 'px';
 
-      const extraSaleWrapper = document.createElement("div");
+      const extraSaleWrapper = document.createElement('div');
       extraSaleContainer.append(extraSaleWrapper);
-      extraSaleWrapper.classList = "extra-Sale-Wrapper";
+      extraSaleWrapper.classList = 'extra-Sale-Wrapper';
 
-      const extraSaleTitle = document.createElement("div");
+      const extraSaleTitle = document.createElement('div');
       extraSaleWrapper.append(extraSaleTitle);
-      extraSaleTitle.className = "extra-sale-title";
-      const extraSaleTitleImage = document.createElement("img");
+      extraSaleTitle.className = 'extra-sale-title';
+      const extraSaleTitleImage = document.createElement('img');
       extraSaleTitle.append(extraSaleTitleImage);
-      extraSaleTitleImage.src = "./images/delivery-truck.svg";
-      extraSaleTitleImage.setAttribute("alt", "basket image");
+      extraSaleTitleImage.src = './images/delivery-truck.svg';
+      extraSaleTitleImage.setAttribute('alt', 'basket image');
 
-      const extraSaleTitleText = document.createElement("p");
-      extraSaleTitleText.textContent = "Extra dowóz";
+      const extraSaleTitleText = document.createElement('p');
+      extraSaleTitleText.textContent = 'Extra dowóz';
       extraSaleTitle.append(extraSaleTitleText);
 
-      const extraSaleInputContainer = document.createElement("div");
+      const extraSaleInputContainer = document.createElement('div');
       extraSaleWrapper.append(extraSaleInputContainer);
-      extraSaleInputContainer.className = "extra-sale-input";
-      const extraSaleLabel = document.createElement("label");
+      extraSaleInputContainer.className = 'extra-sale-input';
+      const extraSaleLabel = document.createElement('label');
       extraSaleInputContainer.append(extraSaleLabel);
-      extraSaleLabel.setAttribute("for", "sold");
-      extraSaleLabel.textContent = "Sprzedaż";
-      const extraSaleInput = document.createElement("input");
+      extraSaleLabel.setAttribute('for', 'sold');
+      extraSaleLabel.textContent = 'Sprzedaż';
+      const extraSaleInput = document.createElement('input');
       extraSaleInputContainer.append(extraSaleInput);
-      extraSaleInput.setAttribute("type", "number");
-      extraSaleInput.setAttribute("min", "0");
-      extraSaleInput.setAttribute("id", `${extraSaleProductId}_Kartacze_Extra`);
-      const extraSaleItemsQuant = document.createElement("p");
+      extraSaleInput.setAttribute('type', 'number');
+      extraSaleInput.setAttribute('min', '0');
+      extraSaleInput.setAttribute('id', `${extraSaleProductId}_Kartacze_Extra`);
+      const extraSaleItemsQuant = document.createElement('p');
       extraSaleInputContainer.append(extraSaleItemsQuant);
-      extraSaleItemsQuant.textContent = "szt.";
-      extraSaleItemsQuant.className = "itemsQuantities";
+      extraSaleItemsQuant.textContent = 'szt.';
+      extraSaleItemsQuant.className = 'itemsQuantities';
 
       //button
-      const extraSaleButtonCont = document.createElement("div");
+      const extraSaleButtonCont = document.createElement('div');
       extraSaleContainer.append(extraSaleButtonCont);
-      extraSaleButtonCont.classList = "extra-sale";
+      extraSaleButtonCont.classList = 'extra-sale';
 
-      const extraSaleButton = document.createElement("button");
+      const extraSaleButton = document.createElement('button');
       extraSaleButtonCont.append(extraSaleButton);
-      extraSaleButton.className = "extra-sale-button";
-      extraSaleButton.textContent = "Zapisz dowóz";
+      extraSaleButton.className = 'extra-sale-button';
+      extraSaleButton.textContent = 'Zapisz dowóz';
 
-      extraSaleButton.addEventListener("click", function extraSale(e) {
+      extraSaleButton.addEventListener('click', function extraSale(e) {
         const ExtraSaleInputId = extraSaleInput.id;
-        const ExtraSaleInputIdProduct = ExtraSaleInputId.split("_")[1];
-        const ExtraSaleInputIdShop = ExtraSaleInputId.split("_")[0];
+        const ExtraSaleInputIdProduct = ExtraSaleInputId.split('_')[1];
+        const ExtraSaleInputIdShop = ExtraSaleInputId.split('_')[0];
         const data = {
-          "id": null,
-          "product": ExtraSaleInputIdProduct,
-          "quantity": extraSaleInput.value,
-          "isDiscounted": false,
-          "shop": ExtraSaleInputIdShop,
-          "date": dateInput.value
+          id: null,
+          product: ExtraSaleInputIdProduct,
+          quantity: extraSaleInput.value,
+          isDiscounted: false,
+          shop: ExtraSaleInputIdShop,
+          date: dateInput.value,
         };
         postDataToApi(data, apiUrlSale);
-        e.currentTarget.classList.add("active");
-        extraSaleButton.textContent = "Zapisana";
+        e.currentTarget.classList.add('active');
+        extraSaleButton.textContent = 'Zapisana';
         console.log(extraSaleInput.id);
         totalsExtraDelivery.push(Number(extraSaleInput.value));
         extraSaleInput.disabled = true;
 
-        e.currentTarget.removeEventListener("click", extraSale)
+        e.currentTarget.removeEventListener('click', extraSale);
 
-        summarySaleReturn()
-      })
+        summarySaleReturn();
+      });
     });
   });
 
-  const apiUrlSale = "https://www.smacznykaseksuwalki.com/api/sales";
-  const apiUrlReturn = "https://www.smacznykaseksuwalki.com/api/returns";
-
+  const apiUrlSale = 'https://www.smacznykaseksuwalki.com/api/sales';
+  const apiUrlReturn = 'https://www.smacznykaseksuwalki.com/api/returns';
 
   async function postDataToApi(data, url) {
-
     // const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales";
 
     try {
       const headers = {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         // Add any other headers you may need (e.g., authorization token)
       };
 
       // the request options
       const requestOptions = {
-        method: "POST",
+        method: 'POST',
         headers: headers,
-        body: JSON.stringify(data) // Convert the JSON data to a string
+        body: JSON.stringify(data), // Convert the JSON data to a string
       };
 
       // Send the POST request to the API and await the response
@@ -364,20 +362,32 @@ let totalsExtraDelivery = [];
       const responseData = await response.json();
 
       // Handle the API response data here
-      console.log("API Response:", responseData);
+      console.log('API Response:', responseData);
     } catch (error) {
-      console.error("Error sending data:", error);
+      console.error('Error sending data:', error);
     }
   }
 
   //Saving button - sending data to summary container, summary of sale and returns
-  let sumSaleKartacze, sumSaleBabka, sumSaleKiszka, sumReturnKartacze, sumReturnBabka, sumReturnKiszka, sumExtraDelivery;
-  sumSaleKartacze = sumSaleBabka = sumSaleKiszka = sumReturnKartacze = sumReturnBabka = sumReturnKiszka = sumExtraDelivery = 0;
+  let sumSaleKartacze,
+    sumSaleBabka,
+    sumSaleKiszka,
+    sumReturnKartacze,
+    sumReturnBabka,
+    sumReturnKiszka,
+    sumExtraDelivery;
+  sumSaleKartacze =
+    sumSaleBabka =
+    sumSaleKiszka =
+    sumReturnKartacze =
+    sumReturnBabka =
+    sumReturnKiszka =
+    sumExtraDelivery =
+      0;
 
-  const saveSaleButtons = document.querySelectorAll(".save-sale-button");
-  const saveReturnButtons = document.querySelectorAll(".save-return-button");
+  const saveSaleButtons = document.querySelectorAll('.save-sale-button');
+  const saveReturnButtons = document.querySelectorAll('.save-return-button');
   const initialValue = 0;
-
 
   // Modal functionality
   const modal = document.getElementById('myModal');
@@ -400,7 +410,6 @@ let totalsExtraDelivery = [];
     }
   });
 
-
   // functionality for Sale Button
   function SaveSale(e) {
     const checkedButton =
@@ -411,43 +420,42 @@ let totalsExtraDelivery = [];
         .children[0].children[1];
 
     const soldInputId = soldInputValue.id;
-    const soldInputIdProduct = soldInputId.split("_")[1];
-    const soldInputIdShop = soldInputId.split("_")[0];
+    const soldInputIdProduct = soldInputId.split('_')[1];
+    const soldInputIdShop = soldInputId.split('_')[0];
     const soldInputIdName = `${soldInputIdProduct}`;
     totals[soldInputIdName].push(Number(soldInputValue.value));
     console.log(totals);
     const soldInputData = soldInputValue.value;
 
-
-    if (dateInput.value === "") {
+    if (dateInput.value === '') {
       openModal();
     } else {
       sumSaleKartacze = totals.Kartacze.reduce((v, i) => v + i, initialValue);
       sumSaleBabka = totals.Babka.reduce((v, i) => v + i, initialValue);
       sumSaleKiszka = totals.Kiszka.reduce((v, i) => v + i, initialValue);
 
-      quantityFirstSold.textContent = sumSaleKartacze + " szt";
-      quantitySecondSold.textContent = sumSaleBabka.toFixed(2) + " kg";
-      quantityThirdSold.textContent = sumSaleKiszka.toFixed(2) + " kg";
+      quantityFirstSold.textContent = sumSaleKartacze + ' szt';
+      quantitySecondSold.textContent = sumSaleBabka.toFixed(2) + ' kg';
+      quantityThirdSold.textContent = sumSaleKiszka.toFixed(2) + ' kg';
 
       const data = {
-        "id": null,
-        "product": soldInputIdProduct,
-        "quantity": soldInputData,
-        "isDiscounted": false,
-        "shop": soldInputIdShop,
-        "date": dateInput.value
+        id: null,
+        product: soldInputIdProduct,
+        quantity: soldInputData,
+        isDiscounted: false,
+        shop: soldInputIdShop,
+        date: dateInput.value,
       };
 
       postDataToApi(data, apiUrlSale);
-      e.currentTarget.textContent = "Zapisana";
+      e.currentTarget.textContent = 'Zapisana';
       soldInputValue.disabled = true;
 
-      checkedButton.style.color = "white";
+      checkedButton.style.color = 'white';
 
-      e.currentTarget.removeEventListener("click", SaveSale);
+      e.currentTarget.removeEventListener('click', SaveSale);
 
-      summarySaleReturn()
+      summarySaleReturn();
     }
   }
 
@@ -459,146 +467,143 @@ let totalsExtraDelivery = [];
     const returnInputValue =
       e.currentTarget.parentElement.parentElement.children[0].children[1]
         .children[1].children[1];
-    checkedButtonReturn.style.color = "white";
+    checkedButtonReturn.style.color = 'white';
 
     const returnInputId = returnInputValue.id;
-    const returnInputIdProduct = returnInputId.split("_")[1];
-    const returnInputIdShop = returnInputId.split("_")[0];
+    const returnInputIdProduct = returnInputId.split('_')[1];
+    const returnInputIdShop = returnInputId.split('_')[0];
     const returnInputIdName = `${returnInputIdProduct}`;
     totalsReturn[returnInputIdName].push(Number(returnInputValue.value));
     const returnInputData = returnInputValue.value;
 
     const initialValue = 0;
 
-    if (dateInput.value === "") {
+    if (dateInput.value === '') {
       openModal();
     } else {
       sumReturnKartacze = totalsReturn.Kartacze.reduce(
         (v, i) => v + i,
         initialValue
       );
-      sumReturnBabka = totalsReturn.Babka.reduce(
-        (v, i) => v + i,
-        initialValue
-      );
+      sumReturnBabka = totalsReturn.Babka.reduce((v, i) => v + i, initialValue);
       sumReturnKiszka = totalsReturn.Kiszka.reduce(
         (v, i) => v + i,
         initialValue
       );
 
-
-      quantityFirstReturned.textContent = sumReturnKartacze + " szt";
-      quantitySecondReturned.textContent = sumReturnBabka.toFixed(2) + " kg";
-      quantityThirdReturned.textContent = sumReturnKiszka.toFixed(2) + " kg";
+      quantityFirstReturned.textContent = sumReturnKartacze + ' szt';
+      quantitySecondReturned.textContent = sumReturnBabka.toFixed(2) + ' kg';
+      quantityThirdReturned.textContent = sumReturnKiszka.toFixed(2) + ' kg';
 
       const data = {
-        "id": null,
-        "product": returnInputIdProduct,
-        "quantity": returnInputData,
-        "shop": returnInputIdShop,
-        "date": dateInput.value
+        id: null,
+        product: returnInputIdProduct,
+        quantity: returnInputData,
+        shop: returnInputIdShop,
+        date: dateInput.value,
       };
 
       postDataToApi(data, apiUrlReturn);
       returnInputValue.disabled = true;
 
-      e.currentTarget.removeEventListener("click", SaveReturn);
+      e.currentTarget.removeEventListener('click', SaveReturn);
 
       summarySaleReturn();
     }
-  };
-
-  saveSaleButtons.forEach((button) => {
-    button.addEventListener("click", SaveSale);
-  });
-  saveReturnButtons.forEach((button) => {
-    button.addEventListener("click", SaveReturn);
-  });
-
-
-  function summarySaleReturn() {
-    sumExtraDelivery = totalsExtraDelivery.reduce((v, i) => v + i, initialValue);
-    sumQuantExtra.textContent = sumExtraDelivery + " szt";
-
-    const sumSaleReturnKartacze = sumSaleKartacze + sumExtraDelivery - sumReturnKartacze;
-    sumQuantKartacze.textContent = sumSaleReturnKartacze + " szt";
-
-    const sumSaleReturnBabka = sumSaleBabka - sumReturnBabka;
-    sumQuantBabka.textContent = sumSaleReturnBabka.toFixed(2) + " kg";
-
-    const sumSaleReturnKiszka = sumSaleKiszka - sumReturnKiszka;
-    sumQuantKiszka.textContent = sumSaleReturnKiszka.toFixed(2) + " kg";
   }
 
+  saveSaleButtons.forEach((button) => {
+    button.addEventListener('click', SaveSale);
+  });
+  saveReturnButtons.forEach((button) => {
+    button.addEventListener('click', SaveReturn);
+  });
 
-  const wrapperContainers = document.querySelectorAll(".wrapper");
-  const arrowElements = document.querySelectorAll(".arrow");
+  function summarySaleReturn() {
+    sumExtraDelivery = totalsExtraDelivery.reduce(
+      (v, i) => v + i,
+      initialValue
+    );
+    sumQuantExtra.textContent = sumExtraDelivery + ' szt';
+
+    const sumSaleReturnKartacze =
+      sumSaleKartacze + sumExtraDelivery - sumReturnKartacze;
+    sumQuantKartacze.textContent = sumSaleReturnKartacze + ' szt';
+
+    const sumSaleReturnBabka = sumSaleBabka - sumReturnBabka;
+    sumQuantBabka.textContent = sumSaleReturnBabka.toFixed(2) + ' kg';
+
+    const sumSaleReturnKiszka = sumSaleKiszka - sumReturnKiszka;
+    sumQuantKiszka.textContent = sumSaleReturnKiszka.toFixed(2) + ' kg';
+  }
+
+  const wrapperContainers = document.querySelectorAll('.wrapper');
+  const arrowElements = document.querySelectorAll('.arrow');
 
   tabButton.forEach((el) => {
-    el.addEventListener("click", (e) => {
+    el.addEventListener('click', (e) => {
       const id = e.currentTarget.dataset.id;
-      const productId = id.split("_")[0];
-      const contMainAll = document.querySelectorAll("[data-product]");
+      const productId = id.split('_')[0];
+      const contMainAll = document.querySelectorAll('[data-product]');
       const contMainProd = document.querySelectorAll(
         `[data-product=${productId}]`
       );
       contMainAll.forEach((container) => {
-        if (container.classList.contains("active")) {
-          container.classList.remove("active");
+        if (container.classList.contains('active')) {
+          container.classList.remove('active');
         }
       });
       contMainProd.forEach((cont) => {
-        cont.classList.add("active");
+        cont.classList.add('active');
       });
       if (id) {
         tabButton.forEach((button) => {
-          button.classList.remove("active");
+          button.classList.remove('active');
         });
 
-        e.currentTarget.classList.add("active");
+        e.currentTarget.classList.add('active');
         contents.forEach((content) => {
-          content.classList.remove("active");
+          content.classList.remove('active');
         });
         const element = document.getElementById(id);
-        element.classList.add("active");
+        element.classList.add('active');
       }
 
-      formTab.style.height = 750 + "px";
+      formTab.style.height = 750 + 'px';
       wrapperContainers.forEach((item) => {
         item.style.height = null;
       });
 
       arrowElements.forEach((item) => {
-        item.style = "transform:rotate(" + 0 + "-180deg)";
+        item.style = 'transform:rotate(' + 0 + '-180deg)';
       });
-
     });
   });
 
   const contMainKart = document.querySelectorAll('[data-product="Kartacze"]');
   contMainKart.forEach((container) => {
-    container.classList.add("active");
+    container.classList.add('active');
   });
 
-  const returnItemsInput = document.querySelectorAll(".returnItems");
+  const returnItemsInput = document.querySelectorAll('.returnItems');
   returnItemsInput.forEach((item) => {
-    item.classList.add("hide");
+    item.classList.add('hide');
   });
-  const saveReturnButton = document.querySelectorAll(".save-return-button");
+  const saveReturnButton = document.querySelectorAll('.save-return-button');
   saveReturnButton.forEach((item) => {
-    item.classList.add("invisible");
+    item.classList.add('invisible');
   });
 
-  const activeButton = document.querySelectorAll(".tab-button");
+  const activeButton = document.querySelectorAll('.tab-button');
   const returnKartaczeButton = document.querySelector(
     '[data-id="Kartacze_Return"]'
   );
-  const kartaczeReturnContainer = document.querySelector("#Kartacze_Return");
-  const kartaczeSaleContainer = document.querySelector("#Kartacze_Sale");
-  const returnButton = document.querySelector(".return-button");
-  const soldItemsInput = document.querySelectorAll(".soldItems");
-  const saveSaleButton = document.querySelectorAll(".save-sale-button");
-  const contMainAll = document.querySelectorAll("[data-product]");
+  const kartaczeReturnContainer = document.querySelector('#Kartacze_Return');
+  const kartaczeSaleContainer = document.querySelector('#Kartacze_Sale');
+  const returnButton = document.querySelector('.return-button');
+  const soldItemsInput = document.querySelectorAll('.soldItems');
+  const saveSaleButton = document.querySelectorAll('.save-sale-button');
+  const contMainAll = document.querySelectorAll('[data-product]');
   const contKartacze = document.querySelectorAll(`[data-product="Kartacze"]`);
   const extraSaleButtonBabka = document.querySelectorAll(
     '[data-extrasale="Babka"]'
@@ -608,158 +613,152 @@ let totalsExtraDelivery = [];
   );
 
   //adding functionality to Sale and Return Button
-  returnButton.addEventListener("click", () => {
+  returnButton.addEventListener('click', () => {
     activeButton.forEach((button) => {
-      button.classList.remove("active");
+      button.classList.remove('active');
     });
     returnItemsInput.forEach((item) => {
-      item.classList.remove("hide");
+      item.classList.remove('hide');
     });
     saveReturnButton.forEach((item) => {
-      item.classList.remove("invisible");
+      item.classList.remove('invisible');
     });
     soldItemsInput.forEach((item) => {
-      item.classList.add("hide");
+      item.classList.add('hide');
     });
     saveSaleButton.forEach((item) => {
-      item.classList.add("invisible");
+      item.classList.add('invisible');
     });
-    returnKartaczeButton.classList.add("active");
+    returnKartaczeButton.classList.add('active');
     addContainerButton.forEach((item) => {
-      item.classList.add("invisible");
+      item.classList.add('invisible');
     });
 
     contents.forEach((content) => {
-      content.classList.remove("active");
+      content.classList.remove('active');
     });
-    kartaczeReturnContainer.classList.add("active");
+    kartaczeReturnContainer.classList.add('active');
 
     contMainAll.forEach((item) => {
-      item.classList.remove("active");
+      item.classList.remove('active');
     });
 
     contKartacze.forEach((cont) => {
-      cont.classList.add("active");
+      cont.classList.add('active');
     });
 
-    formTab.style.height = 750 + "px";
+    formTab.style.height = 750 + 'px';
     wrapperContainers.forEach((item) => {
       item.style.height = null;
     });
 
     arrowElements.forEach((item) => {
-      item.style = "transform:rotate(" + 0 + "-180deg)";
+      item.style = 'transform:rotate(' + 0 + '-180deg)';
     });
   });
 
-  const saleButton = document.querySelector(".sale-button");
+  const saleButton = document.querySelector('.sale-button');
   const KartaczeSaleButton = document.querySelector(
     '[data-id="Kartacze_Sale"]'
   );
 
-  saleButton.addEventListener("click", () => {
+  saleButton.addEventListener('click', () => {
     returnItemsInput.forEach((item) => {
-      item.classList.add("hide");
+      item.classList.add('hide');
     });
     soldItemsInput.forEach((item) => {
-      item.classList.remove("hide");
+      item.classList.remove('hide');
     });
     saveReturnButton.forEach((item) => {
-      item.classList.add("invisible");
+      item.classList.add('invisible');
     });
     saveSaleButton.forEach((item) => {
-      item.classList.remove("invisible");
+      item.classList.remove('invisible');
     });
-    returnKartaczeButton.classList.remove("active");
-    KartaczeSaleButton.classList.add("active");
+    returnKartaczeButton.classList.remove('active');
+    KartaczeSaleButton.classList.add('active');
     addContainerButton.forEach((item) => {
-      item.classList.remove("invisible");
+      item.classList.remove('invisible');
     });
 
     contMainAll.forEach((item) => {
-      item.classList.remove("active");
+      item.classList.remove('active');
     });
 
     contKartacze.forEach((cont) => {
-      cont.classList.add("active");
+      cont.classList.add('active');
     });
 
     extraSaleButtonBabka.forEach((item) => {
-      item.classList.add("invisible");
+      item.classList.add('invisible');
     });
     extraSaleButtonKiszka.forEach((item) => {
-      item.classList.add("invisible");
+      item.classList.add('invisible');
     });
 
     contents.forEach((content) => {
-      content.classList.remove("active");
+      content.classList.remove('active');
     });
-    kartaczeSaleContainer.classList.add("active");
+    kartaczeSaleContainer.classList.add('active');
 
-    formTab.style.height = 750 + "px";
+    formTab.style.height = 750 + 'px';
     wrapperContainers.forEach((item) => {
       item.style.height = null;
     });
 
     arrowElements.forEach((item) => {
-      item.style = "transform:rotate(" + 0 + "-180deg)";
+      item.style = 'transform:rotate(' + 0 + '-180deg)';
     });
   });
 
   //hide Button "+" from all products except "Kartacze"
   extraSaleButtonBabka.forEach((item) => {
-    item.classList.add("invisible");
+    item.classList.add('invisible');
   });
   extraSaleButtonKiszka.forEach((item) => {
-    item.classList.add("invisible");
+    item.classList.add('invisible');
   });
-
-
 
   //=============================================================
   //responsive nav menu
-  const hamburger = document.querySelector(".hamburger");
-  const siteNav = document.querySelector(".site-nav");
+  const hamburger = document.querySelector('.hamburger');
+  const siteNav = document.querySelector('.site-nav');
 
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    siteNav.classList.toggle("active");
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    siteNav.classList.toggle('active');
   });
 
-  document.querySelectorAll("nav-link").forEach((n) =>
-    n.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      siteNav.classList.remove("active");
+  document.querySelectorAll('nav-link').forEach((n) =>
+    n.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      siteNav.classList.remove('active');
     })
   );
-
-}
+};
 
 const reloadContent = () => {
   contents.forEach((content) => {
     while (content.firstChild) {
       content.removeChild(content.firstChild);
     }
-  })
-  quantityFirstSold.textContent = 0 + " szt";
-  quantitySecondSold.textContent = "0.00" + " kg";
-  quantityThirdSold.textContent = "0.00" + " kg";
-  quantityFirstReturned.textContent = 0 + " szt";
-  quantitySecondReturned.textContent = "0.00" + " kg";
-  quantityThirdReturned.textContent = "0.00"+ " kg";
-  sumQuantExtra.textContent = 0 + " szt";
-  sumQuantKartacze.textContent = "0.00" + " szt";
-  sumQuantBabka.textContent = "0.00" + " kg";
-  sumQuantKiszka.textContent = "0.00" + " kg";
-
+  });
+  quantityFirstSold.textContent = 0 + ' szt';
+  quantitySecondSold.textContent = '0.00' + ' kg';
+  quantityThirdSold.textContent = '0.00' + ' kg';
+  quantityFirstReturned.textContent = 0 + ' szt';
+  quantitySecondReturned.textContent = '0.00' + ' kg';
+  quantityThirdReturned.textContent = '0.00' + ' kg';
+  sumQuantExtra.textContent = 0 + ' szt';
+  sumQuantKartacze.textContent = '0.00' + ' szt';
+  sumQuantBabka.textContent = '0.00' + ' kg';
+  sumQuantKiszka.textContent = '0.00' + ' kg';
 
   contentLoad();
   console.log(totals);
 
-  console.log("reload");
-}
+  console.log('reload');
+};
 
-window.addEventListener("load", contentLoad);
-dateConfirmation.addEventListener("click", reloadContent);
-
-
+window.addEventListener('load', contentLoad);
+dateConfirmation.addEventListener('click', reloadContent);

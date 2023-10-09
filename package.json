@@ -16,5 +16,8 @@
     "url": "https://github.com/netka99/Strona/issues"
   },
   "homepage": "https://github.com/netka99/Strona#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "webpack": "^5.88.2"
+  }
 }
