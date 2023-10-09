@@ -1,18 +1,4 @@
 
-const headerButtons = [];
-
-let totals = {};
-totals.Kartacze = [];
-totals.Babka = [];
-totals.Kiszka = [];
-
-let totalsReturn = {};
-totalsReturn.Kartacze = [];
-totalsReturn.Babka = [];
-totalsReturn.Kiszka = [];
-
-let totalsExtraDelivery = [];
-
 const shops = [
   "Maja",
   "Kowalskiego",
@@ -29,11 +15,53 @@ const products = [
   ["Kiszka", "kg"],
 ];
 
-window.addEventListener("load", () => {
-  //controling buttons with products
-  const tabButton = document.querySelectorAll(".tab-button");
-  const contents = document.querySelectorAll(".mainContent");
-  const formTab = document.querySelector(".formTab");
+
+//Date functionality: updating todays date
+const dateInput = document.getElementById("dateOfSale");
+let originalDate = dateInput.value;
+// Get today's date in the format YYYY-MM-DD
+const today = new Date().toISOString().split('T')[0];
+dateInput.value = today;
+
+//controling buttons with products
+const tabButton = document.querySelectorAll(".tab-button");
+const contents = document.querySelectorAll(".mainContent");
+const formTab = document.querySelector(".formTab");
+const dateConfirmation = document.getElementById("dateButton");
+const quantityFirstSold = document.getElementById("quantityFirstSold");
+const quantitySecondSold = document.getElementById("quantitySecondSold");
+const quantityThirdSold = document.getElementById("quantityThirdSold");
+const quantityFirstReturned = document.getElementById("quantityFirstReturned");
+const quantitySecondReturned = document.getElementById("quantitySecondReturned");
+const quantityThirdReturned = document.getElementById("quantityThirdReturned");
+const sumQuantKartacze = document.querySelector(".sumQuantityFirst");
+const sumQuantBabka = document.querySelector(".sumQuantitySecond");
+const sumQuantKiszka = document.querySelector(".sumQuantityThird");
+const sumQuantExtra = document.querySelector("#quantityFirstExtra");
+
+
+let totals = {};
+let totalsReturn = {};
+
+
+
+const contentLoad = () => {
+  const headerButtons = [];
+  totals = {
+    Kartacze: [],
+    Babka: [],
+    Kiszka: []
+  };
+
+totalsReturn = {
+  Kartacze: [],
+  Babka: [],
+  Kiszka: []
+};
+
+
+let totalsExtraDelivery = [];
+
   let counterExtraSale = 0; //counter of button's clicks
 
   //logic for main content
@@ -121,7 +149,7 @@ window.addEventListener("load", () => {
         soldItemsFirst.append(soldInput);
         soldInput.setAttribute("type", "number");
         soldInput.setAttribute("min", "0");
-        soldInput.setAttribute("name", `${item}_${prod[0]}_${i}_sale`);       
+        soldInput.setAttribute("name", `${item}_${prod[0]}_${i}_sale`);
         soldInput.setAttribute("id", `${item}_${prod[0]}_${i}_sale_${indexes}`);
         const itemsQuantitiesF = document.createElement("p");
         soldItemsFirst.append(itemsQuantitiesF);
@@ -290,9 +318,9 @@ window.addEventListener("load", () => {
           "shop": ExtraSaleInputIdShop,
           "date": dateInput.value
         };
-        postDataToApi(data,apiUrlSale);
+        postDataToApi(data, apiUrlSale);
         e.currentTarget.classList.add("active");
-        extraSaleButton.innerHTML = "Zapisana";
+        extraSaleButton.textContent = "Zapisana";
         console.log(extraSaleInput.id);
         totalsExtraDelivery.push(Number(extraSaleInput.value));
         extraSaleInput.disabled = true;
@@ -308,7 +336,7 @@ window.addEventListener("load", () => {
   const apiUrlReturn = "https://www.smacznykaseksuwalki.com/api/returns";
 
 
-  async function postDataToApi(data,url) {
+  async function postDataToApi(data, url) {
 
     // const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales";
 
@@ -345,10 +373,7 @@ window.addEventListener("load", () => {
   //Saving button - sending data to summary container, summary of sale and returns
   let sumSaleKartacze, sumSaleBabka, sumSaleKiszka, sumReturnKartacze, sumReturnBabka, sumReturnKiszka, sumExtraDelivery;
   sumSaleKartacze = sumSaleBabka = sumSaleKiszka = sumReturnKartacze = sumReturnBabka = sumReturnKiszka = sumExtraDelivery = 0;
-  const sumQuantKartacze = document.querySelector(".sumQuantityFirst");
-  const sumQuantBabka = document.querySelector(".sumQuantitySecond");
-  const sumQuantKiszka = document.querySelector(".sumQuantityThird");
-  const sumQuantExtra = document.querySelector("#quantityFirstExtra");
+
   const saveSaleButtons = document.querySelectorAll(".save-sale-button");
   const saveReturnButtons = document.querySelectorAll(".save-return-button");
   const initialValue = 0;
@@ -375,33 +400,6 @@ window.addEventListener("load", () => {
     }
   });
 
-  // const dateofSale = document.getElementById("dateOfSale");
-  // const dateofSaleValue = dateofSale.value;
-
-    //Date functionality: updating todays date and reloads as date is changed
-    const dateInput = document.getElementById("dateOfSale");
-    let originalDate = dateInput.value;
-    // Get today's date in the format YYYY-MM-DD
-    const today = new Date().toISOString().split('T')[0];
-    
-    // Set today's date as the default value for the input
-    dateInput.value = today;
-
-    // Event listener for changes in the parent container
-    document.querySelector('.date').addEventListener("input", (event) => {
-        // Check if the event target is the date input
-        if (event.target === dateInput) {
-            // Track changes when the input value changes
-            if (dateInput.value !== originalDate) {
-                // Implement your logic here for handling the changed date
-                // For example, you can make an AJAX request to fetch updated data
-                // or update the content dynamically without reloading the page.
-                window.location.reload();
-                console.log("Date has been changed:", dateInput.value);
-            }
-        }
-    });
- 
 
   // functionality for Sale Button
   function SaveSale(e) {
@@ -417,6 +415,7 @@ window.addEventListener("load", () => {
     const soldInputIdShop = soldInputId.split("_")[0];
     const soldInputIdName = `${soldInputIdProduct}`;
     totals[soldInputIdName].push(Number(soldInputValue.value));
+    console.log(totals);
     const soldInputData = soldInputValue.value;
 
 
@@ -427,12 +426,9 @@ window.addEventListener("load", () => {
       sumSaleBabka = totals.Babka.reduce((v, i) => v + i, initialValue);
       sumSaleKiszka = totals.Kiszka.reduce((v, i) => v + i, initialValue);
 
-      const quantityFirstSold = document.getElementById("quantityFirstSold");
-      quantityFirstSold.innerHTML = sumSaleKartacze + " szt";
-      const quantitySecondSold = document.getElementById("quantitySecondSold");
-      quantitySecondSold.innerHTML = sumSaleBabka.toFixed(2) + " kg";
-      const quantityThirdSold = document.getElementById("quantityThirdSold");
-      quantityThirdSold.innerHTML = sumSaleKiszka.toFixed(2) + " kg";
+      quantityFirstSold.textContent = sumSaleKartacze + " szt";
+      quantitySecondSold.textContent = sumSaleBabka.toFixed(2) + " kg";
+      quantityThirdSold.textContent = sumSaleKiszka.toFixed(2) + " kg";
 
       const data = {
         "id": null,
@@ -443,8 +439,8 @@ window.addEventListener("load", () => {
         "date": dateInput.value
       };
 
-      postDataToApi(data,apiUrlSale);
-      e.currentTarget.innerHTML = "Zapisana";
+      postDataToApi(data, apiUrlSale);
+      e.currentTarget.textContent = "Zapisana";
       soldInputValue.disabled = true;
 
       checkedButton.style.color = "white";
@@ -477,47 +473,39 @@ window.addEventListener("load", () => {
     if (dateInput.value === "") {
       openModal();
     } else {
-    sumReturnKartacze = totalsReturn.Kartacze.reduce(
-      (v, i) => v + i,
-      initialValue
-    );
-    sumReturnBabka = totalsReturn.Babka.reduce(
-      (v, i) => v + i,
-      initialValue
-    );
-    sumReturnKiszka = totalsReturn.Kiszka.reduce(
-      (v, i) => v + i,
-      initialValue
-    );
+      sumReturnKartacze = totalsReturn.Kartacze.reduce(
+        (v, i) => v + i,
+        initialValue
+      );
+      sumReturnBabka = totalsReturn.Babka.reduce(
+        (v, i) => v + i,
+        initialValue
+      );
+      sumReturnKiszka = totalsReturn.Kiszka.reduce(
+        (v, i) => v + i,
+        initialValue
+      );
 
-    const quantityFirstReturned = document.getElementById(
-      "quantityFirstReturned"
-    );
-    quantityFirstReturned.innerHTML = sumReturnKartacze + " szt";
-    const quantitySecondReturned = document.getElementById(
-      "quantitySecondReturned"
-    );
-    quantitySecondReturned.innerHTML = sumReturnBabka.toFixed(2) + " kg";
-    const quantityThirdReturned = document.getElementById(
-      "quantityThirdReturned"
-    );
-    quantityThirdReturned.innerHTML = sumReturnKiszka.toFixed(2) + " kg";
 
-    const data = {
-      "id": null,
-      "product": returnInputIdProduct,
-      "quantity": returnInputData,
-      "shop": returnInputIdShop,
-      "date": dateInput.value
-    };
+      quantityFirstReturned.textContent = sumReturnKartacze + " szt";
+      quantitySecondReturned.textContent = sumReturnBabka.toFixed(2) + " kg";
+      quantityThirdReturned.textContent = sumReturnKiszka.toFixed(2) + " kg";
 
-    postDataToApi(data,apiUrlReturn);
-    returnInputValue.disabled = true;
+      const data = {
+        "id": null,
+        "product": returnInputIdProduct,
+        "quantity": returnInputData,
+        "shop": returnInputIdShop,
+        "date": dateInput.value
+      };
 
-    e.currentTarget.removeEventListener("click", SaveReturn);
+      postDataToApi(data, apiUrlReturn);
+      returnInputValue.disabled = true;
 
-    summarySaleReturn();
-  }
+      e.currentTarget.removeEventListener("click", SaveReturn);
+
+      summarySaleReturn();
+    }
   };
 
   saveSaleButtons.forEach((button) => {
@@ -530,16 +518,16 @@ window.addEventListener("load", () => {
 
   function summarySaleReturn() {
     sumExtraDelivery = totalsExtraDelivery.reduce((v, i) => v + i, initialValue);
-    sumQuantExtra.innerHTML = sumExtraDelivery + " szt";
+    sumQuantExtra.textContent = sumExtraDelivery + " szt";
 
     const sumSaleReturnKartacze = sumSaleKartacze + sumExtraDelivery - sumReturnKartacze;
-    sumQuantKartacze.innerHTML = sumSaleReturnKartacze + " szt";
+    sumQuantKartacze.textContent = sumSaleReturnKartacze + " szt";
 
     const sumSaleReturnBabka = sumSaleBabka - sumReturnBabka;
-    sumQuantBabka.innerHTML = sumSaleReturnBabka.toFixed(2) + " kg";
+    sumQuantBabka.textContent = sumSaleReturnBabka.toFixed(2) + " kg";
 
     const sumSaleReturnKiszka = sumSaleKiszka - sumReturnKiszka;
-    sumQuantKiszka.innerHTML = sumSaleReturnKiszka.toFixed(2) + " kg";
+    sumQuantKiszka.textContent = sumSaleReturnKiszka.toFixed(2) + " kg";
   }
 
 
@@ -745,45 +733,33 @@ window.addEventListener("load", () => {
     })
   );
 
- 
+}
+
+const reloadContent = () => {
+  contents.forEach((content) => {
+    while (content.firstChild) {
+      content.removeChild(content.firstChild);
+    }
+  })
+  quantityFirstSold.textContent = 0 + " szt";
+  quantitySecondSold.textContent = "0.00" + " kg";
+  quantityThirdSold.textContent = "0.00" + " kg";
+  quantityFirstReturned.textContent = 0 + " szt";
+  quantitySecondReturned.textContent = "0.00" + " kg";
+  quantityThirdReturned.textContent = "0.00"+ " kg";
+  sumQuantExtra.textContent = 0 + " szt";
+  sumQuantKartacze.textContent = "0.00" + " szt";
+  sumQuantBabka.textContent = "0.00" + " kg";
+  sumQuantKiszka.textContent = "0.00" + " kg";
 
 
+  contentLoad();
+  console.log(totals);
 
+  console.log("reload");
+}
 
-});
+window.addEventListener("load", contentLoad);
+dateConfirmation.addEventListener("click", reloadContent);
 
-//===============================================================
-//Settings-shops page
-// const shopsFromDB = [
-//   "Sklep Maja",
-//   "Sklep Kowalskiego",
-//   "Sklep Nowomiejska",
-//   "Sklep Lityńskiego",
-//   "Sklep Stankiewicza",
-//   "Sklep Buczka",
-//   "Sklep Świerkowa",
-// ];
-
-// const shopsList = document.getElementById("shopsList");
-// shopsFromDB.forEach((el) => {
-//   const shopContainer = document.createElement("div");
-//   shopContainer.className = "shopContainer";
-//   shopsList.append(shopContainer);
-//   const storeIcon = document.createElement("img");
-//   storeIcon.className = "store-icon";
-//   storeIcon.src = "./images/store-alt-solid.svg";
-//   shopContainer.append(storeIcon);
-//   storeIcon.setAttribute("alt", "store image");
-//   const storeText = document.createElement("p");
-//   storeText.textContent = el;
-//   shopContainer.append(storeText);
-//   const trashButton = document.createElement("button");
-//   shopContainer.append(trashButton);
-//   trashButton.className = "trashButton";
-//   trashButton.title = "Usuń";
-//   const trashImage = document.createElement("img");
-//   trashImage.className = "trashImage";
-//   trashButton.append(trashImage);
-//   trashImage.src = "./images/icons8-trash-can.svg";
-// });
 

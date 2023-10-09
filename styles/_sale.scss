@@ -60,6 +60,28 @@
         -moz-box-shadow: none;
       }
   }
+
+  .dateButton {
+    color: #656464;
+    font-size: 1rem;
+    border: 1px solid #616161;
+    border-radius: 10px;
+    background: #ecf0f1;
+    padding: 6px;
+    display: inline-block !important;
+    visibility: visible !important;
+    margin-left: 0.5rem;
+
+    &:hover {
+        background: #dbdbdc;;
+        cursor: pointer;
+        color: #3a3a3a;
+    }
+
+    &:active {
+        box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+    }
+  }
   
   //Content
   .formTab {
