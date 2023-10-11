@@ -1,12 +1,14 @@
-const shops = [
-  'Maja',
-  'Kowalskiego',
-  'Nowomiejska',
-  'Lityńskiego',
-  'Stankiewicza',
-  'Buczka',
-  'Świerkowa',
-];
+// const shops = [
+//   'Maja',
+//   'Kowalskiego',
+//   'Nowomiejska',
+//   'Lityńskiego',
+//   'Stankiewicza',
+//   'Buczka',
+//   'Świerkowa',
+// ];
+
+console.log(shops);
 
 const products = [
   ['Kartacze', 'szt.'],

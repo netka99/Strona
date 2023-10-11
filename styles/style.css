@@ -1420,6 +1420,65 @@ input[type=date]:focus {
   filter: invert(41%) sepia(0%) saturate(0%) hue-rotate(102deg) brightness(91%) contrast(85%);
 }
 
+.shopsList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+.shopsList .shop {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  padding-left: 1rem;
+  border-bottom: 2px solid #dfdfdf;
+}
+.shopsList p {
+  padding-left: 1rem;
+}
+
+.shop-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.shop-container img {
+  width: 100px;
+  height: 100px;
+  margin-right: 1rem;
+}
+
+.button-container {
+  margin-left: auto;
+  padding-right: 2rem;
+}
+.button-container .edit-button,
+.button-container .delete-button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+}
+.button-container .edit-button img,
+.button-container .delete-button img {
+  display: block;
+  width: 90%;
+  height: 90%;
+}
+.button-container .edit-button img {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(85%) saturate(604%) hue-rotate(168deg) brightness(101%) contrast(88%);
+}
+.button-container .edit-button:focus, .button-container .edit-button:hover {
+  filter: brightness(0) saturate(100%) invert(31%) sepia(94%) saturate(879%) hue-rotate(184deg) brightness(87%) contrast(82%);
+}
+.button-container .delete-button img {
+  filter: brightness(0) saturate(100%) invert(33%) sepia(87%) saturate(3694%) hue-rotate(335deg) brightness(99%) contrast(89%);
+}
+.button-container .delete-button:focus, .button-container .delete-button:hover {
+  filter: brightness(0) saturate(100%) invert(30%) sepia(76%) saturate(2026%) hue-rotate(335deg) brightness(72%) contrast(96%);
+}
+
 .prices-main {
   width: 37rem;
   display: flex;
