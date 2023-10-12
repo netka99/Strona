@@ -8,7 +8,7 @@
 //   'Świerkowa',
 // ];
 
-console.log(shops);
+let shopsSesion = [];
 
 const products = [
   ['Kartacze', 'szt.'],
@@ -44,7 +44,36 @@ const sumQuantExtra = document.querySelector('#quantityFirstExtra');
 let totals = {};
 let totalsReturn = {};
 
-const contentLoad = () => {
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+async function loadShops() {
+  try {
+    const shopsData = await fetchData(
+      'https://smacznykaseksuwalki.com/api/shops'
+    );
+    contentLoad(shopsData);
+    shopsSesion = shopsData;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+loadShops();
+
+const contentLoad = (shops) => {
   const headerButtons = [];
   totals = {
     Kartacze: [],
@@ -756,11 +785,11 @@ const reloadContent = () => {
   sumQuantBabka.textContent = '0.00' + ' kg';
   sumQuantKiszka.textContent = '0.00' + ' kg';
 
-  contentLoad();
+  contentLoad(shopsSesion);
   console.log(totals);
 
   console.log('reload');
 };
 
-window.addEventListener('load', contentLoad);
+// window.addEventListener('load', contentLoad);
 dateConfirmation.addEventListener('click', reloadContent);

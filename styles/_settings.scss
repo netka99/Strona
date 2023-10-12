@@ -6,10 +6,15 @@
   justify-content: center;
   margin: 3rem auto 3rem auto;
   flex-direction: column;
+
+  @media screen and (max-width: $mobileL) {
+    width: 90%;
+    margin: 2rem auto 2rem auto;
+  }
 }
 
 .shopNameSett {
-  width: 100%;
+  width: 90%;
   height: 2.5rem;
   padding-left: 1rem;
   background: linear-gradient(to bottom right, #f2f2f2, #dfdfdf);
@@ -44,16 +49,20 @@
 }
 
 .titleSettShops {
-  width: 50%;
+  width: 90%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   margin: 2rem auto;
   flex-direction: column;
-  padding-left: 1rem;
   font-size: 1.2rem;
   font-weight: bold;
   color: #515050;
+
+  @media screen and (max-width: $mobileL) {
+    width: 90%;
+    margin: 1rem 0rem;
+  }
 }
 
 .store-icon {
@@ -147,18 +156,30 @@
     contrast(85%);
 }
 
-//=========================================
-.shopsList {
+.shopContainerMain {
+  width: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0.5rem auto 0.5rem auto;
+  flex-direction: column;
+
+  @media screen and (max-width: $mobileL) {
+    width: 90%;
+  }
+}
+
+.shopsListSettings {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 5rem;
+  margin: 0rem auto 5rem auto;
+  width: 100%;
 
   .shop {
     display: flex;
     align-items: center;
-    width: 60%;
-    padding-left: 1rem;
+    width: 100%;
     border-bottom: 2px solid #dfdfdf;
   }
   p {
@@ -181,6 +202,10 @@
 .button-container {
   margin-left: auto;
   padding-right: 2rem;
+
+  @media screen and (max-width: $mobileL) {
+    padding-right: 0rem;
+  }
 
   .edit-button,
   .delete-button {
