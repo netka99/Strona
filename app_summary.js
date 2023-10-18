@@ -1,9 +1,10 @@
-const productPrices = {
-  Kartacze: 5,
-  Babka: 52,
-  Kiszka: 41,
-};
+// const productPrices = {
+//   Kartacze: 5,
+//   Babka: 52,
+//   Kiszka: 41,
+// };
 
+let productPrices = {};
 const searchDate = document.getElementById('searchDate');
 
 //summary of Sale and Return per date
@@ -81,6 +82,27 @@ async function getData(apiEndpoint) {
   }
 }
 
+async function fetchPrices() {
+  const url = 'https://smacznykaseksuwalki.com/api/settings/aneta';
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    productPrices = data.prices;
+    console.log('Prices:', productPrices);
+    return productPrices;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+fetchPrices();
 async function calculateSummary() {
   try {
     const [returnsData, salesData] = await Promise.all([
@@ -95,11 +117,11 @@ async function calculateSummary() {
 
     loadingComponent(summaryPerDay);
 
-    console.log('Summary Per Day Sale:', filteredSales);
-    console.log('Summary Per Day Return:', filteredReturns);
-    console.log('Summary Per Day:', summaryPerDay);
+    // console.log('Summary Per Day Sale:', filteredSales);
+    // console.log('Summary Per Day Return:', filteredReturns);
+    // console.log('Summary Per Day:', summaryPerDay);
 
-    console.log('All:', returnsData, salesData);
+    // console.log('All:', returnsData, salesData);
   } catch (error) {
     console.error('Error:', error);
   }

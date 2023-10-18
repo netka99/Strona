@@ -1,12 +1,26 @@
-// let shops = [
-//   'Maja',
-//   'Kowalskiego',
-//   'Nowomiejska',
-//   'Lityńskiego',
-//   'Stankiewicza',
-//   'Buczka',
-//   'Świerkowa',
-// ];
+// Update of all data in the database
+// fetch('https://smacznykaseksuwalki.com/api/settings/aneta', {
+//   method: 'PUT',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   body: JSON.stringify({
+//     shops: [
+//       'Eden - Noniewicza',
+//       'Lewiatan - Waryńskiego',
+//       'Lewiatan - Sikorskiego',
+//       'Lewiatan - Putry',
+//       'Lewiatan - Świerkowa',
+//       'Lewiatan - W. Polskiego',
+//       'Stan - Maja',
+//     ],
+//     prices: {
+//       Kartacze: 7,
+//       Babka: 14,
+//       Kiszka: 20,
+//     },
+//   }),
+// }).then((resp) => resp.json().then((data) => console.log(data)));
 
 const shopContainer = document.getElementById('shopsListSettings');
 const showShops = (data) => {
@@ -74,9 +88,12 @@ async function fetchData(url) {
 async function loadShops() {
   try {
     const shopsData = await fetchData(
-      'https://smacznykaseksuwalki.com/api/shops'
+      'https://smacznykaseksuwalki.com/api/settings/aneta'
     );
-    showShops(shopsData);
+    console.log(shopsData.shops);
+    console.log(shopsData);
+
+    showShops(shopsData.shops);
   } catch (error) {
     console.error('Error:', error);
   }

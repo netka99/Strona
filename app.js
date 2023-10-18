@@ -62,10 +62,10 @@ async function fetchData(url) {
 async function loadShops() {
   try {
     const shopsData = await fetchData(
-      'https://smacznykaseksuwalki.com/api/shops'
+      'https://smacznykaseksuwalki.com/api/settings/aneta'
     );
-    contentLoad(shopsData);
-    shopsSesion = shopsData;
+    contentLoad(shopsData.shops);
+    shopsSesion = shopsData.shops;
   } catch (error) {
     console.error('Error:', error);
   }
@@ -113,7 +113,7 @@ const contentLoad = (shops) => {
       storeName.append(storePicture);
       storeName.setAttribute('alt', 'store image');
       const storeText = document.createElement('p');
-      storeText.textContent = 'Sklep ' + item;
+      storeText.textContent = item;
       storeName.append(storeText);
 
       const buttons = document.createElement('div');
