@@ -1509,6 +1509,21 @@ input[type=date]:focus {
   filter: brightness(0) saturate(100%) invert(30%) sepia(76%) saturate(2026%) hue-rotate(335deg) brightness(72%) contrast(96%);
 }
 
+.inputFieldShop {
+  height: 1.5rem;
+  padding: 0.3rem 1rem 0.3rem 1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to bottom right, #efefef, #e9e9e9);
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.3);
+  border: none;
+  font-size: 1rem;
+}
+.inputFieldShop:focus {
+  outline: none;
+}
+
 .prices-main {
   width: 37rem;
   display: flex;
@@ -1576,6 +1591,7 @@ input[type=date]:focus {
 
 .prices-InputContainer {
   flex: 1 1 66.67%;
+  display: flex;
 }
 @media screen and (max-width: 768px) {
   .prices-InputContainer {
@@ -1587,8 +1603,8 @@ input[type=date]:focus {
   display: flex;
   align-items: center;
   gap: 1.2em;
-  justify-content: flex-end;
-  margin: 10px 0px 10px 0px;
+  justify-content: flex-start;
+  margin: 10px 0px 10px 20px;
 }
 @media screen and (max-width: 768px) {
   .prices-inputDescription {
@@ -1596,7 +1612,7 @@ input[type=date]:focus {
   }
 }
 .prices-inputDescription label {
-  margin-right: 2rem;
+  margin-left: 2rem;
 }
 @media screen and (max-width: 768px) {
   .prices-inputDescription label {
@@ -1639,6 +1655,39 @@ input[type=date]:focus {
 }
 .prices-save:hover {
   background: linear-gradient(to bottom right, #512fa1, #7656b0);
+}
+
+.button-container-prices {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+  padding-right: 1rem;
+}
+.button-container-prices .edit-button-prices,
+.button-container-prices .delete-button-prices {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+}
+.button-container-prices .edit-button-prices img,
+.button-container-prices .delete-button-prices img {
+  display: block;
+  width: 90%;
+  height: 90%;
+}
+.button-container-prices .edit-button-prices img {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(85%) saturate(604%) hue-rotate(168deg) brightness(101%) contrast(88%);
+}
+.button-container-prices .edit-button-prices:focus, .button-container-prices .edit-button-prices:hover {
+  filter: brightness(0) saturate(100%) invert(31%) sepia(94%) saturate(879%) hue-rotate(184deg) brightness(87%) contrast(82%);
+}
+.button-container-prices .delete-button-prices img {
+  filter: brightness(0) saturate(100%) invert(33%) sepia(87%) saturate(3694%) hue-rotate(335deg) brightness(99%) contrast(89%);
+}
+.button-container-prices .delete-button-prices:focus, .button-container-prices .delete-button-prices:hover {
+  filter: brightness(0) saturate(100%) invert(30%) sepia(76%) saturate(2026%) hue-rotate(335deg) brightness(72%) contrast(96%);
 }
 
 /* Modal Styles */

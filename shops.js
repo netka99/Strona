@@ -1,27 +1,46 @@
-// Update of all data in the database
-// fetch('https://smacznykaseksuwalki.com/api/settings/aneta', {
-//   method: 'PUT',
-//   headers: {
-//     'Content-Type': 'application/json',
-//   },
-//   body: JSON.stringify({
-//     shops: [
-//       'Eden - Noniewicza',
-//       'Lewiatan - Waryńskiego',
-//       'Lewiatan - Sikorskiego',
-//       'Lewiatan - Putry',
-//       'Lewiatan - Świerkowa',
-//       'Lewiatan - W. Polskiego',
-//       'Stan - Maja',
-//     ],
-//     prices: {
-//       Kartacze: 7,
-//       Babka: 14,
-//       Kiszka: 20,
-//     },
-//   }),
-// }).then((resp) => resp.json().then((data) => console.log(data)));
+// // Example usage:
+// const newShops = [
+//   'Eden - Noniewicza',
+//   'Lewiatan - Waryńskiego',
+//   'Lewiatan - Sikorskiego',
+//   'Lewiatan - Putry',
+//   'Lewiatan - Świerkowa',
+//   'Lewiatan - W. Polskiego',
+//   'Stan - Maja',
+// ];
+// const newPrices = {
+//   Kartacze: 7,
+//   Babka: 14,
+//   Kiszka: 20,
+// };
 
+let shopsAmended = [];
+let pricesAmended = {};
+
+async function updateSettings(shops, prices) {
+  try {
+    const response = await fetch(
+      'https://smacznykaseksuwalki.com/api/settings/aneta',
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          shops,
+          prices,
+        }),
+      }
+    );
+    const data = await response.json();
+    console.log('Data:', data);
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+}
+
+//Load dinamically list of shops
 const shopContainer = document.getElementById('shopsListSettings');
 const showShops = (data) => {
   data.forEach((shop, index) => {
@@ -48,6 +67,31 @@ const showShops = (data) => {
     editButton.classList.add('edit-button');
     editButton.setAttribute('id', 'edit-button');
     editButton.setAttribute('data-index', index);
+    editButton.addEventListener('click', (e) => {
+      const index = e.currentTarget.dataset.index;
+      const shopElement = e.currentTarget.parentNode.parentNode;
+      shopElement.querySelector('p');
+      // Create an input element and replace the p element with it
+      const inputField = document.createElement('input');
+      inputField.type = 'text';
+      inputField.classList.add('inputFieldShop');
+      inputField.value = shopText.textContent;
+      shopElement.replaceChild(inputField, shopText);
+      inputField.focus();
+
+      inputField.addEventListener('blur', () => {
+        const newShopName = inputField.value;
+        if (newShopName) {
+          const newShopText = document.createElement('p');
+          newShopText.textContent = newShopName;
+          shopElement.replaceChild(newShopText, inputField);
+          shopsAmended[index] = newShopName;
+          updateSettings(shopsAmended, pricesAmended);
+        } else {
+          shopElement.replaceChild(shopText, inputField);
+        }
+      });
+    });
 
     const editImg = document.createElement('img');
     editButton.append(editImg);
@@ -60,6 +104,13 @@ const showShops = (data) => {
     deleteButton.classList.add('delete-button');
     deleteButton.setAttribute('id', 'delete-button');
     deleteButton.setAttribute('data-index', index);
+    deleteButton.addEventListener('click', (e) => {
+      const index = e.currentTarget.dataset.index;
+      shopsAmended.splice(index, 1);
+      clearShopsContainer();
+      showShops(shopsAmended);
+      updateSettings(shopsAmended, pricesAmended);
+    });
 
     const deleteImg = document.createElement('img');
     deleteButton.append(deleteImg);
@@ -90,8 +141,9 @@ async function loadShops() {
     const shopsData = await fetchData(
       'https://smacznykaseksuwalki.com/api/settings/aneta'
     );
-    console.log(shopsData.shops);
-    console.log(shopsData);
+    shopsAmended = shopsData.shops;
+    pricesAmended = shopsData.prices;
+    console.log(pricesAmended);
 
     showShops(shopsData.shops);
   } catch (error) {
@@ -101,14 +153,26 @@ async function loadShops() {
 
 loadShops();
 
-showShops(shops);
+//remove all instances of a shopContainer div
+const clearShopsContainer = () => {
+  while (shopContainer.firstChild) {
+    shopContainer.removeChild(shopContainer.firstChild);
+  }
+};
+
 const addButton = document.getElementById('addShop');
 const addShopValue = document.getElementById('shopName');
 
+//add shop to the list
 const addShop = () => {
-  shops.push(addShopValue.value);
-
-  console.log(addShopValue.value);
+  shopsAmended.push(addShopValue.value);
+  clearShopsContainer();
+  showShops(shopsAmended);
+  updateSettings(shopsAmended, pricesAmended);
 };
 
 addButton.addEventListener('click', addShop);
+
+//========================================
+
+//Prices functionality
