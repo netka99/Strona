@@ -332,6 +332,7 @@
 .prices-InputContainer {
   flex: 1 1 66.67%;
   display: flex;
+  justify-content: space-around;
 
   @media screen and (max-width: $tablet) {
     flex: 78%;
@@ -396,51 +397,5 @@
 
   &:hover {
     background: linear-gradient(to bottom right, #512fa1, #7656b0);
-  }
-}
-
-.button-container-prices {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: auto;
-  padding-right: 1rem;
-
-  .edit-button-prices,
-  .delete-button-prices {
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    cursor: pointer;
-
-    img {
-      display: block;
-      width: 90%;
-      height: 90%;
-    }
-  }
-
-  .edit-button-prices {
-    img {
-      filter: brightness(0) saturate(100%) invert(56%) sepia(85%) saturate(604%)
-        hue-rotate(168deg) brightness(101%) contrast(88%);
-    }
-    &:focus,
-    &:hover {
-      filter: brightness(0) saturate(100%) invert(31%) sepia(94%) saturate(879%)
-        hue-rotate(184deg) brightness(87%) contrast(82%);
-    }
-  }
-
-  .delete-button-prices {
-    img {
-      filter: brightness(0) saturate(100%) invert(33%) sepia(87%)
-        saturate(3694%) hue-rotate(335deg) brightness(99%) contrast(89%);
-    }
-    &:focus,
-    &:hover {
-      filter: brightness(0) saturate(100%) invert(30%) sepia(76%)
-        saturate(2026%) hue-rotate(335deg) brightness(72%) contrast(96%);
-    }
   }
 }

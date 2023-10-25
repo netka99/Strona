@@ -1166,13 +1166,16 @@ input[type=date]:focus {
   font-size: 1rem;
 }
 
-.summary-shop-name, .summary-daily-sale, .summary-daily-price {
-  padding: 10px 0px 2px 15px;
+.summary-shop-name,
+.summary-daily-sale,
+.summary-daily-price {
+  padding: 10px 0px 2px 2px;
   border-bottom: 2px solid #d9d9d9;
 }
 
 @media screen and (max-width: 370px) {
-  .summary-daily-sale, .summary-daily-price {
+  .summary-daily-sale,
+  .summary-daily-price {
     padding: 10px 0px 2px 0px;
   }
 }
@@ -1592,6 +1595,7 @@ input[type=date]:focus {
 .prices-InputContainer {
   flex: 1 1 66.67%;
   display: flex;
+  justify-content: space-around;
 }
 @media screen and (max-width: 768px) {
   .prices-InputContainer {
@@ -1655,39 +1659,6 @@ input[type=date]:focus {
 }
 .prices-save:hover {
   background: linear-gradient(to bottom right, #512fa1, #7656b0);
-}
-
-.button-container-prices {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-left: auto;
-  padding-right: 1rem;
-}
-.button-container-prices .edit-button-prices,
-.button-container-prices .delete-button-prices {
-  background-color: transparent;
-  border: none;
-  margin: 0;
-  cursor: pointer;
-}
-.button-container-prices .edit-button-prices img,
-.button-container-prices .delete-button-prices img {
-  display: block;
-  width: 90%;
-  height: 90%;
-}
-.button-container-prices .edit-button-prices img {
-  filter: brightness(0) saturate(100%) invert(56%) sepia(85%) saturate(604%) hue-rotate(168deg) brightness(101%) contrast(88%);
-}
-.button-container-prices .edit-button-prices:focus, .button-container-prices .edit-button-prices:hover {
-  filter: brightness(0) saturate(100%) invert(31%) sepia(94%) saturate(879%) hue-rotate(184deg) brightness(87%) contrast(82%);
-}
-.button-container-prices .delete-button-prices img {
-  filter: brightness(0) saturate(100%) invert(33%) sepia(87%) saturate(3694%) hue-rotate(335deg) brightness(99%) contrast(89%);
-}
-.button-container-prices .delete-button-prices:focus, .button-container-prices .delete-button-prices:hover {
-  filter: brightness(0) saturate(100%) invert(30%) sepia(76%) saturate(2026%) hue-rotate(335deg) brightness(72%) contrast(96%);
 }
 
 /* Modal Styles */
