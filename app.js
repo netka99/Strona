@@ -1,13 +1,3 @@
-// const shops = [
-//   'Maja',
-//   'Kowalskiego',
-//   'Nowomiejska',
-//   'Lityńskiego',
-//   'Stankiewicza',
-//   'Buczka',
-//   'Świerkowa',
-// ];
-
 let shopsSesion = [];
 
 const products = [
@@ -61,9 +51,7 @@ async function fetchData(url) {
 
 async function loadShops() {
   try {
-    const shopsData = await fetchData(
-      'https://smacznykaseksuwalki.com/api/settings/aneta'
-    );
+    const shopsData = await fetchData(APISettings);
     contentLoad(shopsData.shops);
     shopsSesion = shopsData.shops;
   } catch (error) {
@@ -363,12 +351,10 @@ const contentLoad = (shops) => {
     });
   });
 
-  const apiUrlSale = 'https://www.smacznykaseksuwalki.com/api/sales';
-  const apiUrlReturn = 'https://www.smacznykaseksuwalki.com/api/returns';
+  const apiUrlSale = APISales;
+  const apiUrlReturn = APIReturns;
 
   async function postDataToApi(data, url) {
-    // const apiUrl = "https://www.smacznykaseksuwalki.com/api/sales";
-
     try {
       const headers = {
         'Content-Type': 'application/json',

@@ -41,7 +41,7 @@ async function fetchData(apiEndpoint) {
     const dateEnd = document.getElementById('dateEnd').value;
 
     const response = await fetch(
-      `https://smacznykaseksuwalki.com/api/${apiEndpoint}?start=${dateStart}&end=${dateEnd}`
+      `${APIGeneral}/${apiEndpoint}?start=${dateStart}&end=${dateEnd}`
     );
 
     // Check if the response status code indicates success (e.g., 200 OK)
@@ -83,7 +83,7 @@ async function getData(apiEndpoint) {
 }
 
 async function fetchPrices() {
-  const url = 'https://smacznykaseksuwalki.com/api/settings/aneta';
+  const url = APISettings;
 
   try {
     const response = await fetch(url);

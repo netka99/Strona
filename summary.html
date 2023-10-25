@@ -1,70 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<html lang="pl-PL">
+  <html lang="pl-PL">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>SK Application</title>
+      <link rel="stylesheet" href="./styles/style.css" />
+    </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SK Application</title>
-  <link rel="stylesheet" href="./styles/style.css" />
-</head>
-
-<body>
-  <nav class="menu" id="main-menu">
-    <ul class="site-nav">
-      <li><a href="./index.html" class="nav-link">Home</a></li>
-      <li><a href="./sale.html" class="nav-link">Sprzedaż</a></li>
-      <li><a href="./summary.html" class="nav-link">Zestawienie</a></li>
-      <li><a href="./graphs.html" class="nav-link">Wykresy</a></li>
-      <li><a href="./settings.html" class="nav-link">Ustawienia</a></li>
-    </ul>
-    <div class="hamburger">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </div>
-  </nav>
-  <header>
-    <div class="backgroundImage">
-      <div class="textWelcome">Zestawienie</div>
-    </div>
-  </header>
-  <section class="date-range">
-    <div class="date-range-container">
-      <div class="date-container">
-        <p>Data od</p>
-        <input id='dateStart' type="date" required />
-      </div>
-      <div class="date-text">-</div>
-      <div class="date-container">
-        <p>Data do</p>
-        <input id='dateEnd' type="date" required />
-      </div>
-    </div>
-    <div class="date-submit">
-      <button id="searchDate">Szukaj</button>
-    </div>
-  </section>
-  <section class="summary-buttons">
-    <button class="summary-buttons-product" data-id="Kartacze">
-      <img src="./images/Kartacze-Small.jpg" alt="kartacze">
-    </button>
-    <button class="summary-buttons-product" data-id="Babka">
-      <img src="./images/Babka-Small.jpg" alt="babka ziemniaczana">
-    </button>
-    <button class="summary-buttons-product" data-id="Kiszka">
-      <img src="./images/Kiszka-Small.jpg" alt="kiszka ziemniaczana"> 
-    </button>
-  </section>
-  <section class="summary-output">
-
-  </section>
-  <footer class="summary-footer"></footer>
-
-  <script src="app_summary.js"></script>
-  <script src="nav.js"></script>
-
-</body>
-
+    <body>
+      <nav class="menu" id="main-menu">
+        <ul class="site-nav">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./sale.html" class="nav-link">Sprzedaż</a></li>
+          <li><a href="./summary.html" class="nav-link">Zestawienie</a></li>
+          <li><a href="./graphs.html" class="nav-link">Wykresy</a></li>
+          <li><a href="./settings.html" class="nav-link">Ustawienia</a></li>
+        </ul>
+        <div class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+      </nav>
+      <header>
+        <div class="backgroundImage">
+          <div class="textWelcome">Zestawienie</div>
+        </div>
+      </header>
+      <section class="date-range">
+        <div class="date-range-container">
+          <div class="date-container">
+            <p>Data od</p>
+            <input id="dateStart" type="date" required />
+          </div>
+          <div class="date-text">-</div>
+          <div class="date-container">
+            <p>Data do</p>
+            <input id="dateEnd" type="date" required />
+          </div>
+        </div>
+        <div class="date-submit">
+          <button id="searchDate">Szukaj</button>
+        </div>
+      </section>
+      <section class="summary-buttons">
+        <button class="summary-buttons-product" data-id="Kartacze">
+          <img src="./images/Kartacze-Small.jpg" alt="kartacze" />
+        </button>
+        <button class="summary-buttons-product" data-id="Babka">
+          <img src="./images/Babka-Small.jpg" alt="babka ziemniaczana" />
+        </button>
+        <button class="summary-buttons-product" data-id="Kiszka">
+          <img src="./images/Kiszka-Small.jpg" alt="kiszka ziemniaczana" />
+        </button>
+      </section>
+      <section class="summary-output"></section>
+      <footer class="summary-footer"></footer>
+      <script src="API.js"></script>
+      <script src="app_summary.js"></script>
+      <script src="nav.js"></script>
+    </body>
+  </html>
 </html>

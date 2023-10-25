@@ -4,19 +4,16 @@ let shopsAmended = [];
 //replacing data
 async function updateSettings(shops, prices) {
   try {
-    const response = await fetch(
-      'https://smacznykaseksuwalki.com/api/settings/aneta',
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          shops,
-          prices,
-        }),
-      }
-    );
+    const response = await fetch(APISettings, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        shops,
+        prices,
+      }),
+    });
     const data = await response.json();
     console.log('Data:', data);
   } catch (error) {
@@ -41,9 +38,7 @@ async function fetchData(url) {
 
 async function loadPrices() {
   try {
-    const pricesData = await fetchData(
-      'https://smacznykaseksuwalki.com/api/settings/aneta'
-    );
+    const pricesData = await fetchData(APISettings);
     pricesAmended = pricesData.prices;
     shopsAmended = pricesData.shops;
     populatePrices(pricesAmended);

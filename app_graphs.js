@@ -12,14 +12,13 @@ let returnsByProduct = {};
 let sortedSale;
 let sortedReturn;
 
-
 async function fetchData(apiEndpoint) {
   try {
-    const dateStart = document.getElementById("startDate").value;
-    const dateEnd = document.getElementById("endDate").value;
+    const dateStart = document.getElementById('startDate').value;
+    const dateEnd = document.getElementById('endDate').value;
 
     const response = await fetch(
-      `https://smacznykaseksuwalki.com/api/${apiEndpoint}?start=${dateStart}&end=${dateEnd}`
+      `${APIGeneral}/${apiEndpoint}?start=${dateStart}&end=${dateEnd}`
     );
 
     // Check if the response status code indicates success (e.g., 200 OK)
@@ -31,7 +30,7 @@ async function fetchData(apiEndpoint) {
     return data; // Return the fetched data
   } catch (error) {
     // Handle any errors that occurred during the request
-    console.error("Error:", error);
+    console.error('Error:', error);
     throw error; // Rethrow the error to handle it outside this function if needed
   }
 }
@@ -41,11 +40,11 @@ async function getData(apiEndpoint) {
     const apiData = await fetchData(apiEndpoint);
     return apiData;
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
   }
 }
 
-//write a function to sort salesData and returnsData by date 
+//write a function to sort salesData and returnsData by date
 const sortObjectsByDate = (objectList) => {
   return objectList.sort(function (a, b) {
     return new Date(a.date) - new Date(b.date);
@@ -53,29 +52,38 @@ const sortObjectsByDate = (objectList) => {
 };
 
 async function calculateSummary() {
-   summarySale = {};
-   summaryReturn = {};
-   valuesByProductReturn = {};
-   valuesByProductSale = {};
-   datesByProductSale = {};
-   datesByProductReturn = {};
-   returnsByProduct = {};
-   
+  summarySale = {};
+  summaryReturn = {};
+  valuesByProductReturn = {};
+  valuesByProductSale = {};
+  datesByProductSale = {};
+  datesByProductReturn = {};
+  returnsByProduct = {};
+
   try {
     const [salesData, returnsData] = await Promise.all([
-      getData('sales'),    // Fetch sales data
-      getData('returns') // Fetch returns data
+      getData('sales'), // Fetch sales data
+      getData('returns'), // Fetch returns data
     ]);
 
     sortedSale = sortObjectsByDate(salesData);
     sortedReturn = sortObjectsByDate(returnsData);
 
     // Process the fetched data as needed
-    summaryData(sortedSale, summarySale, valuesByProductSale, datesByProductSale);
-    summaryData(sortedReturn, summaryReturn, valuesByProductReturn, datesByProductReturn);
-
+    summaryData(
+      sortedSale,
+      summarySale,
+      valuesByProductSale,
+      datesByProductSale
+    );
+    summaryData(
+      sortedReturn,
+      summaryReturn,
+      valuesByProductReturn,
+      datesByProductReturn
+    );
   } catch (error) {
-    console.error("Error:", error);
+    console.error('Error:', error);
   }
 }
 
@@ -94,10 +102,7 @@ const objectsComparison = () => {
       returnsByProduct[product][date] = returnValue;
     }
   }
-}
-
-
-
+};
 
 const summaryData = (dataArr, summaryObj, valuesByProduct, datesByProduct) => {
   // Loop through each sale in the data
@@ -129,64 +134,61 @@ const summaryData = (dataArr, summaryObj, valuesByProduct, datesByProduct) => {
     valuesByProduct[product] = values;
     datesByProduct[product] = dates;
   }
-
 };
 
 //for each product button is assign event listener to
 //show graph with corresponding data
-const graphsPerProduct = document.querySelectorAll(
-  ".summary-buttons-product"
-);
+const graphsPerProduct = document.querySelectorAll('.summary-buttons-product');
 const graphsSummary = () => {
   const data = {
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
     datasets: [
       {
-        type: "bar",
-        label: "Sprzedaż",
+        type: 'bar',
+        label: 'Sprzedaż',
         data: [],
-        backgroundColor: ["rgba(131, 99, 192, 0.5)"],
-        borderColor: ["rgb(131, 99, 192)"],
+        backgroundColor: ['rgba(131, 99, 192, 0.5)'],
+        borderColor: ['rgb(131, 99, 192)'],
         borderWidth: 1,
       },
       {
-        type: "line",
-        label: "Zwrot",
+        type: 'line',
+        label: 'Zwrot',
         data: [],
         fill: false,
-        borderColor: "rgb(54, 162, 235)",
-        backgroundColor: ["rgba(54, 162, 235)"],
+        borderColor: 'rgb(54, 162, 235)',
+        backgroundColor: ['rgba(54, 162, 235)'],
       },
     ],
   };
 
   graphsPerProduct.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const graphContainer = document.querySelector(".graphs");
+    button.addEventListener('click', (e) => {
+      const graphContainer = document.querySelector('.graphs');
       const id = e.currentTarget.dataset.id;
 
-      if (id === "Kartacze") {
+      if (id === 'Kartacze') {
         myChart.config.data.labels = datesByProductSale.Kartacze;
         myChart.config.data.datasets[0].data = valuesByProductSale.Kartacze;
         myChart.config.data.datasets[1].data = returnsByProduct.Kartacze;
       }
-      if (id === "Babka") {
+      if (id === 'Babka') {
         myChart.config.data.labels = datesByProductSale.Babka;
         myChart.config.data.datasets[0].data = valuesByProductSale.Babka;
         myChart.config.data.datasets[1].data = returnsByProduct.Babka;
       }
-      if (id === "Kiszka") {
+      if (id === 'Kiszka') {
         myChart.config.data.labels = datesByProductSale.Kiszka;
         myChart.config.data.datasets[0].data = valuesByProductSale.Kiszka;
         myChart.config.data.datasets[1].data = returnsByProduct.Kiszka;
       }
       myChart.update();
-      graphContainer.classList.add("active");
+      graphContainer.classList.add('active');
     });
   });
 
   const config = {
-    type: "scatter",
+    type: 'scatter',
     data: data,
     options: {
       responsive: true,
@@ -198,9 +200,9 @@ const graphsSummary = () => {
     },
   };
 
-  const ctx = document.getElementById("myChart");
+  const ctx = document.getElementById('myChart');
 
-    const chart = Chart.getChart(ctx);
+  const chart = Chart.getChart(ctx);
   //   function removeData(chart) {
   //     chart.data.labels.pop();
   //     chart.data.datasets.forEach((dataset) => {
@@ -208,18 +210,15 @@ const graphsSummary = () => {
   //     });
   //     chart.update();
   // }
-    if (chart) {
-      // removeData(chart);
-      chart.destroy();
-    }
-
+  if (chart) {
+    // removeData(chart);
+    chart.destroy();
+  }
 
   const myChart = new Chart(ctx, config);
+};
 
-}
-
-
-const searchDate = document.getElementById("searchDate");
+const searchDate = document.getElementById('searchDate');
 
 //graph's logic
 const dateSearching = () => {
@@ -227,5 +226,4 @@ const dateSearching = () => {
   graphsSummary();
 };
 
-searchDate.addEventListener("click", dateSearching);
-
+searchDate.addEventListener('click', dateSearching);
