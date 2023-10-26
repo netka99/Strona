@@ -340,7 +340,6 @@ const contentLoad = (shops) => {
         postDataToApi(data, apiUrlSale);
         e.currentTarget.classList.add('active');
         extraSaleButton.textContent = 'Zapisana';
-        console.log(extraSaleInput.id);
         totalsExtraDelivery.push(Number(extraSaleInput.value));
         extraSaleInput.disabled = true;
 
@@ -441,7 +440,6 @@ const contentLoad = (shops) => {
     const soldInputIdShop = soldInputId.split('_')[0];
     const soldInputIdName = `${soldInputIdProduct}`;
     totals[soldInputIdName].push(Number(soldInputValue.value));
-    console.log(totals);
     const soldInputData = soldInputValue.value;
 
     if (dateInput.value === '') {
@@ -772,9 +770,6 @@ const reloadContent = () => {
   sumQuantKiszka.textContent = '0.00' + ' kg';
 
   contentLoad(shopsSesion);
-  console.log(totals);
-
-  console.log('reload');
 };
 
 // window.addEventListener('load', contentLoad);

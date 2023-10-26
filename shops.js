@@ -138,7 +138,6 @@ async function loadShops() {
     const shopsData = await fetchData(APISettings);
     shopsAmended = shopsData.shops;
     pricesAmended = shopsData.prices;
-    console.log(pricesAmended);
 
     showShops(shopsData.shops);
   } catch (error) {

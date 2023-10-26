@@ -13,6 +13,13 @@
   }
 }
 
+#shopsList {
+  @media screen and (max-width: $mobileL) {
+    width: 80%;
+    padding: 0.5rem 0.5rem;
+  }
+}
+
 .shopNameSett {
   width: 90%;
   height: 2.5rem;
@@ -38,6 +45,10 @@
   box-shadow: 2px 3px 4px 1px rgb(0 0 0 / 30%);
   background: linear-gradient(to bottom right, #5c35b6, #8461c5);
   cursor: pointer;
+
+  @media screen and (max-width: $mobileL) {
+    margin-bottom: 1rem;
+  }
 }
 
 .AddShopButton:active {
@@ -130,6 +141,11 @@
   width: 90%;
   padding-left: 1rem;
   border-bottom: 2px solid #dfdfdf;
+
+  @media screen and (max-width: $mobileL) {
+    width: 95%;
+    padding-left: 0.5rem;
+  }
 }
 
 .trashButton {
