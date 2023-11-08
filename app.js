@@ -776,3 +776,5 @@ const reloadContent = () => {
 
 // window.addEventListener('load', contentLoad);
 dateConfirmation.addEventListener('click', reloadContent);
+
+//comments
