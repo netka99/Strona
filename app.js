@@ -232,6 +232,7 @@ const contentLoad = (shops) => {
         if (wrapperEl.style.height) {
           wrapperEl.style.height = null;
           arrow.style = 'transform:rotate(' + 0 + '-180deg)';
+          arrow.style.transformOrigin = 'center center';
           if (counterExtraSale >= 1) {
             formTab.style.height =
               parseInt(currentHeight) -
@@ -244,6 +245,7 @@ const contentLoad = (shops) => {
         } else {
           wrapperEl.style.height = wrapperEl.scrollHeight + 'px';
           arrow.style = 'transform:rotate(' + 0 + '180deg)';
+          arrow.style.transformOrigin = 'center center';
           if (counterExtraSale >= 1) {
             formTab.style.height =
               parseInt(currentHeight) +

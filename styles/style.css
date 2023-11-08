@@ -1819,6 +1819,46 @@ input[type=date]:focus {
   padding-bottom: 1.5rem;
 }
 
+/* Modal styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Overlay background */
+}
+
+/* Modal content styles */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 50px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+}
+
+/* Close button styles */
+.close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Close button hover effect */
+.close:hover {
+  color: #f00;
+}
+
 html {
   width: 100vw;
   margin: 0;
