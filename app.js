@@ -367,6 +367,7 @@ const contentLoad = (shops) => {
         method: 'POST',
         headers: headers,
         body: JSON.stringify(data), // Convert the JSON data to a string
+        credentials: 'same-origin'
       };
 
       // Send the POST request to the API and await the response
