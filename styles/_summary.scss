@@ -124,11 +124,11 @@
   grid-template-columns: 2fr 1fr 1fr;
   padding: 2rem 2rem 1rem 2rem;
 
-  @media screen and (max-width: 370px) {
+  @media screen and (max-width: 390px) {
     padding: 2rem 0.2rem 1rem 0.2rem;
   }
 
-  @media screen and (min-width: 370px) and (max-width: $mobileL) {
+  @media screen and (min-width: 390px) and (max-width: $mobileL) {
     padding: 2rem 1rem 1rem 1rem;
   }
 }
@@ -178,7 +178,6 @@
 .summary-shop-name {
   color: $main-text;
   font-weight: bold;
-  font-size: 1rem;
 }
 
 .summary-shop-name,
@@ -186,11 +185,14 @@
 .summary-daily-price {
   padding: 10px 0px 2px 2px;
   border-bottom: 2px solid #d9d9d9;
+  @media screen and (max-width: $mobileL) {
+    font-size: 0.9rem;
+  }
 }
 
 .summary-daily-sale,
 .summary-daily-price {
-  @media screen and (max-width: 370px) {
+  @media screen and (max-width: $mobileL) {
     padding: 10px 0px 2px 0px;
   }
 }

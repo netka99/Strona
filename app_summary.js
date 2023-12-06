@@ -51,9 +51,8 @@ async function fetchData(apiEndpoint) {
     // Parse the response body as JSON
     const data = await response.json();
     console.log('Data:', data);
-    return data; // Return the fetched data
+    return data;
   } catch (error) {
-    // Handle any errors that occurred during the request
     console.error('Error:', error);
     throw error; // Rethrow the error to handle it outside this function if needed
   }
@@ -269,6 +268,7 @@ const loadingComponent = function (filteredData) {
 const filteredByDate = function (data) {
   const dailySaleSummary = data.reduce((acc, sale) => {
     const { product, quantity, shop } = sale;
+    const parsedQuantity = Number(quantity) || 0;
 
     if (!acc[product]) {
       acc[product] = {};
@@ -276,7 +276,7 @@ const filteredByDate = function (data) {
     if (!acc[product][shop]) {
       acc[product][shop] = 0;
     }
-    acc[product][shop] += quantity;
+    acc[product][shop] += parsedQuantity;
     return acc;
   }, {});
 

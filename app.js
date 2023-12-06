@@ -79,6 +79,11 @@ const contentLoad = (shops) => {
 
   let counterExtraSale = 0; //counter of button's clicks
 
+  const validateNumber = (input) => {
+    if (isNaN(input.value) || input.value === '') {
+      input.value = 0;
+    }
+  };
   //logic for main content
   [...document.getElementsByClassName('mainContent')].forEach((el, indexes) => {
     const mainContent = document.createElement('div');
@@ -164,6 +169,7 @@ const contentLoad = (shops) => {
         soldItemsFirst.append(soldInput);
         soldInput.setAttribute('type', 'number');
         soldInput.setAttribute('min', '0');
+        soldInput.setAttribute('oninput', `${validateNumber(this)}`);
         soldInput.setAttribute('name', `${item}_${prod[0]}_${i}_sale`);
         soldInput.setAttribute('id', `${item}_${prod[0]}_${i}_sale_${indexes}`);
         const itemsQuantitiesF = document.createElement('p');
@@ -181,6 +187,7 @@ const contentLoad = (shops) => {
         const returnInput = document.createElement('input');
         soldItemsSecond.append(returnInput);
         returnInput.setAttribute('type', 'number');
+        returnInput.setAttribute('oninput', `${validateNumber(this)}`);
         returnInput.setAttribute('min', '0');
         returnInput.setAttribute(
           'id',
@@ -311,6 +318,7 @@ const contentLoad = (shops) => {
       extraSaleInputContainer.append(extraSaleInput);
       extraSaleInput.setAttribute('type', 'number');
       extraSaleInput.setAttribute('min', '0');
+      extraSaleInput.setAttribute('oninput', `${validateNumber(this)}`);
       extraSaleInput.setAttribute('id', `${extraSaleProductId}_Kartacze_Extra`);
       const extraSaleItemsQuant = document.createElement('p');
       extraSaleInputContainer.append(extraSaleItemsQuant);
@@ -339,15 +347,19 @@ const contentLoad = (shops) => {
           shop: ExtraSaleInputIdShop,
           date: dateInput.value,
         };
-        postDataToApi(data, apiUrlSale);
-        e.currentTarget.classList.add('active');
-        extraSaleButton.textContent = 'Zapisana';
-        totalsExtraDelivery.push(Number(extraSaleInput.value));
-        extraSaleInput.disabled = true;
+        if (extraSaleInput.value === '') {
+          openModal();
+        } else {
+          postDataToApi(data, apiUrlSale);
+          e.currentTarget.classList.add('active');
+          extraSaleButton.textContent = 'Zapisana';
+          totalsExtraDelivery.push(Number(extraSaleInput.value));
+          extraSaleInput.disabled = true;
 
-        e.currentTarget.removeEventListener('click', extraSale);
+          e.currentTarget.removeEventListener('click', extraSale);
 
-        summarySaleReturn();
+          summarySaleReturn();
+        }
       });
     });
   });
@@ -366,7 +378,8 @@ const contentLoad = (shops) => {
       const requestOptions = {
         method: 'POST',
         headers: headers,
-        body: JSON.stringify(data), // Convert the JSON data to a string
+        body: JSON.stringify(data),
+        credentials: 'include',
       };
 
       // Send the POST request to the API and await the response
@@ -444,7 +457,7 @@ const contentLoad = (shops) => {
     totals[soldInputIdName].push(Number(soldInputValue.value));
     const soldInputData = soldInputValue.value;
 
-    if (dateInput.value === '') {
+    if (soldInputValue.value === '') {
       openModal();
     } else {
       sumSaleKartacze = totals.Kartacze.reduce((v, i) => v + i, initialValue);
@@ -495,7 +508,7 @@ const contentLoad = (shops) => {
 
     const initialValue = 0;
 
-    if (dateInput.value === '') {
+    if (returnInputValue.value === '') {
       openModal();
     } else {
       sumReturnKartacze = totalsReturn.Kartacze.reduce(

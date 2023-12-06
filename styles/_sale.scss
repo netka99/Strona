@@ -1,810 +1,800 @@
 .container {
-    height: min-content;
-    width: 100vw;
-    margin: 0;
-    max-width: 100%;
-  }
+  height: min-content;
+  width: 100vw;
+  margin: 0;
+  max-width: 100%;
+}
 
 //date container
 .date {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 
-    @media screen and (max-width: $tablet) {
-        padding: 1rem;
-    }
+  @media screen and (max-width: $tablet) {
+    padding: 1rem;
   }
-  
-  span::after {
-    padding-left: 5px;
+}
+
+span::after {
+  padding-left: 5px;
+}
+
+input:invalid + span::after {
+  content: '✖';
+  font-size: 1.4rem;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+input:valid + span::after {
+  content: '✓';
+  color: green;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+input[type='date'] {
+  appearance: none;
+  -webkit-appearance: none;
+  color: #656464;
+  font-size: 1.6rem;
+  border: 1px solid #616161;
+  border-radius: 10px;
+  background: #ecf0f1;
+  padding: 10px;
+  display: inline-block !important;
+  visibility: visible !important;
+
+  @media screen and (max-width: $mobileL) {
+    font-size: 1.2rem;
   }
-  
-  input:invalid+span::after {
-    content: "✖";
-    font-size: 1.4rem;
-  }
-  
-  textarea:focus{
-    outline: none;
-  }
-  
-  input:valid+span::after {
-    content: "✓";
-    color: green;
-    font-size: 2rem;
-    font-weight: bold;
-  }
-  
-  input[type="date"] {
-    appearance: none;
-    -webkit-appearance: none;
+
+  &:focus {
     color: #656464;
-    font-size: 1.6rem;
-    border: 1px solid #616161;
-    border-radius: 10px;
-    background: #ecf0f1;
-    padding: 10px;
-    display: inline-block !important;
-    visibility: visible !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
+}
 
-    @media screen and (max-width: $mobileL) {
-        font-size: 1.2rem;
-    }
+.dateButton {
+  color: #656464;
+  font-size: 1rem;
+  border: 1px solid #616161;
+  border-radius: 10px;
+  background: #ecf0f1;
+  padding: 6px;
+  display: inline-block !important;
+  visibility: visible !important;
+  margin-left: 0.5rem;
 
-    &:focus {
-        color: #656464;
-        box-shadow: none;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-      }
+  &:hover {
+    background: #dbdbdc;
+    cursor: pointer;
+    color: #3a3a3a;
   }
 
-  .dateButton {
-    color: #656464;
-    font-size: 1rem;
-    border: 1px solid #616161;
-    border-radius: 10px;
-    background: #ecf0f1;
-    padding: 6px;
-    display: inline-block !important;
-    visibility: visible !important;
-    margin-left: 0.5rem;
-
-    &:hover {
-        background: #dbdbdc;;
-        cursor: pointer;
-        color: #3a3a3a;
-    }
-
-    &:active {
-        box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
-    }
+  &:active {
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
   }
-  
-  //Content
-  .formTab {
-    margin: 0 auto;
-    padding: 50px 50px;
-    height: auto;
-    -moz-transition: height 0.5s;
-    -ms-transition: height 0.5s;
-    -o-transition: height 0.5s;
-    -webkit-transition: height 0.5s;
-    transition: height 0.5s;
+}
 
-    @media screen and (max-width: $tabletS) {
-        padding: 20px 20px;
-    }
+//Content
+.formTab {
+  margin: 0 auto;
+  padding: 50px 50px;
+  height: auto;
+  -moz-transition: height 0.5s;
+  -ms-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+
+  @media screen and (max-width: $tabletS) {
+    padding: 20px 20px;
   }
+}
 
-  .tab {
-    position: relative;
-    width: 100%;
-    margin: auto auto;
-    height: 200px;
+.tab {
+  position: relative;
+  width: 100%;
+  margin: auto auto;
+  height: 200px;
 
-    input[type="radio"] {
-  display: none;
-} 
+  input[type='radio'] {
+    display: none;
   }
+}
 
 //two main top buttons Sale and Return
 .tabSaleReturn {
-    float: left;
-    text-align: center;
-    width: 29%;
+  float: left;
+  text-align: center;
+  width: 29%;
+  margin: 0 auto;
+
+  label {
+    padding: 10px 20px;
     margin: 0 auto;
+    position: relative;
+    height: 100%;
+    line-height: 24px;
+    overflow: hidden;
+    text-align: center;
+    z-index: 1;
+    display: inline-block;
+    border-radius: 15px;
+    width: 80%;
+    background-color: #fdfdfd;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.3),
+      -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
 
-    label {
-        padding: 10px 20px;
-        margin: 0 auto;
-        position: relative;
-        height: 100%;
-        line-height: 24px;
-        overflow: hidden;
-        text-align: center;
-        z-index: 1;
-        display: inline-block;
-        border-radius: 15px;
-        width: 80%;
-        background-color: #fdfdfd;
-        font-size: 1.1rem;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.3),
-            -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
-
-        @media screen and (max-width: $mobileL) {
-            padding: 10px 35px;
-
-        }
+    @media screen and (max-width: $mobileL) {
+      padding: 10px 35px;
     }
+  }
 }
 
 .return-button {
-    left: 73%;
+  left: 73%;
 
-    @media screen and (max-width: $mobileL) {
-        left: 80%;
-    }
+  @media screen and (max-width: $mobileL) {
+    left: 80%;
+  }
 
-    @media screen and (min-width: $mobileL) and (max-width: $tablet) {
-        left: 92%;
-    }
+  @media screen and (min-width: $mobileL) and (max-width: $tablet) {
+    left: 92%;
+  }
 
-    @media screen and (min-width: $tablet) and (max-width: $desktop) {
-        left: 80%;
-    }
-
+  @media screen and (min-width: $tablet) and (max-width: $desktop) {
+    left: 80%;
+  }
 }
 
 .sale-button {
-    left: 73%;
+  left: 73%;
 
-    @media screen and (max-width: $mobileL) {
-        left: 15%;
-    }
+  @media screen and (max-width: $mobileL) {
+    left: 15%;
+  }
 
-    @media screen and (min-width: $mobileL) and (max-width: $tablet) {
-        left: 48%;
-    }
+  @media screen and (min-width: $mobileL) and (max-width: $tablet) {
+    left: 48%;
+  }
 
-    @media screen and (min-width: $tablet) and (max-width: $desktop) {
-        left: 66%;
-    }
-
+  @media screen and (min-width: $tablet) and (max-width: $desktop) {
+    left: 66%;
+  }
 }
-
 
 //three button of products
 .productTab {
-    padding: 1.5rem 0rem 3rem 0rem;
+  padding: 1.5rem 0rem 3rem 0rem;
 
-    button {
-        background: #fff;
-        box-shadow: 4px 6px 6px 1px rgb(0 0 0 / 30%), -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
-        border: none;
-        border-radius: 15px;
-        cursor: pointer;
-        padding: 4px 8px 3px;
+  button {
+    background: #fff;
+    box-shadow: 4px 6px 6px 1px rgb(0 0 0 / 30%),
+      -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    padding: 4px 8px 3px;
+  }
+
+  button:nth-of-type(2) {
+    margin: 0rem 2rem;
+
+    @media screen and (max-width: $mobileL) {
+      margin: 0rem 1rem;
     }
-
-    button:nth-of-type(2) {
-        margin: 0rem 2rem;
-
-        @media screen and (max-width: $mobileL) {
-            margin: 0rem 1rem;
-        }
-    }
+  }
 }
 
 .tab-button.active {
-    background-color: #f6f6f6;
-    box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3),
-        inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+  background-color: #f6f6f6;
+  box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
 }
 
 .tabs {
-    position: absolute;
-    top: 38px;
-    left: 50%;
-    transform: translate(-50%);
-    bottom: 0;
-    z-index: 1;
-    width: 100%;
-    margin: 10px auto;
-    height: 100vh;
-    display: none;
+  position: absolute;
+  top: 38px;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  margin: 10px auto;
+  height: 100vh;
+  display: none;
 
-    button img {
-        width: 55px;
-        border-radius: 25px;
-        padding: 5px 10px;
-      }
+  button img {
+    width: 55px;
+    border-radius: 25px;
+    padding: 5px 10px;
+  }
+}
 
-  }
+#tabone:checked ~ .tabs {
+  display: block;
+}
 
-  #tabone:checked~.tabs {
-    display: block;
-  }
-  
-  #tabtwo:checked~.tabs {
-    display: block;
-  }
+#tabtwo:checked ~ .tabs {
+  display: block;
+}
 
 //content with all products and shops
 
 .tabContent {
-    position: absolute;
-    top: 150px;
-    left: 50%;
-    transform: translate(-50%);
-    bottom: 0;
-    margin-top: 25px;
-    z-index: 1;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  
-  
-  [type=radio]:checked~label {
-    color: #5C35B6;
-    z-index: 2;
-    width: 80%;
-    background: linear-gradient(45deg, #e3e3e3, #ede8e8);
-    border-radius: 15px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    transition: 0.2s ease-in-out;
-    box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3),
-      inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
-  }
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 0;
+  margin-top: 25px;
+  z-index: 1;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[type='radio']:checked ~ label {
+  color: #5c35b6;
+  // z-index: 2;
+  width: 80%;
+  background: linear-gradient(45deg, #e3e3e3, #ede8e8);
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: 0.2s ease-in-out;
+  box-shadow: inset 3px 3px 8px 0 rgba(0, 0, 0, 0.3),
+    inset -6px -6px 10px 0 rgba(255, 255, 255, 0.5);
+}
 
 .mainContent {
-    display: none;
-    padding: 10px 0px;
+  display: none;
+  padding: 10px 0px;
 
-    &.active {
-        display: block;
-        margin: auto;
-        width: 65%;
+  &.active {
+    display: block;
+    margin: auto;
+    width: 65%;
 
-        @media screen and (min-width: $desktopL)  {
-            width: 35%;
-        }
-
-        @media screen and (min-width: $desktopS) and (max-width: $desktopL) {
-            width: 45%;
-        }
-
-        @media screen and (min-width: $desktop) and (max-width: $desktopS) {
-            width: 50%;
-        }
-
-        @media screen and (min-width: $mobileL) and (max-width: $tablet) {
-            width: 85%;
-        }
-
-        @media screen and (max-width: $mobileL) {
-            width: 100%;
-        }
+    @media screen and (min-width: $desktopL) {
+      width: 35%;
     }
+
+    @media screen and (min-width: $desktopS) and (max-width: $desktopL) {
+      width: 45%;
+    }
+
+    @media screen and (min-width: $desktop) and (max-width: $desktopS) {
+      width: 50%;
+    }
+
+    @media screen and (min-width: $mobileL) and (max-width: $tablet) {
+      width: 85%;
+    }
+
+    @media screen and (max-width: $mobileL) {
+      width: 100%;
+    }
+  }
 }
 
 .containerProduct {
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 15px;
-    margin: 1rem 0rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-  .containerHeader {
-    display: flex;
-    align-content: space-between;
-    align-items: center;
-    justify-content: space-between;
-  }
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 15px;
+  margin: 1rem 0rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.containerHeader {
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .storeName {
-    display: flex;
-    justify-content: flex-start;
-    padding: 10px;
-    gap: 15px;
-    align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  gap: 15px;
+  align-items: center;
 
-    p {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #656464;
-        margin: 0;
+  p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #656464;
+    margin: 0;
 
-        @media screen and (max-width: $tablet) {
-            font-size: 1rem;
-
-        }
+    @media screen and (max-width: $tablet) {
+      font-size: 1rem;
     }
+  }
 }
 
 .store-picture {
-    width: 24px;
-    margin: 8px;
-    filter: invert(41%) sepia(0%) saturate(0%) hue-rotate(102deg) brightness(91%) contrast(85%);
-  }
+  width: 24px;
+  margin: 8px;
+  filter: invert(41%) sepia(0%) saturate(0%) hue-rotate(102deg) brightness(91%)
+    contrast(85%);
+}
 
 .buttons {
-    display: flex;
-    align-items: center;
-    gap: 1.3rem;
-    padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  padding: 10px;
 }
 
 .buttonCheck {
-    content: "✓";
-    font-size: 1.4rem;
-    padding: 5px 20px 5px 20px;
-    background: linear-gradient(to bottom right, #e51ead, #e086bf);
-    color: transparent;
-    border-radius: 25px;
-    font-weight: bold;
-    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.3);
+  content: '✓';
+  font-size: 1.4rem;
+  padding: 5px 20px 5px 20px;
+  background: linear-gradient(to bottom right, #e51ead, #e086bf);
+  color: transparent;
+  border-radius: 25px;
+  font-weight: bold;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.3);
 
-    @media screen and (max-width: $mobileL) {
-        padding: 2px 18px 2px 18px;
-    }
+  @media screen and (max-width: $mobileL) {
+    padding: 2px 18px 2px 18px;
+  }
 }
 
 .accordion {
-    background: linear-gradient(to bottom right, #5c35b6, #8461c5);
-    padding: 2px 1.5rem 2px 1.5rem;
-    border-radius: 15px;
-    border: none;
-    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to bottom right, #5c35b6, #8461c5);
+  padding: 2px 1.5rem 2px 1.5rem;
+  border-radius: 15px;
+  border: none;
+  box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.3);
+
+  @media screen and (max-width: $mobileL) {
+    padding: 1px 1.3rem 1px 1.3rem;
+  }
+
+  p {
+    font-size: 2rem;
+    font-weight: 500;
+    color: white;
+    margin: 0;
+    transition: 0.3s ease-in-out;
 
     @media screen and (max-width: $mobileL) {
-        padding: 1px 1.3rem 1px 1.3rem;
+      font-size: 1.8rem;
     }
+  }
 
-    p {
-        font-size: 2rem;
-        font-weight: 500;
-        color: white;
-        margin: 0;
-        transition: 0.3s ease-in-out;
+  &:hover {
+    background: linear-gradient(to bottom right, #512fa1, #7656b0);
+    cursor: pointer;
+  }
 
-        @media screen and (max-width: $mobileL) {
-            font-size: 1.8rem;
-        }
-    }
-
-    &:hover {
-        background: linear-gradient(to bottom right, #512fa1, #7656b0);
-        cursor: pointer;
-    }
-
-    &:active {
-        box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
-    }
+  &:active {
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .containerItem {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    background-color: #f6f6f6;
-    margin: 10px auto 10px auto;
-    padding: 0.5rem 0rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
-  .containerMain {
-    display: none;
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  background-color: #f6f6f6;
+  margin: 10px auto 10px auto;
+  padding: 0.5rem 0rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-    &.active {
-        display: block;
-      }
+.containerMain {
+  display: none;
+
+  &.active {
+    display: block;
   }
-  
+}
 
 .imageItem {
-    flex: 1 1 33.33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1 1 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (max-width: $tablet) {
+    flex: 18%;
+    padding-left: 10px;
+  }
+
+  img {
+    width: 55px;
+    border-radius: 25px;
+  }
+
+  p {
+    color: #292929;
+    font-weight: bold;
 
     @media screen and (max-width: $tablet) {
-        flex: 18%;
-        padding-left: 10px;
+      display: none;
     }
-
-    img {
-        width: 55px;
-        border-radius: 25px;
-    }
-
-    p {
-        color: #292929;
-        font-weight: bold;
-
-        @media screen and (max-width: $tablet) {
-            display: none;
-        }
-    }
+  }
 }
 
 .items {
-    flex: 1 1 66.67%;
+  flex: 1 1 66.67%;
 
-    @media screen and (max-width: $tablet) {
-        flex: 78%;
-    }
+  @media screen and (max-width: $tablet) {
+    flex: 78%;
+  }
 }
 
 .soldItems,
 .returnItems {
-    display: flex;
-    align-items: center;
-    gap: 1.2em;
-    justify-content: flex-end;
-    margin: 10px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+  gap: 1.2em;
+  justify-content: flex-end;
+  margin: 10px 0px 10px 0px;
+
+  @media screen and (max-width: $tablet) {
+    gap: 0.5rem;
+  }
+
+  &.hide {
+    display: none;
+  }
+
+  label {
+    margin-right: 20%;
 
     @media screen and (max-width: $tablet) {
+      margin-right: 0%;
+    }
+  }
+
+  input {
+    width: 5em;
+    height: 1.8em;
+    border-radius: 5px;
+    border: 1px solid #a3a3a3;
+
+    &:hover {
+      border: 1px solid #939393;
+    }
+  }
+
+  p {
+    margin: 0px 20px 0px 0px;
+    @media screen and (max-width: $tablet) {
+      margin: 0px 10px 0px 0px;
+    }
+  }
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.containerSaving {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px 20px 30px;
+
+  button {
+    border: none;
+    color: white;
+    padding: 4px 18px;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.3);
+    margin: 0rem 0.5rem;
+
+    @media screen and (max-width: $tablet) {
+      font-size: 0.9rem;
+    }
+
+    &:active {
+      box-shadow: 1px 1px 4px 1px rgba(54, 54, 54, 0.3);
+    }
+
+    &:nth-child(1) {
+      background: linear-gradient(to bottom right, #e51ead, #e086bf);
+      &:hover {
+        background: linear-gradient(to bottom right, #c91a97, #c376a7);
+        cursor: pointer;
+      }
+    }
+
+    &:nth-child(2) {
+      background: linear-gradient(to bottom right, #d5d6d6eb, #ffffffeb);
+      color: #e51ead;
+      font-size: 1.5rem;
+      padding: 4px 18px;
+
+      &:hover {
+        background: linear-gradient(to bottom right, #c3c4c4eb, #e5e5e5eb);
+        cursor: pointer;
+      }
+    }
+
+    &:nth-child(3) {
+      background: linear-gradient(to bottom right, #e51ead, #e086bf);
+      &:hover {
+        background: linear-gradient(to bottom right, #c91a97, #c376a7);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.wrapper {
+  -moz-transition: height 0.5s;
+  -ms-transition: height 0.5s;
+  -o-transition: height 0.5s;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  height: 0;
+  overflow: hidden;
+}
+
+.extra-sale-container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  height: 110px;
+  background-color: #f6f6f6;
+  margin: 10px auto 20px auto;
+  padding: 0.5rem 0rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .extra-Sale-Wrapper {
+    display: flex;
+    flex-direction: row;
+
+    .extra-sale-title {
+      flex: 1 1 33.33%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media screen and (max-width: $tablet) {
+        flex: 18%;
+      }
+
+      img {
+        width: 50px;
+      }
+
+      p {
+        color: #525252;
+        font-weight: bold;
+        padding-left: 5px;
+
+        @media screen and (max-width: $tablet) {
+          display: none;
+        }
+      }
+    }
+
+    .extra-sale-input {
+      flex: 1 1 66.67%;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      justify-content: flex-end;
+      margin: 10px 0px 10px 0px;
+      text-align: center;
+
+      @media screen and (max-width: $tablet) {
+        flex: 1 1 78%;
         gap: 0.5rem;
-    }
+      }
 
-    &.hide {
-        display: none;
-    }
-
-    label {
+      label {
         margin-right: 20%;
 
         @media screen and (max-width: $tablet) {
-        margin-right: 0%;
+          margin-right: 0%;
         }
-    }
+      }
 
-    input {
+      input {
         width: 5em;
         height: 1.8em;
         border-radius: 5px;
         border: 1px solid #a3a3a3;
+      }
 
-        &:hover {
-            border: 1px solid #939393;
-        }
-    }
-
-    p{
+      p {
         margin: 0px 20px 0px 0px;
-        @media screen and (max-width: $tablet) {
-            margin: 0px 10px 0px 0px;
-        }
-    }
-}
-
-.invisible{
-    visibility: hidden;
-  }
-
-  .containerSaving {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 30px 20px 30px;
-
-    button {
-        border: none;
-        color: white;
-        padding: 4px 18px;
-        border-radius: 15px;
-        font-size: 1rem;
-        font-weight: bold;
-        box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.3);
-        margin: 0rem 0.5rem;
 
         @media screen and (max-width: $tablet) {
-            font-size: 0.9rem;
-        }
-
-        &:active {
-            box-shadow: 1px 1px 4px 1px rgba(54, 54, 54, 0.3);
-          }
-
-        &:nth-child(1) {
-            background: linear-gradient(to bottom right, #e51ead, #e086bf);
-            &:hover {
-                background: linear-gradient(to bottom right, #c91a97, #c376a7);
-                cursor: pointer;
-              }  
-        }
-
-        &:nth-child(2) {
-            background: linear-gradient(to bottom right, #d5d6d6eb, #ffffffeb);
-            color: #e51ead;
-            font-size: 1.5rem;
-            padding: 4px 18px;
-
-            &:hover {
-                background: linear-gradient(to bottom right, #c3c4c4eb, #e5e5e5eb);
-                cursor: pointer;
-              }
-          }
-
-        &:nth-child(3) {
-            background: linear-gradient(to bottom right, #e51ead, #e086bf);
-            &:hover {
-                background: linear-gradient(to bottom right,  #c91a97, #c376a7);
-                cursor: pointer;
-              }  
+          margin: 0px 10px 0px 0px;
         }
       }
+    }
   }
 
-  .wrapper {
-    -moz-transition: height 0.5s;
-    -ms-transition: height 0.5s;
-    -o-transition: height 0.5s;
-    -webkit-transition: height 0.5s;
-    transition: height 0.5s;
-    height: 0;
-    overflow: hidden;
-  }
-
-.extra-sale-container {
+  .extra-sale {
     display: flex;
-    flex-direction: column;
-    width: 95%;
-    height: 110px;
-    background-color: #f6f6f6;
-    margin: 10px auto 20px auto;
-    padding: 0.5rem 0rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    justify-content: flex-end;
+    padding: 15px 20px 5px 0px;
 
-    .extra-Sale-Wrapper {
-        display: flex;
-        flex-direction: row;
+    button {
+      border: none;
+      color: #525252;
+      padding: 8px 18px;
+      border-radius: 15px;
+      font-size: 1rem;
+      font-weight: bold;
+      box-shadow: 2px 3px 4px 1px rgb(0 0 0 / 30%);
+      background: linear-gradient(45deg, #e2e2e2, #c8c8c8);
 
-        .extra-sale-title {
-            flex: 1 1 33.33%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+      @media screen and (max-width: $tablet) {
+        font-size: 0.9rem;
+      }
 
-            @media screen and (max-width: $tablet) {
-                flex: 18%;
-            }
+      &:hover {
+        background: linear-gradient(45deg, #d8d6d6, #b7b6b6);
+        cursor: pointer;
+      }
 
-            img {
-                width: 50px;
-            }
-
-            p {
-                color: #525252;
-                font-weight: bold;
-                padding-left: 5px;
-
-                @media screen and (max-width: $tablet) {
-                    display: none;
-                }
-            }
-        }
-
-        .extra-sale-input {
-            flex: 1 1 66.67%;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            justify-content: flex-end;
-            margin: 10px 0px 10px 0px;
-            text-align: center;
-
-            @media screen and (max-width: $tablet) {
-                flex: 1 1 78%;
-                gap: 0.5rem;
-
-            }
-
-            label {
-                margin-right: 20%;
-
-                @media screen and (max-width: $tablet) {
-                    margin-right: 0%;
-                }
-            }
-
-            input {
-                width: 5em;
-                height: 1.8em;
-                border-radius: 5px;
-                border: 1px solid #a3a3a3;
-            }
-
-            p {
-                margin: 0px 20px 0px 0px;
-
-                @media screen and (max-width: $tablet) {
-                    margin: 0px 10px 0px 0px;
-                }
-            }
-        }
+      &:active {
+        box-shadow: 1px 1px 4px 1px rgba(54, 54, 54, 0.3);
+      }
     }
 
-    .extra-sale {
-        display: flex;
-        justify-content: flex-end;
-        padding: 15px 20px 5px 0px;
-
-        button {
-            border: none;
-            color: #525252;
-            padding: 8px 18px;
-            border-radius: 15px;
-            font-size: 1rem;
-            font-weight: bold;
-            box-shadow: 2px 3px 4px 1px rgb(0 0 0 / 30%);
-            background: linear-gradient(45deg, #E2E2E2, #C8C8C8);
-
-            @media screen and (max-width: $tablet) {
-                font-size: 0.9rem;
-            }
-
-            &:hover {
-                background: linear-gradient(45deg, #d8d6d6, #b7b6b6);
-                cursor: pointer;
-            }
-
-            &:active {
-                box-shadow: 1px 1px 4px 1px rgba(54, 54, 54, 0.3);
-            }
-        }
-
-        .extra-sale-button.active {
-            background: linear-gradient(45deg, #888888, #636363);
-            color: #f2f2f2;
-        }
+    .extra-sale-button.active {
+      background: linear-gradient(45deg, #888888, #636363);
+      color: #f2f2f2;
     }
+  }
 }
 
 .summary {
-    width: 60%;
-    position: relative;
-    /* top: 500px; */
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 1em;
-    margin: auto;
-    margin-top: 1.5em;
-    margin-bottom: 3rem;
-    height: 100%;
+  width: 60%;
+  position: relative;
+  /* top: 500px; */
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1em;
+  margin: auto;
+  margin-top: 1.5em;
+  margin-bottom: 3rem;
+  height: 100%;
 
-    @media screen and (max-width: $tablet) {
-        width: 85%;
-    }
+  @media screen and (max-width: $tablet) {
+    width: 85%;
   }
+}
 
-  .containerSummary {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    grid-template-rows: min-content min-content;
-    margin: 0;
-    align-items: center;
+.containerSummary {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-rows: min-content min-content;
+  margin: 0;
+  align-items: center;
 
-    @media screen and (max-width: $tablet) {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+  @media screen and (max-width: $tablet) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  
-  .titleFirst {
-    grid-column: 2 / 3;
-    grid-row: span 1;
-  }
-  
-  .titleSecond {
-    grid-column: 3 / 4;
-    grid-row: span 1;
-  }
-  
-  .titleThird {
-    grid-column: 4 / 5;
-    grid-row: span 1;
-  }
-  
-  .subtitles,
-  .quantityFirst,
-  .quantitySecond,
-  .quantityThird
-  {
-    border-bottom: 3px solid #d9d9d9;
-    border-top: 3px solid #d9d9d9;
+}
 
-    p{
+.titleFirst {
+  grid-column: 2 / 3;
+  grid-row: span 1;
+}
+
+.titleSecond {
+  grid-column: 3 / 4;
+  grid-row: span 1;
+}
+
+.titleThird {
+  grid-column: 4 / 5;
+  grid-row: span 1;
+}
+
+.subtitles,
+.quantityFirst,
+.quantitySecond,
+.quantityThird {
+  border-bottom: 3px solid #d9d9d9;
+  border-top: 3px solid #d9d9d9;
+
+  p {
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
   }
-  }
-  
-  .sum {
-    margin-top: 0.5rem;
-  }
+}
 
-  .summaryBottom,
-  .summaryTitle>p {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333232;
-    padding-left: 1rem;
-  }
+.sum {
+  margin-top: 0.5rem;
+}
 
-  .summaryBottom{
+.summaryBottom,
+.summaryTitle > p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333232;
+  padding-left: 1rem;
+}
+
+.summaryBottom {
   @media screen and (max-width: $tablet) {
     font-size: 1rem;
     padding-left: 0rem;
-}}
-  
-  .titleFirst,
-  .titleSecond,
-  .titleThird {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #4a1bb4;
-    margin-bottom: 0.5rem;
-
-    @media screen and (max-width: $tablet) {
-        font-size: 1rem;
-    }
   }
-  
-  .quantityFirst,
-  .quantitySecond,
-  .quantityThird{
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #4f4f4f;
+}
 
-    @media screen and (max-width: $tablet) {
-        font-size: 1rem;
-    }
-  }
-  
-  .sumQuantityFirst,
-  .sumQuantitySecond,
-  .sumQuantityThird {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #4a1bb4;
+.titleFirst,
+.titleSecond,
+.titleThird {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4a1bb4;
+  margin-bottom: 0.5rem;
 
-    @media screen and (max-width: $tablet) {
-        font-size: 1rem;
-    }
+  @media screen and (max-width: $tablet) {
+    font-size: 1rem;
   }
-  
-  
-  .quantityFirst>p:nth-of-type(2),
-  .quantitySecond>p:nth-of-type(2) {
-    color: #4f4f4f;
-  }
-  
-  .subtitles>p {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #4f4f4f;
-    padding-left: 1em;
+}
 
-    @media screen and (max-width: $tablet) {
-        font-size: 1rem;
-        padding-left: 0em;
-    }
-  }
+.quantityFirst,
+.quantitySecond,
+.quantityThird {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #4f4f4f;
 
+  @media screen and (max-width: $tablet) {
+    font-size: 1rem;
+  }
+}
+
+.sumQuantityFirst,
+.sumQuantitySecond,
+.sumQuantityThird {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #4a1bb4;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 1rem;
+  }
+}
+
+.quantityFirst > p:nth-of-type(2),
+.quantitySecond > p:nth-of-type(2) {
+  color: #4f4f4f;
+}
+
+.subtitles > p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #4f4f4f;
+  padding-left: 1em;
+
+  @media screen and (max-width: $tablet) {
+    font-size: 1rem;
+    padding-left: 0em;
+  }
+}
 
 .footer {
-    height: 3rem;
-    position: relative;
+  height: 3rem;
+  position: relative;
 }

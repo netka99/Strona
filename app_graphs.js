@@ -107,6 +107,7 @@ const objectsComparison = () => {
 const summaryData = (dataArr, summaryObj, valuesByProduct, datesByProduct) => {
   // Loop through each sale in the data
   dataArr.forEach((sale) => {
+    const parsedQuantity = Number(sale.quantity) || 0;
     // If the product doesn't exist in the summarySale object, add it with an empty object
     if (!summaryObj[sale.product]) {
       summaryObj[sale.product] = {};
@@ -118,7 +119,7 @@ const summaryData = (dataArr, summaryObj, valuesByProduct, datesByProduct) => {
     }
 
     // Add the quantity of the sale to the summarySale object for the product and date
-    summaryObj[sale.product][sale.date] += sale.quantity;
+    summaryObj[sale.product][sale.date] += parsedQuantity;
   });
 
   objectsComparison();

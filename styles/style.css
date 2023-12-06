@@ -429,8 +429,7 @@ input[type=date]:focus {
 }
 
 [type=radio]:checked ~ label {
-  color: #5C35B6;
-  z-index: 2;
+  color: #5c35b6;
   width: 80%;
   background: linear-gradient(45deg, #e3e3e3, #ede8e8);
   border-radius: 15px;
@@ -820,7 +819,7 @@ input[type=date]:focus {
   font-size: 1rem;
   font-weight: bold;
   box-shadow: 2px 3px 4px 1px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, #E2E2E2, #C8C8C8);
+  background: linear-gradient(45deg, #e2e2e2, #c8c8c8);
 }
 @media screen and (max-width: 768px) {
   .extra-sale-container .extra-sale button {
@@ -1103,12 +1102,12 @@ input[type=date]:focus {
   grid-template-columns: 2fr 1fr 1fr;
   padding: 2rem 2rem 1rem 2rem;
 }
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 390px) {
   .summary-output-container {
     padding: 2rem 0.2rem 1rem 0.2rem;
   }
 }
-@media screen and (min-width: 370px) and (max-width: 426px) {
+@media screen and (min-width: 390px) and (max-width: 426px) {
   .summary-output-container {
     padding: 2rem 1rem 1rem 1rem;
   }
@@ -1163,7 +1162,6 @@ input[type=date]:focus {
 .summary-shop-name {
   color: #656464;
   font-weight: bold;
-  font-size: 1rem;
 }
 
 .summary-shop-name,
@@ -1172,8 +1170,15 @@ input[type=date]:focus {
   padding: 10px 0px 2px 2px;
   border-bottom: 2px solid #d9d9d9;
 }
+@media screen and (max-width: 426px) {
+  .summary-shop-name,
+  .summary-daily-sale,
+  .summary-daily-price {
+    font-size: 0.9rem;
+  }
+}
 
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 426px) {
   .summary-daily-sale,
   .summary-daily-price {
     padding: 10px 0px 2px 0px;
