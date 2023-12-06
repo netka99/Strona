@@ -30,6 +30,7 @@ const sumQuantKartacze = document.querySelector('.sumQuantityFirst');
 const sumQuantBabka = document.querySelector('.sumQuantitySecond');
 const sumQuantKiszka = document.querySelector('.sumQuantityThird');
 const sumQuantExtra = document.querySelector('#quantityFirstExtra');
+const modalMain = document.getElementById('modalId');
 
 let totals = {};
 let totalsReturn = {};
@@ -39,12 +40,15 @@ async function fetchData(url) {
     const response = await fetch(url);
 
     if (!response.ok) {
+      modalMain.style.display = 'block';
       throw new Error(`HTTP error! Status: ${response.statusText}`);
     }
+    modalMain.style.display = 'none';
     const data = await response.json();
     return data;
   } catch (error) {
     console.error('Error:', error);
+    modalMain.style.display = 'block';
     throw error;
   }
 }
@@ -348,7 +352,6 @@ const contentLoad = (shops) => {
           date: dateInput.value,
         };
         if (extraSaleInput.value === '') {
-          openModal();
         } else {
           postDataToApi(data, apiUrlSale);
           e.currentTarget.classList.add('active');

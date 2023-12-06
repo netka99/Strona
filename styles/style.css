@@ -1685,7 +1685,7 @@ input[type=date]:focus {
 }
 
 /* Modal Styles */
-.modal {
+.modal-main {
   display: none;
   position: fixed;
   z-index: 3;
@@ -1697,14 +1697,14 @@ input[type=date]:focus {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.modal-content-main {
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
 }
-.modal-content p {
+.modal-content-main p {
   text-align: center;
   font-size: 20px;
   font-weight: bold;

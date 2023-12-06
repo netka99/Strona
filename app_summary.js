@@ -6,6 +6,7 @@
 
 let productPrices = {};
 const searchDate = document.getElementById('searchDate');
+const modalMain = document.getElementById('modalId');
 
 //summary of Sale and Return per date
 const sumSalesReturns = (sumSale, sumReturn) => {
@@ -88,15 +89,17 @@ async function fetchPrices() {
     const response = await fetch(url);
 
     if (!response.ok) {
+      modalMain.style.display = 'block';
       throw new Error(`HTTP error! Status: ${response.statusText}`);
     }
-
+    modalMain.style.display = 'none';
     const data = await response.json();
     productPrices = data.prices;
     console.log('Prices:', productPrices);
     return productPrices;
   } catch (error) {
     console.error('Error:', error);
+    modalMain.style.display = 'block';
     throw error;
   }
 }

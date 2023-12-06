@@ -11,6 +11,7 @@ let datesByProductReturn = {};
 let returnsByProduct = {};
 let sortedSale;
 let sortedReturn;
+const modalMain = document.getElementById('modalId');
 
 async function fetchData(apiEndpoint) {
   try {
@@ -38,8 +39,10 @@ async function fetchData(apiEndpoint) {
 async function getData(apiEndpoint) {
   try {
     const apiData = await fetchData(apiEndpoint);
+    modalMain.style.display = 'none';
     return apiData;
   } catch (error) {
+    modalMain.style.display = 'block';
     console.error('Error:', error);
   }
 }
